@@ -1,0 +1,18 @@
+{
+  "name": "al-un.fr",
+  "version": "0.0.1",
+  "description": "Mono-repository for al-un.fr websites",
+  "scripts": {
+    "lerna": "lerna",
+    "nuke":"lerna clean --yes && rm -Rf node_modules",
+    "postinstall": "lerna bootstrap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Al-un/al-un.fr.git"
+  },
+  "author": "Al-un",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
