@@ -1,0 +1,28 @@
+$rhythm: 8px;
+
+:host {
+  display: inline-block;
+}
+
+.super-button {
+  align-items: center;
+  border: 1px solid #23232339;
+  border-radius: $rhythm;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden hidden;
+  padding: $rhythm 2 * $rhythm;
+  width: 100%;
+
+  // Enjoying a bit of nesting here
+  &.primary {
+    // Let's have some CSS custom properties for more flexibility
+    background-color: var(--al-primary, rebeccapurple);
+    color: white;
+  }
+
+  &.danger {
+    background-color: var(--al-danger, crimson);
+    color: white;
+  }
+}
