@@ -1,0 +1,46 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: grid;
+  grid-template-areas:
+    "drawer header"
+    "drawer content"
+    "drawer footer";
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 48px 1fr 80px;
+}
+
+:host(.hidden) {
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  grid-template-columns: 1fr;
+
+  .app-nav-drawer {
+    display: none;
+  }
+}
+
+.app-nav-drawer {
+  grid-area: drawer;
+  background-color: burlywood;
+}
+.app-header {
+  grid-area: header;
+  background-color: cadetblue;
+}
+
+.app-content {
+  grid-area: content;
+  background-color: khaki;
+}
+
+.app-footer {
+  grid-area: footer;
+  background-color: peachpuff;
+}

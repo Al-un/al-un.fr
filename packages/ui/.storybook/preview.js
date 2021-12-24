@@ -1,3 +1,7 @@
+// --- al-ui config -----------------------------------------------------------
+import "../src/styles/init.scss";
+
+// --- Storybook global config ------------------------------------------------
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -6,4 +10,4 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};

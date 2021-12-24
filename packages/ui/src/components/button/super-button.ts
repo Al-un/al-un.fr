@@ -10,7 +10,7 @@ import {
 import { customElement } from "lit/decorators.js";
 import { ClassInfo, classMap } from "lit/directives/class-map.js";
 
-import styling from "@al-ui/button/super-button.scss";
+import styling from "@al-ui/components/button/super-button.scss";
 
 export type SuperButtonTheme = "primary" | "danger";
 
@@ -32,9 +32,9 @@ export class SuperButton extends LitElement {
   }
 
   // some basic button styling to get started.
-  static styles = css`
-    ${unsafeCSS(styling)}
-  `;
+  static get styles() {
+    return [styling];
+  }
 
   /**
    * List of button properties that can be defined by an attribute

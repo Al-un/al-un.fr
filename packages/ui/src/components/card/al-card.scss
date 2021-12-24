@@ -1,0 +1,11 @@
+@use "../../styles/variables";
+
+:host {
+  background: var(--al-bg-content);
+  border-radius: variables.$border-radius-base;
+  border: 1px solid black;
+}
+
+:host([padded]) {
+  padding: 16px;
+}

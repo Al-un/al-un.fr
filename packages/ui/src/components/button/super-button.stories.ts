@@ -2,8 +2,8 @@ import { html } from "lit";
 import { Meta, Story } from "@storybook/web-components";
 
 // Path alias is not useful here but ensures that aliases work in Storybook
-import "@al-ui/button/super-button";
-import { SuperButtonTheme } from "@al-ui/button/super-button";
+import "@al-ui/components/button/super-button";
+import { SuperButtonTheme } from "@al-ui/components/button/super-button";
 
 interface SuperButtonStoryAttrs {
   content: string;

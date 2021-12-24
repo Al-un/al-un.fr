@@ -11,7 +11,19 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.scss$/,
-      use: [{ loader: "css-loader" }, { loader: "sass-loader" }],
+      // split by folder: https://stackoverflow.com/a/37477010/4906586
+      include: [path.resolve(__dirname, "../src/components")],
+      use: [
+        { loader: path.resolve("./webpack.scss-to-lit.js") },
+        { loader: "extract-loader" },
+        { loader: "css-loader" },
+        { loader: "sass-loader" },
+      ],
+    });
+    config.module.rules.push({
+      test: /\.scss$/,
+      include: [path.resolve(__dirname, "../src/styles")],
+      use: ["style-loader", "css-loader", "sass-loader"],
     });
 
     config.resolve = {

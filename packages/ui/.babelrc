@@ -1,0 +1,12 @@
+{
+  "assumptions": {
+    "setPublicClassFields": true
+  },
+  "plugins": [
+    // https://lit.dev/docs/components/decorators/#using-decorators-with-typescript-and-babel
+    ["@babel/plugin-transform-typescript", { "allowDeclareFields": true }],
+    // https://github.com/storybookjs/storybook/issues/12369#issuecomment-698221904
+    ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+    ["@babel/plugin-proposal-class-properties"]
+  ]
+}

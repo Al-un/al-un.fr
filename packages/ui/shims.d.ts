@@ -1,7 +1,9 @@
 declare module "*.scss" {
-  // Some loader can directly convert the SCSS file into a CSSResultGroup and
-  // make it ready-to-use by Lit components but let's keep things simple.
-  // Clever tricks can wait.
-  const styling: string;
+  // https://stackoverflow.com/a/60029264/4906586
+  import { CSSResult } from "lit";
+
+  // .scss import in Lit components must be type as CSSResult by Rollup
+  // and Webpack
+  const styling: CSSResult;
   export default styling;
 }
