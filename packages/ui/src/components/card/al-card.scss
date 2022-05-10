@@ -1,8 +1,6 @@
-@use "../../styles/variables";
-
 :host {
   background: var(--al-bg-content);
-  border-radius: variables.$border-radius-base;
+  border-radius: al-ui.$border-radius-base;
   border: 1px solid black;
 }
 

@@ -1,3 +1,3 @@
-export * from "./components/app/al-app-base";
-export * from "./components/button/super-button";
-export * from "./components/card/al-card";
+export { AlAppBase } from "./components/app/al-app-base";
+export { AlButton } from "./components/button/al-button";
+export { AlCard } from "./components/card/al-card";

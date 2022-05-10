@@ -1,0 +1,46 @@
+// https://getbootstrap.com/docs/5.1/layout/breakpoints/
+
+@use "sass:map";
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+@mixin sm-down {
+  @media (max-width: map.get($breakpoints, "sm")) {
+    @content;
+  }
+}
+
+@mixin sm-up {
+  @media (min-width: map.get($breakpoints, "sm")) {
+    @content;
+  }
+}
+
+@mixin md-down {
+  @media (max-width: map.get($breakpoints, "md")) {
+    @content;
+  }
+}
+
+@mixin md-up {
+  @media (min-width: map.get($breakpoints, "md")) {
+    @content;
+  }
+}
+
+@mixin lg-down {
+  @media (max-width: map.get($breakpoints, "lg")) {
+    @content;
+  }
+}
+
+@mixin lg-up {
+  @media (min-width: map.get($breakpoints, "lg")) {
+    @content;
+  }
+}

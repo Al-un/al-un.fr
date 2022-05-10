@@ -1,46 +1,89 @@
+
+
+$app-transition-duration: 250ms;
+
+$z-index-app-menu-drawer: 2;
+$z-index-app-menu-drawer-backdrop: 1;
+
 :host {
+  --app-header-height: 56px;
+  --app-menu-drawer-width: 200px;
+  --app-footer-height: 80px;
+
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 
-  display: grid;
-  grid-template-areas:
-    "drawer header"
-    "drawer content"
-    "drawer footer";
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 48px 1fr 80px;
-}
+  display: flex;
+  flex-direction: row;
 
-:host(.hidden) {
-  grid-template-areas:
-    "header"
-    "content"
-    "footer";
-  grid-template-columns: 1fr;
-
-  .app-nav-drawer {
+  .app-menu-drawer-backdrop {
+    background-color: rgba(0, 0, 0, 0.45);
     display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: $z-index-app-menu-drawer-backdrop;
+  }
+
+  @include al-ui.md-down {
+    --app-header-height: 48px;
+    --app-footer-height: auto;
+
+    .app-menu-drawer {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+    }
   }
 }
 
-.app-nav-drawer {
-  grid-area: drawer;
-  background-color: burlywood;
+.app-menu-drawer {
+  transition: margin-left $app-transition-duration,
+    width $app-transition-duration;
+  width: var(--app-menu-drawer-width);
+
+  z-index: $z-index-app-menu-drawer;
 }
+
+.app-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
 .app-header {
-  grid-area: header;
-  background-color: cadetblue;
+  height: var(--app-header-height);
 }
 
 .app-content {
-  grid-area: content;
-  background-color: khaki;
+  flex: 1;
 }
 
 .app-footer {
-  grid-area: footer;
-  background-color: peachpuff;
+  min-height: var(--app-footer-height);
+}
+
+:host([menu-drawer-position="expanded"]) {
+  @include al-ui.md-down {
+    --app-menu-drawer-width: 80%;
+    .app-menu-drawer-backdrop {
+      display: block;
+    }
+  }
+}
+
+:host([menu-drawer-position="collapsed"]) {
+  --app-menu-drawer-width: 48px;
+}
+
+:host([menu-drawer-position="hidden"]) {
+  .app-menu-drawer {
+    margin-left: calc(0 - var(--app-menu-drawer-width));
+  }
 }
