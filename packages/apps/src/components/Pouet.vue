@@ -1,6 +1,6 @@
 <template>
   <div class="pouet">
-    <super-button @click="onClick">{{ msg }}</super-button>
+    <al-button @click="onClick">{{ msg }}</al-button>
   </div>
 </template>
 

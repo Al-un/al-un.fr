@@ -1,10 +1,12 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
-  <pouet msg="Pouet?"></pouet>
+  <al-app-base menu-drawer-position="hidden">
+    <div id="nav" slot="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view />
+    <pouet msg="Pouet?"></pouet>
+  </al-app-base>
 </template>
 
 <script lang="ts">
@@ -30,6 +32,9 @@ export default defineComponent({
 
 #nav {
   padding: 30px;
+  background-color: lightcoral;
+  width: 100%;
+  height: 100%;
 
   a {
     font-weight: bold;
