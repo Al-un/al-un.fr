@@ -1,22 +1,15 @@
 {
-  "name": "al-un.fr",
-  "version": "0.0.1",
+  "name": "@al-un/root",
+  "author": "Al-un",
+  "version": "0.0.0",
   "description": "Mono-repository for al-un.fr websites",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "lerna": "lerna",
-    "nuke": "lerna clean --yes && rm -Rf node_modules",
-    "postinstall": "lerna bootstrap"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Al-un/al-un.fr.git"
-  },
-  "author": "Al-un",
-  "devDependencies": {
-    "@types/node": "^17.0.31",
-    "lerna": "^4.0.0"
   }
 }
