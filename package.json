@@ -2,6 +2,9 @@
   "name": "al-un.fr",
   "version": "0.0.1",
   "description": "Mono-repository for al-un.fr websites",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "lerna": "lerna",
     "nuke": "lerna clean --yes && rm -Rf node_modules",
