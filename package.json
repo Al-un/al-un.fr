@@ -6,10 +6,14 @@
   "engines": {
     "node": ">=20"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Al-un/al-un.fr.git"
-  }
+  },
+  "workspaces": [
+    "blog",
+    "home",
+    "ui"
+  ]
 }
