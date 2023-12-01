@@ -1,0 +1,15 @@
+{
+  "name": "@al-un/home",
+  "version": "0.0.1",
+  "description": "al-un.fr personal homepage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Al-un/al-un.fr.git"
+  },
+  "author": "Al-un",
+  "license": "ISC"
+}
