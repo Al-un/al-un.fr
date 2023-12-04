@@ -1,0 +1,12 @@
+/* ---------- Global CSS variables ----------------------------------------- */
+:root {
+  --bg-content: white;
+}
+
+/* ---------- Global CSS classes ------------------------------------------- */
+.al-card {
+  background-color: var(--bg-content);
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 4px;
+}

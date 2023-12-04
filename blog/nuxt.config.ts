@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/content"],
+
+  // https://nuxt.com/docs/getting-started/styling#the-css-property
+  css: ["~/app.css"],
+
   content: {
     // https://content.nuxt.com/get-started/configuration#highlight
     highlight: {
