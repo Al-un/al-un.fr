@@ -1,3 +1,9 @@
+---
+title:
+draft: true
+publicationDate:
+---
+
 # Web Component Library Part 1: Create a Library With Lit and Storybook <!-- omit in toc -->
 
 - [About the library](#about-the-library)
@@ -603,9 +609,9 @@ export class SuperButton extends LitElement {
 
 The different styling loader, `css-loader` for Webpack (Storybook) and PostCSS
 plugin for Rollup (build) provides styling in raw text format so it has to
-be converted into a Lit Element friendly format via `unsafeCSS`. 
+be converted into a Lit Element friendly format via `unsafeCSS`.
 
-Some plugin or loader can handle the conversion but, with Storybook and Rollup, 
+Some plugin or loader can handle the conversion but, with Storybook and Rollup,
 making the code compatible with both Webpack loaders and Rollup plugins, as well as
 taking into account SCSS _and_ PostCSS processing, is not worth the effort, from
 my perspective, when a single can meet our requirement.
@@ -941,6 +947,6 @@ Open the page in your favourite browser.
 
 ---
 
-And that's it to get started with web components libraries! 
+And that's it to get started with web components libraries!
 
 Thank you for reading and happy library coding!

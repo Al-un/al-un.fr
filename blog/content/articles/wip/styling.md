@@ -1,3 +1,9 @@
+---
+title:
+draft: true
+publicationDate:
+---
+
 # My (S)CSS Way in XX Steps <!-- omit in toc -->
 
 A mix of tips, tricks and suggestions for a more efficient and less painful web application styling.

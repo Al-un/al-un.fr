@@ -1,6 +1,7 @@
 ---
-title: "Vue.js styling"
-publicationDate: "2020-12-04"
+title: Vue.js styling
+draft: true
+publicationDate:
 ---
 
 # How I want to style my Vue.js components <!-- omit in toc -->

@@ -1,3 +1,9 @@
+---
+title:
+draft: true
+publicationDate:
+---
+
 # What's the difference between a senior software engineer and a junior software engineer?
 
 Back to 2018, I was asked this question during an interview. On the spur of the moment, my brain popped up the answer:
