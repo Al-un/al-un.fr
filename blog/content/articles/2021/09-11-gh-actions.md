@@ -1,3 +1,9 @@
+---
+title: "Streamline Your GitHub Actions With Composite Actions"
+draft: false
+publicationDate: "2021-09-11"
+---
+
 # Streamline Your GitHub Actions With Composite Actions<!-- omit in toc -->
 
 Make the most of GitHub Actions with caching actions and dependent jobs

@@ -1,3 +1,8 @@
+---
+title: "Vue.js styling"
+publicationDate: "2020-12-04"
+---
+
 # How I want to style my Vue.js components <!-- omit in toc -->
 
 Styling practices I want to keep improving, focusing on Vue.js

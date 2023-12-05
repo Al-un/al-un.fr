@@ -1,3 +1,9 @@
+---
+title: "Streamline Your GitHub Actions With Composite Actions"
+draft: false
+publicationDate: "2021-09-16"
+---
+
 # How We Refreshed Our Vue 2 JavaScript Codebase With Some TypeScript Flavour <!-- omit in toc -->
 
 How we created and maintain a TypeScript / JavaScript hybrid Vue.js codebase
@@ -18,7 +24,7 @@ for a smooth and progressive transition.
 - [Progress with a JavaScript / TypeScript hybrid codebase](#progress-with-a-javascript--typescript-hybrid-codebase)
   - [Write class style components](#write-class-style-components)
   - [Adopt `vuex-module-decorators` to type Vuex](#adopt-vuex-module-decorators-to-type-vuex)
-  - [No change for router & plain files (API wrappers, utilities...)](#no-change-for-router--plain-files-api-wrappers-utilities)
+  - [No change for router \& plain files (API wrappers, utilities...)](#no-change-for-router--plain-files-api-wrappers-utilities)
   - [Update unit testing](#update-unit-testing)
   - [Fine tune linting check](#fine-tune-linting-check)
 
