@@ -7,6 +7,12 @@ export default defineNuxtConfig({
   css: ["~/app.css"],
 
   content: {
+    // https://content.nuxt.com/get-started/configuration#markdown
+    markdown: {
+      tags: {
+        // a: "AnchorLink",
+      },
+    },
     // https://content.nuxt.com/get-started/configuration#highlight
     highlight: {
       theme: {

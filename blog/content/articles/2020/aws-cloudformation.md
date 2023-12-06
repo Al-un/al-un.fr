@@ -1,5 +1,6 @@
 ---
 title: Deploy a static website with AWS CloudFormation
+description: Step in Infrastructure-as-a-Code (IaaC) with AWS CloudFormation to configure your static website deployment, with the AWS CloudFront as CDN, Route 53 and S3 bucket. 
 draft: false
 publicationDate: 2020-06-09
 medium: https://medium.com/@Al-un/aws-cloudformation-https-static-website-s3-route53-cloudfront-438090157c1f
@@ -67,7 +68,7 @@ Conditions: # set of conditions definition
 Resources: # set of resources
 ```
 
-![Cloudformation empty console](./aws-cloudformation-img/aws_cloudformation_hosting_00.png)
+![Cloudformation empty console](/articles/2020/aws-cloudformation/aws_cloudformation_hosting_00.png)
 <sub>CloudFormation empty console</sub>
 
 The various examples below help illustrating the purpose of each section. For a more formal approach, some useful links:
@@ -285,7 +286,7 @@ aws cloudformation deploy --stack-name bw-hosting-basic --template-file template
 
 This command will block the terminal until the stack creation is completed:
 
-![CLI deployment in progress](./aws-cloudformation-img/aws_cloudformation_hosting-basic_00.png)
+![CLI deployment in progress](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_00.png)
 
 > To deploy the same stack with a different bucket name, the bucket name parameter has to be overridden:
 >
@@ -297,17 +298,17 @@ This command will block the terminal until the stack creation is completed:
 
 Stack creation progress can be checked in the web console:
 
-![Stack deployment in progress](./aws-cloudformation-img/aws_cloudformation_hosting-basic_01.png)
+![Stack deployment in progress](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_01.png)
 
 Select the stack and check the _Events_ tab to follow the creation steps:
 
 | Creation in progress                                                                      | Creation completed                                                                        |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| ![Stack deployment creation details](./aws-cloudformation-img/aws_cloudformation_hosting-basic_02.png) | ![Stack deployment creation details](./aws-cloudformation-img/aws_cloudformation_hosting-basic_03.png) |
+| ![Stack deployment creation details](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_02.png) | ![Stack deployment creation details](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_03.png) |
 
 When stack deployment is finished, you get back the control of the terminal:
 
-![CLI deployment in progress](./aws-cloudformation-img/aws_cloudformation_hosting-basic_04.png)
+![CLI deployment in progress](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_04.png)
 
 > To check what name the bucket is currently having:
 >
@@ -322,11 +323,11 @@ Time to upload some content:
 aws s3 sync website s3://bw-basic-hosting --profile alun
 ```
 
-![Website upload](./aws-cloudformation-img/aws_cloudformation_hosting-basic_05.png)
+![Website upload](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_05.png)
 
 S3 content can be checked in the web console:
 
-![Website content check](./aws-cloudformation-img/aws_cloudformation_hosting-basic_06.png)
+![Website content check](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_06.png)
 
 ```sh
 # Open the URL with firefox
@@ -337,7 +338,7 @@ The website has two pages: `/index.html` and `/about.html`. The former ensures t
 
 | Index page                                                        | About page                                                                |
 | ----------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| ![It works!](./aws-cloudformation-img/aws_cloudformation_hosting-basic_07.png) | ![About page works!](./aws-cloudformation-img/aws_cloudformation_hosting-basic_08.png) |
+| ![It works!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_07.png) | ![About page works!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_08.png) |
 
 ### Stack deletion
 
@@ -347,17 +348,17 @@ S3 buckets cannot be deleted if not empty. The stack deletion then requires two 
 aws s3 rm --recursive s3://bw-hosting-basic
 ```
 
-![S3 bucket content deletion](./aws-cloudformation-img/aws_cloudformation_hosting-basic_09.png)
+![S3 bucket content deletion](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_09.png)
 
 ```sh
 aws cloudformation delete-stack --stack-name bw-hosting-basic
 ```
 
-![Stack deletion](./aws-cloudformation-img/aws_cloudformation_hosting-basic_10.png)
+![Stack deletion](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_10.png)
 
 Unlike stack creation, stack deletion is not blocking: the command is fired and the terminal is not blocked. It also means that errors might not shown up so better check in the web console if the deletion went fine:
 
-![Stack deletion](./aws-cloudformation-img/aws_cloudformation_hosting-basic_11.png)
+![Stack deletion](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-basic_11.png)
 
 ## Custom URL/domain
 
@@ -477,17 +478,17 @@ aws cloudformation deploy --stack-name bw-hosting-domain --template-file templat
 aws s3 cp --recursive website s3://bw-hosting-domain-cloudflare.al-un.fr
 ```
 
-![Stack creation and S3 content upload](./aws-cloudformation-img/aws_cloudformation_hosting-domain-cloudflare_00.png)
+![Stack creation and S3 content upload](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-domain-cloudflare_00.png)
 
 Create the CNAME record either via the CLI or the web console:
 
-![CNAME record creation in CloudFlare](./aws-cloudformation-img/aws_cloudformation_hosting-domain-cloudflare_01.png)
+![CNAME record creation in CloudFlare](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-domain-cloudflare_01.png)
 
 Both page are now served under `bw-hosting-domain-cloudflare.al-un.fr`:
 
 | Index page                                                                            | About page                                                                            |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| ![Index page works!](./aws-cloudformation-img/aws_cloudformation_hosting-domain-cloudflare_02.png) | ![About page works!](./aws-cloudformation-img/aws_cloudformation_hosting-domain-cloudflare_03.png) |
+| ![Index page works!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-domain-cloudflare_02.png) | ![About page works!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-domain-cloudflare_03.png) |
 
 Stack deletion steps are identical to the basic HTTP hosting stack deletion steps.
 
@@ -662,27 +663,27 @@ aws cloudformation deploy --stack-name bw-hosting-https-acm --region us-east-1 -
 ```
 
 Don't forget this command is blocking until the stack creation is completed:
-![Long long ACM stack creation](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_00.png)
+![Long long ACM stack creation](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_00.png)
 
 To find the ACM stack, make sure that region is switched to _North Virginia / us-east-1_
 
-![us-east-1 Cloudformation stacks](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_01.png)
+![us-east-1 Cloudformation stacks](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_01.png)
 
 Open the certificate manager to check that a certificate request is created. Make sure you are still in _us-east-1_:
 
-![Certificate request](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_02.png)
+![Certificate request](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_02.png)
 
 To validate the certificate, you must create the CNAME records in Cloudflare as defined in AWS Certificate manager:
 
-![Certificate DNS validation](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_03.png)
+![Certificate DNS validation](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_03.png)
 
 Get yourself a coffee and let AWS works on its own. After a while, the certificate will be issued:
 
-![Certificate success!](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_04.png)
+![Certificate success!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_04.png)
 
 The ACM stack creation is then completed:
 
-![Certificate success!](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_05.png)
+![Certificate success!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_05.png)
 
 #### Main stack
 
@@ -698,23 +699,23 @@ aws cloudformation deploy --stack bw-hosting-https --region eu-west-3 --template
 aws s3 cp --recursive website s3://bw-hosting-https-cloudflare
 ```
 
-![The usual AWS CLI commands!](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_06.png)
+![The usual AWS CLI commands!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_06.png)
 
 The CloudFront distribution usually takes a while (few minutes) to be created:
 
-![Stack creation complete!](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_07.png)
+![Stack creation complete!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_07.png)
 
 When the stack is up, the last step is to create the CNAME record in Cloudflare matching the domain name and pointing to the CloudFront (CDN) domain name. As there is an `Outputs` property in the template, there is no need to browser CloudFront distributions:
 
 | CloudFront domain name                                                                      | DNS record creation                                                                    |
 | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| ![CloudFront domain name](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_08.png) | ![Adding DNS record](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_09.png) |
+| ![CloudFront domain name](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_08.png) | ![Adding DNS record](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_09.png) |
 
 Inputting the `http://` URL now automatically redirects to the `https://` URL:
 
 | Index page                                                                             | About page                                                                             |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| ![Index page works!](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_10.png) | ![About page works!](./aws-cloudformation-img/aws_cloudformation_hosting-https-cloudflare_11.png) |
+| ![Index page works!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_10.png) | ![About page works!](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-https-cloudflare_11.png) |
 
 Delete this stack before the ACM stack. Also, don't forget to remove the DNS entries in Cloudflare (DNS validation CNAME entry and CDN CNAME entry).
 
@@ -918,7 +919,7 @@ Upon any upload of any `index.html`, the cache is invalidated for all files:
 
 | Check in CloudFront distribution                                                                   | Check in CloudWatch log group                                                   |
 | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| ![CloudFront cache invalidation](./aws-cloudformation-img/aws_cloudformation_hosting-invalidate-cache_00.png) | ![Lambda log](./aws-cloudformation-img/aws_cloudformation_hosting-invalidate-cache_01.png) |
+| ![CloudFront cache invalidation](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-invalidate-cache_00.png) | ![Lambda log](/articles/2020/aws-cloudformation/aws_cloudformation_hosting-invalidate-cache_01.png) |
 
 ## Extra miles
 

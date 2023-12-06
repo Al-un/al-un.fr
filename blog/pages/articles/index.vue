@@ -8,18 +8,34 @@
           :to="article._path"
           class="al-card"
         >
-          <h2>{{ article.title }}</h2>
-          <p>{{ article.description }}</p>
+          <header class="al-card__header">
+            <h3>{{ article.title }}</h3>
+          </header>
+          <main class="al-card__body">
+            <p>{{ article.description }}</p>
+          </main>
+          <footer class="al-card__footer">
+            <span v-if="article.publicationDate">
+              Published on {{ formatDate(article.publicationDate) }}
+            </span>
+          </footer>
         </NuxtLink>
       </ContentList>
     </section>
   </div>
 </template>
 
+<script setup lang="ts">
+function formatDate(date: Date): string {
+  return `${date} and ${typeof date}`;
+  // return date.toLocaleDateString();
+}
+</script>
+
 <style>
 .articles-page {
   width: 100%;
-  max-width: 1080px;
+  max-width: 960px;
   margin: auto;
 }
 

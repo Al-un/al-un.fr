@@ -1,11 +1,13 @@
 <template>
-  <header>
-    <NuxtLink to="/">Home</NuxtLink>
+  <header class="app-header">
+    <nav>
+      <NuxtLink to="/">Home</NuxtLink>
 
-    <template v-if="props.section !== undefined">
-      <span>&gt;</span>
-      <NuxtLink :to="`/${props.section}`">{{ props.section }}</NuxtLink>
-    </template>
+      <template v-if="props.section !== undefined">
+        <span>&gt;</span>
+        <NuxtLink :to="`/${props.section}`">{{ props.section }}</NuxtLink>
+      </template>
+    </nav>
   </header>
 </template>
 
@@ -17,4 +19,21 @@ interface Props {
 const props = defineProps<Props>();
 </script>
 
-<style></style>
+<style>
+.app-header {
+  background-color: var(--bg-content);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 calc((100% - 960px)/2 + 8px);
+}
+
+.app-header nav {
+  text-transform: capitalize;
+  font-size: 20px;
+}
+
+.app-header nav * + * {
+  margin-left: 4px;
+}
+</style>

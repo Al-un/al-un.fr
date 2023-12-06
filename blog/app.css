@@ -1,5 +1,6 @@
 /* ---------- Global CSS variables ----------------------------------------- */
 :root {
+  --bg-app: #ededed;
   --bg-content: white;
   --bg-content-highlight: rgba(241, 245, 249, 0.5);
   --primary: rgb(0, 193, 106);
@@ -88,13 +89,18 @@ select {
 }
 
 /* ---------- Global Styling ----------------------------------------------- */
+body {
+  background-color: var(--bg-app);
+}
+
 /* ---------- Global CSS classes ------------------------------------------- */
 .al-card {
   background-color: var(--bg-content);
   border-radius: 8px;
   border: 1px solid var(--divider);
   padding: 4px;
-  display: block;
+  display: flex;
+  flex-direction: column;
 
   transition: background-color 0.25s, border-color 0.25s;
 }
@@ -104,6 +110,15 @@ select {
   border-color: var(--primary);
 }
 
-.al-card--body {
+.al-card__header {
+  padding: 16px;
+}
+
+.al-card__body {
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.al-card__footer {
   padding: 16px;
 }

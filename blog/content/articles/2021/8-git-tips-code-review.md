@@ -5,6 +5,8 @@ publicationDate: 2021-08-31
 medium: https://betterprogramming.pub/8-git-tips-to-improve-code-reviewing-71cae7883d6f
 ---
 
+# 8 Git Tips to Improve Code Reviewing
+
 The last months were quite code review intensive. However, unlike previous code review spikes, I spent a bit of time finding out how I could make my life easier.
 
 ---
