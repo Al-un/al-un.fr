@@ -1,8 +1,12 @@
 /* ---------- Global CSS variables ----------------------------------------- */
 :root {
   --bg-content: white;
-  --txt-color: black;
-  --font-size-body: 16px
+  --bg-content-highlight: rgba(241, 245, 249, 0.5);
+  --primary: rgb(0, 193, 106);
+  --txt-color: rgb(51, 65, 85);
+  --sub-text-color: rgb(100, 116, 139);
+  --divider: rgb(226, 232, 240);
+  --font-size-body: 16px;
 }
 
 /* ---------- CSS reset ---------------------------------------------------- */
@@ -19,7 +23,7 @@ html {
 }
 
 body {
-  font-size: var(font-size-body);
+  font-size: var(--font-size-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -31,7 +35,7 @@ body,
 }
 
 * {
-  color: var(txt-color);
+  color: var(--txt-color);
 }
 
 *,
@@ -56,7 +60,7 @@ ul {
 }
 
 a {
-  color: var(txt-color);
+  color: var(--txt-color);
   text-decoration: none;
 }
 
@@ -83,10 +87,23 @@ select {
   font: inherit;
 }
 
+/* ---------- Global Styling ----------------------------------------------- */
 /* ---------- Global CSS classes ------------------------------------------- */
 .al-card {
   background-color: var(--bg-content);
   border-radius: 8px;
-  border: 1px solid black;
+  border: 1px solid var(--divider);
   padding: 4px;
+  display: block;
+
+  transition: background-color 0.25s, border-color 0.25s;
+}
+
+.al-card:hover {
+  background-color: var(--bg-content-highlight);
+  border-color: var(--primary);
+}
+
+.al-card--body {
+  padding: 16px;
 }

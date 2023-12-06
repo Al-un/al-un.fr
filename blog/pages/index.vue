@@ -11,7 +11,7 @@
     <NuxtLink
       v-for="article in contentQuery.data.value"
       :key="article._id"
-      style="margin-bottom: 16px; border: 1px solid red; display: block"
+      class="al-card"
       :to="article._path"
     >
       <div>Title: {{ article.title }}</div>

@@ -563,7 +563,7 @@ to restrict the linting check to the desired files set:
 ```
 
 To run the linting check locally, some magic command, taken from
-[8 Git Tips to Improve Code Review](https://betterprogramming.pub/8-git-tips-to-improve-code-reviewing-71cae7883d6f),
+[8 Git Tips to Improve Code Review](./8-git-tips-code-review.md),
 could help:
 
 ```sh
