@@ -22,7 +22,7 @@ export default defineNuxtConfig({
         default: "vitesse-dark",
         light: "github-light",
         dark: "github-dark",
-        sepia: "monokai",
+        sepia: "solarized-light",
       },
     },
   },

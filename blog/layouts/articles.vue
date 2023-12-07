@@ -80,33 +80,6 @@
   margin-top: 12px;
 }
 
-/* ---------- Code blocks ---------- */
-
-/* For all code blocks */
-.article-body code {
-  font-size: 65%;
-  background-color: rgb(248, 250, 252);
-}
-
-/* Multi-line code blocks are wrapped with a <pre> */
-.article-body pre {
-  background-color: rgb(248, 250, 252);
-  border: 1px solid var(--divider);
-  border-radius: 8px;
-  overflow-x: auto;
-  padding: 16px;
-}
-
-/* 
-Inline codes are not wrapped
-See https://stackoverflow.com/a/76197588/4906586 
-*/
-.article-body code:not(pre code) {
-  border: 1px solid var(--divider);
-  border-radius: 8px;
-  padding: 4px 8px;
-}
-
 /* ---------- Others ---------- */
 .article-body blockquote {
   font-style: italic;
