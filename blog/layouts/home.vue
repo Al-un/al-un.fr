@@ -1,6 +1,14 @@
 <template>
   <div>
     <LayoutAppHeader></LayoutAppHeader>
-    <slot></slot>
+    <main class="home-body"><slot></slot></main>
   </div>
 </template>
+
+<style>
+.home-body {
+  max-width: 960px;
+  padding: 16px 24px;
+  margin: 24px auto;
+}
+</style>

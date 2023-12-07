@@ -1,46 +1,33 @@
 <template>
-  <!-- <ContentList path="/articles" v-slot="{ list }">
-    <div v-for="article in list" :key="article._path">
-      <h2>{{ article.title }}</h2>
-      <p>{{ article.description }}</p>
-      <NuxtLink :to="article._path">Link: {{ article._path }}</NuxtLink>
-    </div></ContentList
-  > -->
+  <div>
+    <h1>Welcome!</h1>
 
-  <section>
-    <NuxtLink
-      v-for="article in contentQuery.data.value"
-      :key="article._id"
-      class="al-card"
-      :to="article._path"
-    >
-      <div>Title: {{ article.title }}</div>
-      <div>Description: {{ article.description }}</div>
-      <div>
-        Date: {{ article.publicationDate }} /
-        {{ article.publicationDate === undefined }}
-      </div>
-    </NuxtLink>
-  </section>
+    <p>Welcome to Al-un's blog</p>
+
+    <ul>
+      <li><NuxtLink to="/articles">Articles</NuxtLink></li>
+      <li><NuxtLink to="/kb">Knowledge Base</NuxtLink></li>
+    </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
-import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
+// import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
 
-interface ArticleContent extends ParsedContent {
-  publicationDate: Date | undefined;
-}
+// interface ArticleContent extends ParsedContent {
+//   publicationDate: Date | undefined;
+// }
 
-definePageMeta({
-  layout: "home",
-});
+// definePageMeta({
+//   layout: "home",
+// });
 
-// Create a query looking into content/articles directory
-const contentQuery = await useAsyncData("home", () =>
-  queryContent<ArticleContent>("articles")
-    .where({ draft: { $eq: false } })
-    .sort({ publicationDate: 1 })
-    .limit(5)
-    .find()
-);
+// // Create a query looking into content/articles directory
+// const contentQuery = await useAsyncData("home", () =>
+//   queryContent<ArticleContent>("articles")
+//     .where({ draft: { $eq: false } })
+//     .sort({ publicationDate: 1 })
+//     .limit(5)
+//     .find()
+// );
 </script>

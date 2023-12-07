@@ -11,20 +11,21 @@ https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colo
   --bg-content: #f8fafc;
   --bg-content-highlight: #f1f5f9;
   --bg-code: #f1f5f9;
-  --primary: #38bdf8;
-  --txt-color: #334155;
-  --sub-text-color: #475569;
+  --primary: rgb(0 193 106);
+  --twxt-color: rgb(15 23 42);
+  --sub-text-color: rgb(100 116 139);
   --divider: #cbd5e1;
   --font-size-body: 16px;
 }
 
 html.dark {
-  --bg-app: #020617;
-  --bg-content: #1e293b;
-  --bg-content-highlight: #334155;
-  --bg-code: #0f172a;
-  --txt-color: #f1f5f9;
-  --sub-text-color: #e2e8f0;
+  --bg-app: rgb(2 4 32);
+  --bg-content: rgb(15 23 42);
+  --bg-content-highlight: rgb((15 23 42)/0.5);
+  --bg-code: rgb(30 41 59);
+  --primary: rgb(0 220 130);
+  --text-color: rgb(226 232 240);
+  --sub-text-color: rgb(148 163 184);
   --divider: #64748b;
 }
 
@@ -33,7 +34,8 @@ html.sepia {
   --bg-content: #e7e5e4;
   --bg-content-highlight: #d6d3d1;
   --bg-code: #d6d3d1;
-  --txt-color: #44403c;
+  --primary: rgb(0 220 130);
+  --text-color: #44403c;
   --sub-text-color: #57534e;
   --divider: #78716c;
 }
@@ -64,7 +66,7 @@ body,
 }
 
 * {
-  color: var(--txt-color);
+  color: var(--text-color);
 }
 
 *,
@@ -89,8 +91,9 @@ ul {
 }
 
 a {
-  color: var(--txt-color);
+  color: var(--text-color);
   text-decoration: none;
+  font-weight: 500;
 }
 
 ol,
@@ -116,9 +119,21 @@ select {
   font: inherit;
 }
 
+/* ---------- CSS adjustment for theming ----------------------------------- */
+select {
+  background-color: var(--bg-content);
+  padding: 4px 8px;
+  border-radius: 8px;
+  border-color: var(--divider);
+}
+
 /* ---------- Global Styling ----------------------------------------------- */
 body {
   background-color: var(--bg-app);
+}
+
+.flex-spacer {
+  flex-grow: 1;
 }
 
 /* ---------- Global CSS classes ------------------------------------------- */

@@ -8,21 +8,19 @@
         <NuxtLink :to="`/${props.section}`">{{ props.section }}</NuxtLink>
       </template>
     </nav>
-  </header>
-  <div>
-    <h1>Color mode: {{ $colorMode.value }}</h1>
+
+    <div class="flex-spacer"></div>
+
     <select v-model="$colorMode.preference">
       <option value="system">System</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
       <option value="sepia">Sepia</option>
     </select>
-  </div>
+  </header>
 </template>
 
 <script setup lang="ts">
-const colorMode = useColorMode();
-
 interface Props {
   section?: "articles" | "kb";
 }
@@ -37,6 +35,9 @@ const props = defineProps<Props>();
   display: flex;
   align-items: center;
   padding: 0 calc((100% - 960px) / 2 + 8px);
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--divider);
 }
 
 .app-header nav {
@@ -45,6 +46,6 @@ const props = defineProps<Props>();
 }
 
 .app-header nav * + * {
-  margin-left: 4px;
+  margin-left: 8px;
 }
 </style>
