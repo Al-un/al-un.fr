@@ -1,7 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxt/content"],
+  modules: [
+    "@nuxt/content",
+    "@nuxtjs/color-mode", // https://color-mode.nuxtjs.org/
+  ],
 
   // https://nuxt.com/docs/getting-started/styling#the-css-property
   css: ["~/app.css"],
@@ -16,10 +19,24 @@ export default defineNuxtConfig({
     // https://content.nuxt.com/get-started/configuration#highlight
     highlight: {
       theme: {
-        default: "github-light",
+        default: "vitesse-dark",
         light: "github-light",
         dark: "github-dark",
+        sepia: "monokai",
       },
     },
+  },
+
+  // https://color-mode.nuxtjs.org/#configuration
+  colorMode: {
+    preference: "system", // default value of $colorMode.preference
+    fallback: "light", // fallback value if not system preference found
+    // hid: 'nuxt-color-mode-script',
+    // globalName: '__NUXT_COLOR_MODE__',
+    componentName: "ColorScheme",
+    classPrefix: "",
+    classSuffix: "",
+    // classSuffix: '-mode',
+    storageKey: "nuxt-color-mode",
   },
 });

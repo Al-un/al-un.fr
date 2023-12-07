@@ -9,9 +9,20 @@
       </template>
     </nav>
   </header>
+  <div>
+    <h1>Color mode: {{ $colorMode.value }}</h1>
+    <select v-model="$colorMode.preference">
+      <option value="system">System</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="sepia">Sepia</option>
+    </select>
+  </div>
 </template>
 
 <script setup lang="ts">
+const colorMode = useColorMode();
+
 interface Props {
   section?: "articles" | "kb";
 }
@@ -25,7 +36,7 @@ const props = defineProps<Props>();
   min-height: 48px;
   display: flex;
   align-items: center;
-  padding: 0 calc((100% - 960px)/2 + 8px);
+  padding: 0 calc((100% - 960px) / 2 + 8px);
 }
 
 .app-header nav {
