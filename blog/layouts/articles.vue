@@ -9,7 +9,7 @@
 .article-body {
   background-color: var(--bg-content);
   width: 100%;
-  max-width: 820px;
+  max-width: var(--content-width);
   padding: 16px 24px;
   margin: 24px auto;
   border-radius: 8px;

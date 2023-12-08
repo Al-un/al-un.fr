@@ -61,7 +61,7 @@ function formatDate(date: string): string {
 <style>
 .articles-page {
   width: 100%;
-  max-width: 960px;
+  max-width: var(--page-width);
   margin: auto;
 }
 

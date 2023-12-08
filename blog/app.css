@@ -7,15 +7,20 @@ https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colo
 
 /* default applies to light theme */
 :root {
+  /* Theme specific */
   --bg-app: #e2e8f0;
   --bg-content: #f8fafc;
   --bg-content-highlight: #f1f5f9;
   --bg-code: #f1f5f9;
   --primary: rgb(0 193 106);
-  --twxt-color: rgb(15 23 42);
+  --text-color: rgb(15 23 42);
   --sub-text-color: rgb(100 116 139);
   --divider: #cbd5e1;
+
+  /* Non-theme specific */
   --font-size-body: 16px;
+  --page-width: 960px;
+  --content-width: 820px;
 }
 
 html.dark {

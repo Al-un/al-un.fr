@@ -7,7 +7,7 @@
 
 <style>
 .home-body {
-  max-width: 960px;
+  max-width: var(--page-width);
   padding: 16px 24px;
   margin: 24px auto;
 }
