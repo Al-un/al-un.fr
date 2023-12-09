@@ -1,5 +1,5 @@
 ---
-title: 8 Git Tips to Improve Code Reviewing
+title: Useful git commands when handling PR
 draft: false
 publicationDate: 2021-08-31
 ---

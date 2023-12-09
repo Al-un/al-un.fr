@@ -45,6 +45,7 @@ const query: QueryBuilderParams = {
   sort: [{ publicationDate: -1 }],
 };
 
+/** @todo: to make composable */
 function formatDate(date: string): string {
   const dateObj = new Date(date);
   const options: Intl.DateTimeFormatOptions = {

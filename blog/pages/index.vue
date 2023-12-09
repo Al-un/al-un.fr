@@ -1,28 +1,35 @@
 <template>
-  <div>
+  <div class="home-page">
     <h1>Welcome!</h1>
 
     <p>Welcome to Al-un's blog.</p>
 
-    <h2><NuxtLink to="/articles">Articles</NuxtLink></h2>
+    <h2>
+      <NuxtLink to="/articles">Articles</NuxtLink>
+    </h2>
 
     <p>
       Various articles that I wrote, mainly about software development but not
-      exclusively.
+      exclusively. Some latest articles:
     </p>
 
-    <p>Latest articles:</p>
+    <section>
+      <NuxtLink v-for="article in latestArticles.data.value?.filter((a) => a !== null)" :key="article._path"
+        :to="article._path" class="al-card latest-article">
+        <header class="al-card__header">{{ article.title }}</header>
+        <main class="al-card__body">{{ article.description }}</main>
+        <footer v-if="article.publicationDate !== undefined" class="al-card__footer">
+          {{ formatDate(article.publicationDate) }}
+        </footer>
+      </NuxtLink>
+    </section>
 
-    <ul>
-      <li
-        v-for="article in latestArticles.data.value?.filter((a) => a !== null)"
-        :key="article._path"
-      >
-        <NuxtLink :to="article._path">{{ article.title }}</NuxtLink>
-      </li>
-    </ul>
 
-    <h2><NuxtLink to="/kb">Knowledge Base</NuxtLink></h2>
+    <NuxtLink to="/articles">See more articles in the Articles list page.</NuxtLink>
+
+    <h2>
+      <NuxtLink to="/kb">Knowledge Base</NuxtLink>
+    </h2>
 
     <p>
       Various facts / points / topics that I learnt and want to easily find
@@ -37,7 +44,7 @@
 import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
 
 interface ArticleContent extends ParsedContent {
-  publicationDate: Date | undefined;
+  publicationDate: string | undefined;
 }
 
 definePageMeta({
@@ -52,4 +59,37 @@ const latestArticles = await useAsyncData("home", () =>
     .limit(5)
     .find()
 );
+
+
+/** @todo: to make composable */
+function formatDate(date: string): string {
+  const dateObj = new Date(date);
+  const options: Intl.DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  };
+
+  return dateObj.toLocaleDateString("en-Gb", options);
+  // return date.toLocaleDateString();
+}
 </script>
+
+<style>
+.home-page h2{
+  margin: 24px auto;
+}
+
+.latest-article+.latest-article {
+  margin-top: 16px;
+}
+
+.latest-article .al-card__header {
+  font-weight: bold;
+}
+
+.latest-article .al-card__footer {
+  color: var(--sub-text-color);
+  text-align: right;
+}
+</style>
