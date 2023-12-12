@@ -1,36 +1,11 @@
 ---
-title:
+title: Build your Web Component Library with Lit and Storybook
+description: Leverage web components to build a library that can be used in any of your web application.
 draft: true
 publicationDate:
 ---
 
-# Web Component Library Part 1: Create a Library With Lit and Storybook <!-- omit in toc -->
-
-- [About the library](#about-the-library)
-  - [Objectives: requirements and solutions](#objectives-requirements-and-solutions)
-  - [Web components](#web-components)
-- [Setup the library](#setup-the-library)
-  - [Create the project](#create-the-project)
-  - [Add linting and formatting utilities](#add-linting-and-formatting-utilities)
-  - [Create our first web component with Lit](#create-our-first-web-component-with-lit)
-- [Visualise with Storybook](#visualise-with-storybook)
-  - [Setup](#setup)
-  - [Create a story](#create-a-story)
-  - [Webpack 5](#webpack-5)
-- [Style with SCSS + PostCSS](#style-with-scss--postcss)
-  - [Convert styling to SCSS](#convert-styling-to-scss)
-  - [Update Storybook configuration](#update-storybook-configuration)
-  - [Style linting](#style-linting)
-- [Build with Rollup](#build-with-rollup)
-  - [Install dependencies](#install-dependencies)
-  - [Define Rollup configuration](#define-rollup-configuration)
-  - [Add build script](#add-build-script)
-- [Publish on NPM](#publish-on-npm)
-  - [Prepare the library for publishing](#prepare-the-library-for-publishing)
-  - [Publish the library](#publish-the-library)
-  - [Check the CDN distribution](#check-the-cdn-distribution)
-
----
+# Web Component Library Part 1: Create a Library With Lit and Storybook
 
 Write once, run anywhere. Please, don't run away! You are in the right place to
 read about web components and components library.
