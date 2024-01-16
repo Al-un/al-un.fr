@@ -1,13 +1,13 @@
 ---
-title: TODO
+title: What's the Difference Between a Senior Software Engineer and a Junior Software Engineer?
 draft: true
 ---
 
-# What's the difference between a senior software engineer and a junior software engineer?
+# What's the Difference Between a Senior Software Engineer and a Junior Software Engineer?
 
-Back to 2018, I was asked this question during an interview. On the spur of the moment, my brain popped up the answer:
+Back to 2018, I was asked this question during an interview. I had little experience at the moment and, on the spur of the moment, my brain popped up the answer:
 
-_A senior engineer writes bad code and does know why while a junior engineer writes bad code and does not know why._
+> _A senior engineer writes bad code and does know why while a junior engineer writes bad code and does not know why._
 
 Despite being an attempt of humour, with a debatable level of success, I am still convinced, as-of today, that this belief summarizes my vision of seniority. I think I properly considered the nuance of this question: it was about not good and bad engineers but senior and junior engineers. In other words, _what is my definition of experience?_
 

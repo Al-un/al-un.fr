@@ -15,12 +15,12 @@
 
   line-height: 1.6;
   font-size: 18px;
-  padding-bottom: 128px;
+  padding-block-end: 128px;
 }
 
 .article-body p,
 .article-body ul {
-  margin-bottom: 16px;
+  margin-block-end: 16px;
 }
 
 .article-body hr {
@@ -73,7 +73,7 @@
   border-left: 2px solid var(--divider);
   /* Override browser default */
   margin-block-start: 0;
-  margin-block-end: 0;
+  margin-block-end: 16px;
   margin-inline-start: 0;
   margin-inline-end: 0;
   padding-block-start: 8px;
