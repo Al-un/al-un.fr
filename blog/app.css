@@ -39,7 +39,7 @@ html.sepia {
   --bg-content: #e7e5e4;
   --bg-content-highlight: #d6d3d1;
   --bg-code: #d6d3d1;
-  --primary: rgb(0 220 130);
+  /* --primary: rgb(0 220 130); */
   --text-color: #44403c;
   --sub-text-color: #57534e;
   --divider: #78716c;
@@ -99,6 +99,17 @@ a {
   color: var(--primary);
   text-decoration: none;
   font-weight: 500;
+}
+
+a:not(h1 > a, h2 > a, h3 > a, h4 > a) {
+  text-decoration: var(--primary) solid underline;
+}
+
+h1 > a:hover,
+h2 > a:hover,
+h3 > a:hover,
+h4 > a:hover {
+  border-bottom: 1px solid var(--primary);
 }
 
 ol,

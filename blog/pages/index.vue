@@ -70,11 +70,15 @@ function formatDate(date: string): string {
 
 <style>
 .home-page h1 {
-  margin: 24px auto;
+  margin: 16px 0 24px 0;
 }
 
 .latest-article + .latest-article {
   margin-top: 8px;
+}
+
+.latest-article a {
+  font-weight: 600;
 }
 
 .latest-article .article-date {
