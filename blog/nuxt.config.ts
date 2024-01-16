@@ -13,7 +13,6 @@ export default defineNuxtConfig({
     // https://content.nuxt.com/get-started/configuration#markdown
     markdown: {
       tags: {
-        // a: "AnchorLink",
       },
     },
     // https://content.nuxt.com/get-started/configuration#highlight
