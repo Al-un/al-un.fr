@@ -9,11 +9,9 @@
 <style>
 .article-body {
   background-color: var(--bg-content);
-  width: 100%;
-  max-width: var(--content-width);
-  padding: 16px 16px;
-  margin: 24px auto;
-  border-radius: 8px;
+  width: min(100%, var(--page-width));
+  padding: 16px;
+  margin: auto;
 
   line-height: 1.6;
   font-size: 18px;
@@ -72,5 +70,18 @@
 /* ---------- Others ---------- */
 .article-body blockquote {
   font-style: italic;
+  border-left: 2px solid var(--divider);
+  /* Override browser default */
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-block-start: 8px;
+  padding-block-end: 8px;
+  padding-inline-start: 16px;
+}
+
+.article-body blockquote p {
+  margin: auto;
 }
 </style>

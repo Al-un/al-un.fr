@@ -14,12 +14,12 @@
           <NuxtLink :to="article._path">
             {{ article.title }}
           </NuxtLink>
-          <nobr
+          <span
             v-if="article.publicationDate !== undefined"
             class="article-date"
           >
             {{ formatDate(article.publicationDate) }}
-          </nobr>
+          </span>
         </li>
       </ul>
     </section>

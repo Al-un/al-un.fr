@@ -45,7 +45,15 @@ const props = defineProps<Props>();
   font-size: 20px;
 }
 
+.app-header a{
+  text-decoration: none;
+}
+
 .app-header nav * + * {
   margin-left: 8px;
+}
+
+.app-header select:hover{
+  cursor: pointer;
 }
 </style>
