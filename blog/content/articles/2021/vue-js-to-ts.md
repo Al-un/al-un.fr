@@ -1,6 +1,5 @@
 ---
 title: How We Refreshed Our Vue 2 JavaScript Codebase With Some TypeScript Flavour
-draft: false
 publicationDate: 2021-10-04
 medium: https://medium.com/js-dojo/how-we-refreshed-our-vue-2-javascript-codebase-with-some-typescript-flavour-c0f57fc46010
 ---

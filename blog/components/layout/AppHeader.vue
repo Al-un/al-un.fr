@@ -34,7 +34,7 @@ const props = defineProps<Props>();
   min-height: 48px;
   display: flex;
   align-items: center;
-  padding: 0 calc((100% - 960px) / 2 + 8px);
+  padding: 0 max(calc((100% - 960px) / 2 + 8px), 16px);
   position: sticky;
   top: 0;
   border-bottom: 1px solid var(--divider);

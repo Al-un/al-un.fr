@@ -1,3 +1,8 @@
+---
+title: TODO
+draft: true
+---
+
 # Five Types of Magician Software Developers <!-- omit in toc -->
 
 Spoiler: proper code documentation and development processes are always helpful.

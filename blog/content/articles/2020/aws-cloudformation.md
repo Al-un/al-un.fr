@@ -1,7 +1,6 @@
 ---
 title: Deploy a static website with AWS CloudFormation
 description: Step in Infrastructure-as-a-Code (IaaC) with AWS CloudFormation to configure your static website deployment, with the AWS CloudFront as CDN, Route 53 and S3 bucket. 
-draft: false
 publicationDate: 2020-06-09
 medium: https://medium.com/@Al-un/aws-cloudformation-https-static-website-s3-route53-cloudfront-438090157c1f
 ---

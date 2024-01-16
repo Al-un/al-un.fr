@@ -1,7 +1,6 @@
 ---
-title:
+title: TODO
 draft: true
-publicationDate:
 ---
 
 # What's the difference between a senior software engineer and a junior software engineer?

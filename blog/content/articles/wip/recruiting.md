@@ -1,7 +1,6 @@
 ---
-title:
+title: TODO
 draft: true
-publicationDate:
 ---
 
 # Get the aces to build your dream team

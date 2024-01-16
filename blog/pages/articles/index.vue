@@ -2,38 +2,24 @@
   <div class="articles-page">
     <section>
       <h1>Articles</h1>
-      <p>
-        Please find here the different articles I wrote. They obviously cover
-        the Software Engineering topics but can also touch other subjects.
-      </p>
     </section>
-    <section class="articles-list">
+
+    <ul class="articles-list">
       <ContentList :query="query" v-slot="{ list }">
-        <NuxtLink
-          v-for="article in list"
-          :key="article._path"
-          :to="article._path"
-          class="al-card"
-        >
-          <header class="al-card__header">
-            <h3 class="article__header">{{ article.title }}</h3>
-          </header>
+        <li v-for="article in list" :key="article._path">
+          <NuxtLink :to="article._path">
+            {{ article.title }}
+          </NuxtLink>
 
-          <main class="al-card__body article__body">
-            {{ article.description }}
-          </main>
-
-          <footer class="al-card__footer">
-            <span
-              v-if="article.publicationDate"
-              class="article__publication-date"
-            >
-              Published on {{ formatDate(article.publicationDate) }}
-            </span>
-          </footer>
-        </NuxtLink>
+          <span
+            v-if="article.publicationDate"
+            class="article__publication-date"
+          >
+            {{ formatDate(article.publicationDate) }}
+          </span>
+        </li>
       </ContentList>
-    </section>
+    </ul>
   </div>
 </template>
 
@@ -42,6 +28,7 @@ import type { QueryBuilderParams } from "@nuxt/content/dist/runtime/types";
 
 const query: QueryBuilderParams = {
   path: "/articles",
+  where: [{ draft: { $ne: true } }],
   sort: [{ publicationDate: -1 }],
 };
 
@@ -71,18 +58,18 @@ function formatDate(date: string): string {
 }
 
 .articles-list {
-  display: grid;
+  /* display: grid;
   gap: 16px;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); */
 }
 
-.article__header {
+/* .article__header {
   font-weight: bold;
 }
 
 .article__body {
   color: var(--sub-text-color);
-}
+} */
 
 .article__publication-date {
   color: var(--sub-text-color);

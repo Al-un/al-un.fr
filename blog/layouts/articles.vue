@@ -1,6 +1,7 @@
 <template>
   <div>
-    <LayoutAppHeader section="articles"></LayoutAppHeader>
+    <LayoutAppHeader></LayoutAppHeader>
+    <!-- <LayoutAppHeader section="articles"></LayoutAppHeader> -->
     <main class="article-body"><slot></slot></main>
   </div>
 </template>
@@ -10,7 +11,7 @@
   background-color: var(--bg-content);
   width: 100%;
   max-width: var(--content-width);
-  padding: 16px 24px;
+  padding: 16px 16px;
   margin: 24px auto;
   border-radius: 8px;
 

@@ -1,6 +1,5 @@
 ---
 title: 8 Git Tips to Improve Code Reviewing
-draft: false
 publicationDate: 2021-08-31
 medium: https://betterprogramming.pub/8-git-tips-to-improve-code-reviewing-71cae7883d6f
 ---

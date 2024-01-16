@@ -1,42 +1,37 @@
 <template>
   <div class="home-page">
-    <h1>Welcome!</h1>
-
-    <p>Welcome to Al-un's blog.</p>
-
-    <h2>
-      <NuxtLink to="/articles">Articles</NuxtLink>
-    </h2>
-
-    <p>
-      Various articles that I wrote, mainly about software development but not
-      exclusively. Some latest articles:
-    </p>
+    <h1>Articles</h1>
 
     <section>
-      <NuxtLink v-for="article in latestArticles.data.value?.filter((a) => a !== null)" :key="article._path"
-        :to="article._path" class="al-card latest-article">
-        <header class="al-card__header">{{ article.title }}</header>
-        <main class="al-card__body">{{ article.description }}</main>
-        <footer v-if="article.publicationDate !== undefined" class="al-card__footer">
-          {{ formatDate(article.publicationDate) }}
-        </footer>
-      </NuxtLink>
+      <ul>
+        <li
+          v-for="article in latestArticles.data.value?.filter(
+            (a) => a !== null
+          )"
+          :key="article._path"
+          class="latest-article"
+        >
+          <NuxtLink :to="article._path">
+            {{ article.title }}
+          </NuxtLink>
+          <nobr
+            v-if="article.publicationDate !== undefined"
+            class="article-date"
+          >
+            {{ formatDate(article.publicationDate) }}
+          </nobr>
+        </li>
+      </ul>
     </section>
 
-
-    <NuxtLink to="/articles">See more articles in the Articles list page.</NuxtLink>
-
-    <h2>
-      <NuxtLink to="/kb">Knowledge Base</NuxtLink>
-    </h2>
+    <!-- <h1>Knowledge Base</h1>
 
     <p>
       Various facts / points / topics that I learnt and want to easily find
       back.
     </p>
 
-    <div>WORK-IN-PROGRESS</div>
+    <div>WORK-IN-PROGRESS</div> -->
   </div>
 </template>
 
@@ -52,14 +47,13 @@ definePageMeta({
 });
 
 // Create a query looking into content/articles directory
-const latestArticles = await useAsyncData("home", () =>
+const latestArticles = await useAsyncData("home", async () =>
   queryContent<ArticleContent>("articles")
-    .where({ draft: { $eq: false } })
-    .sort({ publicationDate: 1 })
-    .limit(5)
+    .where({ draft: { $ne: true } })
+    .sort({ publicationDate: -1 })
+    // .limit(5)
     .find()
 );
-
 
 /** @todo: to make composable */
 function formatDate(date: string): string {
@@ -71,25 +65,20 @@ function formatDate(date: string): string {
   };
 
   return dateObj.toLocaleDateString("en-Gb", options);
-  // return date.toLocaleDateString();
 }
 </script>
 
 <style>
-.home-page h2{
+.home-page h1 {
   margin: 24px auto;
 }
 
-.latest-article+.latest-article {
-  margin-top: 16px;
+.latest-article + .latest-article {
+  margin-top: 8px;
 }
 
-.latest-article .al-card__header {
-  font-weight: bold;
-}
-
-.latest-article .al-card__footer {
+.latest-article .article-date {
   color: var(--sub-text-color);
-  text-align: right;
+  margin-inline-start: 16px;
 }
 </style>

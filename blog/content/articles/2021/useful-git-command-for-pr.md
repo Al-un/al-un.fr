@@ -1,6 +1,5 @@
 ---
 title: Useful git commands when handling PR
-draft: false
 publicationDate: 2021-08-31
 ---
 

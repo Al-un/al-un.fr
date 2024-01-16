@@ -1,7 +1,6 @@
 ---
-title:
+title: TODO
 draft: true
-publicationDate:
 ---
 
 # My (S)CSS Way in XX Steps <!-- omit in toc -->

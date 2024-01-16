@@ -8,7 +8,7 @@
 <style>
 .home-body {
   max-width: var(--page-width);
-  padding: 16px 24px;
+  padding: 16px 16px;
   margin: 24px auto;
 }
 </style>
