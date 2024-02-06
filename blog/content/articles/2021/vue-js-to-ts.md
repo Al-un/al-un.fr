@@ -1,3 +1,9 @@
+---
+title: How We Refreshed Our Vue 2 JavaScript Codebase With Some TypeScript Flavour
+publicationDate: 2021-10-04
+medium: https://medium.com/js-dojo/how-we-refreshed-our-vue-2-javascript-codebase-with-some-typescript-flavour-c0f57fc46010
+---
+
 # How We Refreshed Our Vue 2 JavaScript Codebase With Some TypeScript Flavour <!-- omit in toc -->
 
 How we created and maintain a TypeScript / JavaScript hybrid Vue.js codebase
@@ -18,7 +24,7 @@ for a smooth and progressive transition.
 - [Progress with a JavaScript / TypeScript hybrid codebase](#progress-with-a-javascript--typescript-hybrid-codebase)
   - [Write class style components](#write-class-style-components)
   - [Adopt `vuex-module-decorators` to type Vuex](#adopt-vuex-module-decorators-to-type-vuex)
-  - [No change for router & plain files (API wrappers, utilities...)](#no-change-for-router--plain-files-api-wrappers-utilities)
+  - [No change for router \& plain files (API wrappers, utilities...)](#no-change-for-router--plain-files-api-wrappers-utilities)
   - [Update unit testing](#update-unit-testing)
   - [Fine tune linting check](#fine-tune-linting-check)
 
@@ -556,7 +562,7 @@ to restrict the linting check to the desired files set:
 ```
 
 To run the linting check locally, some magic command, taken from
-[8 Git Tips to Improve Code Review](https://betterprogramming.pub/8-git-tips-to-improve-code-reviewing-71cae7883d6f),
+[8 Git Tips to Improve Code Review](./8-git-tips-code-review.md),
 could help:
 
 ```sh

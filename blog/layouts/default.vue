@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Pouet, default layout</h2>
+    <LayoutAppHeader></LayoutAppHeader>
     <slot></slot>
   </div>
 </template>

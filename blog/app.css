@@ -1,0 +1,210 @@
+/* ---------- Global CSS variables ----------------------------------------- */
+/* 
+Color references: 
+https://tailwindcss.com/docs/customizing-colors#color-palette-reference
+https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+*/
+
+/* default applies to light theme */
+:root {
+  /* Theme specific */
+  --bg-app: #e2e8f0;
+  --bg-content: #f8fafc;
+  --bg-content-highlight: #f1f5f9;
+  --bg-code: #f1f5f9;
+  --primary: rgb(0 193 106);
+  --text-color: rgb(15 23 42);
+  --sub-text-color: rgb(100 116 139);
+  --divider: #cbd5e1;
+
+  /* Non-theme specific */
+  --font-size-body: 16px;
+  --page-width: 960px;
+  --content-width: 820px;
+}
+
+html.dark {
+  --bg-app: rgb(2 4 32);
+  --bg-content: rgb(15 23 42);
+  --bg-content-highlight: rgb((15 23 42)/0.5);
+  --bg-code: rgb(30 41 59);
+  --primary: rgb(0 220 130);
+  --text-color: rgb(226 232 240);
+  --sub-text-color: rgb(148 163 184);
+  --divider: #64748b;
+}
+
+html.sepia {
+  --bg-app: #a8a29e;
+  --bg-content: #e7e5e4;
+  --bg-content-highlight: #d6d3d1;
+  --bg-code: #d6d3d1;
+  /* --primary: rgb(0 220 130); */
+  --text-color: #44403c;
+  --sub-text-color: #57534e;
+  --divider: #78716c;
+}
+
+/* ---------- CSS reset ---------------------------------------------------- */
+/* Some CSS reset resources:  */
+/*  https://www.joshwcomeau.com/css/custom-css-reset/#introduction  */
+/*  https://www.digitalocean.com/community/tutorials/css-minimal-css-reset  */
+/*
+/* Honourable mention to the good old:  */
+/*  https://meyerweb.com/eric/tools/css/reset/  */
+
+html {
+  box-sizing: border-box;
+  /*   font-size: 16px; */
+}
+
+body {
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+* {
+  color: var(--text-color);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:not(h1 > a, h2 > a, h3 > a, h4 > a) {
+  text-decoration: var(--primary) solid underline;
+}
+
+h1 > a:hover,
+h2 > a:hover,
+h3 > a:hover,
+h4 > a:hover {
+  border-bottom: 1px solid var(--primary);
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ---------- CSS adjustment for theming ----------------------------------- */
+select {
+  background-color: var(--bg-content);
+  padding: 4px 8px;
+  border-radius: 8px;
+  border-color: var(--divider);
+}
+
+/* ---------- Global Styling ----------------------------------------------- */
+body {
+  background-color: var(--bg-app);
+}
+
+.flex-spacer {
+  flex-grow: 1;
+}
+
+/* ---------- Global CSS classes ------------------------------------------- */
+.al-card {
+  background-color: var(--bg-content);
+  border-radius: 8px;
+  border: 1px solid var(--divider);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+
+  transition: background-color 0.25s, border-color 0.25s;
+}
+
+.al-card:hover {
+  background-color: var(--bg-content-highlight);
+  border-color: var(--primary);
+}
+
+.al-card__header {
+  padding: 16px;
+}
+
+.al-card__body {
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.al-card__footer {
+  padding: 16px;
+}
+
+/* ---------- Code blocks ---------- */
+
+/* For all code blocks */
+code {
+  font-size: 65%;
+  background-color: var(--bg-code);
+}
+
+/* Multi-line code blocks are wrapped with a <pre> */
+pre {
+  background-color: var(--bg-code);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  overflow-x: auto;
+  padding: 16px;
+}
+
+/* 
+Inline codes are not wrapped
+See https://stackoverflow.com/a/76197588/4906586 
+*/
+code:not(pre code) {
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  padding: 4px 8px;
+}

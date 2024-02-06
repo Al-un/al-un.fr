@@ -1,3 +1,8 @@
+---
+title: TODO
+draft: true
+---
+
 # Get the aces to build your dream team
 
 After spending few months trying to recruit some fellows in my company, it was recently my turn to be a candidate. Switching from a side to another leads me to reconsider what's important in a hiring process. To sum up, my golden rule is to be clear and never leave someone in the dark
