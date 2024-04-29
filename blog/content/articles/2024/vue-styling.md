@@ -1,8 +1,8 @@
 ---
 title: How I want my Vue app and components to be styled.
 description: Different conventions related to styling and styling in Vue.js that I adopted over the years.
-draft: false
-publicationDate:
+medium: https://to-be-defined.com
+publicationDate: 2024-04-29
 ---
 
 # How I Want my Vue.js App and Components to be Styled.
