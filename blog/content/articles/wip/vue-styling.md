@@ -5,28 +5,28 @@ draft: false
 publicationDate:
 ---
 
-# How I want my Vue.js app and components to be styled.
+# How I Want my Vue.js App and Components to be Styled.
 
-First of all, why having conventions related to styling when there is so much flexibility? Because there is too much flexibility and the habits are here to avoid any form of overhead.
+Why have conventions related to styling when there is so much flexibility? Because there is too much flexibility and the following habits are an attempt to avoid any form of overhead.
 
-While a personal project can be styled on-the-fly, with some acceptable inconsistencies, in a professional context, a simple "hey, align this text that way" can become a nightmare. Where should I write the styling? Should I use a grid or a flexbox? Should I hardcode the value or calculate it? Conventions are here to solve this problem and at the same time, make the output more predictable. When there are multiple ways to implement some UI design, having a deterministic approach makes collaboration easier: from code conflict to code review, it makes things much easier when everyone is on the same page.
+While a personal project can be styled on-the-fly, with some acceptable inconsistencies, in a professional context, a simple "hey, align this text that way" can become a nightmare. Where should I write the styling? Should I use a grid or a flexbox? Should I hard-code the size value or calculate it? Conventions are here to solve this problem and at the same time, making the output more predictable. When there are multiple ways to implement an UI design, having a deterministic approach makes collaboration easier: from code conflict to code review, having everyone is on the same page is key for a smooth cooperation.
 
 ## CSS Pre-processor: choice of SCSS
 
-Modern CSS is quite powerful and its full capabilities solve most of our common issues. For professional application though, I like to go with SCSS, or pick any CSS pre-processor of your choice. Main reasons are:
+Modern CSS is quite powerful and its full capabilities solve most of our common issues, especially if you only need to support evergreen browsers. For professional applications though, I like to go with SCSS, or pick any CSS pre-processor of your choice. Main reasons are:
 
-- Most front-end developers are used to it so having SCSS reduces the friction when on-boarding a new front-end developers.
+- Most front-end developers are used to it so having SCSS reduces the friction when on-boarding a new front-end developer.
 - SCSS features such as variables or mixins helps in styling clarity.
 
 ### SCSS setup
 
-SCSS setup is luckily quite straightforward now. If you are writing a Vue 3 application, it is likely that Vite is your bundler. In this case, the setup is as easy as installing Sass:
+SCSS setup is luckily quite straightforward now. If you are writing a Vue 3 application, it is likely that Vite is your bundler. In this case, the setup is as easy as installing `sass`:
 
 ```sh
 npm install --save-dev sass
 ```
 
-Conversely, when using webpack, the good old `sass-loader` is here to help:
+Conversely, when using webpack, the good old `sass-loader` tags along:
 
 ```sh
 npm install --save-dev sass-loader sass
@@ -39,7 +39,7 @@ Documentation references:
 
 ### Global setup
 
-To unleash SASS full power, variables, mixins and functions must take part of the party. To avoid to import all of this in every file, an `additionalData` saves the day by making this import available in all Vue.js files.
+To unleash SASS full power, variables, mixins and functions should not be ignored. To avoid to import all of this in every file, an `additionalData` saves the day by making this import available in all Vue.js files.
 
 ```js
 // vite.config.js
@@ -67,9 +67,9 @@ Documentation references:
 
 ## Folder structure
 
-"Hey, in which folder should I put my XYZ file / styling?". Such a simple question, yet so difficult to answer. To circumvent this kind of situation, a folder structure standard can push back this type of question. It might sound overkill in some situation but the saved overhead, and associated headaches, are worth it.
+"_Hey, in which folder should I put my XYZ file / styling?_". Such a simple question, yet so difficult to answer. To circumvent this kind of situation, a folder structure standard can push back this type of question. It might sound overkill in some situation but the saved overhead, and the associated headaches, are worth it.
 
-To sort out where to put which styling, three types have to be considered:
+To sort out where to put which styling, four types have to be considered:
 
 - Utility styling, which output no code
 - Application-wide styling
@@ -78,34 +78,24 @@ To sort out where to put which styling, three types have to be considered:
 
 ### Attach styling to component: `src/components/`, `src/layouts/` and `src/views/`
 
-This might sound obvious right? Especially considering the SFC (Single File Component) syntax. That being said, then another conventions come in: component folder structure. Again, to avoid headaches, I like the Nuxt.js approach:
+This might sound obvious right? Especially considering the SFC (Single File Component) syntax. That being said, then another convention comes in: component folder structure. For this matter, I like the Nuxt.js approach:
 
-- `src/views/`, or `src/pages/` to use Nuxt naming convention, for components connected to a route. Views should keep styling as minimal as possible, delegating to components or layout as much as possible. Think components as indivisible UI blocks and layouts as canvas. The only remaining buffer is the positioning of each components.
-- `src/layouts/` for components organizing the overall layouts of Views. Those components are often expected to be used once per view such as application headers, navigation menus or footers.
+- `src/views/`, or `src/pages/` to use Nuxt naming convention, for components connected to a route. Views should keep styling as minimal as possible, delegating to components or layout as much as possible. Think components as indivisible UI blocks and layouts as canvas. The only remaining buffer is the positioning of each components, relatively to each others.
+- `src/layouts/` for components organizing the overall layouts of Views. Regarding components which are only used in Layout, such as application headers, navigation menus or footers, they can either live in this folder or `src/components/layouts`.
 - `src/components/` for the non-views, non-layouts components.
-
----
 
 ### `src/styles/`: general styling folder
 
-Any styling not embedded in Single File Components is stored in a _styles/_ folder. Single File Components files are, for most projects, spread over three folders:
+Any styling not embedded in Single File Components is stored in a _src/styles/_ folder. The _src/styles/_ folder structure is simplified from the 7-1 pattern ([link to sass-guidelin.es](https://sass-guidelin.es/#the-7-1-pattern)): The _components/_, _layout/_ and _pages/_ folders are not required as styling is expected to be located, respectively, in _src/components/_, _src/layouts/_ and _src/views/_.
 
-- _views/_ for components connected to a route. Views should keep styling as minimal as possible, delegating to SFC in the two other folders.
-- _layouts/_ for components organizing the overall layouts of _views_. Those components are often expected to be used once per view such as application headers, navigation menus or footers. This folder is inspired by [Nuxt layouts folder](https://nuxtjs.org/docs/2.x/directory-structure/layouts). A layout can be used in [nested routing](https://router.vuejs.org/guide/essentials/nested-routes.html).
-- _components/_ for the non-views, non-layouts components.
-
-### Styles/ folder content
-
-The _styles/_ folder structure is simplified from the 7-1 pattern ([link to sass-guidelin.es](https://sass-guidelin.es/#the-7-1-pattern)): The _components/_, _layout/_ and _pages/_ folders are not required as styling is expected to be located, respectively, in _components/_, _layouts/_ and _views/_.
-
-_abstract/_ folder has sub-folder representing a SASS feature. Each sub-folder content is re-exported in an `_index.scss` thanks to the [`@forward`](https://sass-lang.com/documentation/at-rules/forward) at-rule. As _abstract/_ must not contain any effective styling, it is safe to import a whole sub-folder such as `@use "../mixins"`.
+_abstract/_ folder has sub-folder representing a SASS feature. Each sub-folder content is re-exported via an `_index.scss` thanks to the [`@forward`](https://sass-lang.com/documentation/at-rules/forward) at-rule. As _abstract/_ must not contain any effective styling, it is safe to import a whole sub-folder such as `@use "../mixins"`. In my projects, we had no need of SASS namespacing.
 
 The _index.scss_ re-exporting model can be applied to the _base/_ and _vendors/_ folders as long as there is no conflict in import order.
 
 Finally, there are two files at the root of _styles/_ folder:
 
 - `_imports.scss` aimed at being handled by `sass-loader` as data. If your project has been built up with Vue CLI, you change configure it in the [`vue.config.js`](https://cli.vuejs.org/config/#css-loaderoptions). As-of `sass-loader 10.x`, the data key is [`additionalData`](https://webpack.js.org/loaders/sass-loader/#additionaldata).
-- `main.scss` aimed at being imported in the `main.js`
+- `main.scss` aimed at being imported in the `main.js`. A good example for the `main.scss` use-case is to import all `base/` content including CSS resets, your typography rules or some application-wide CSS styling.
 
 ### Example
 
@@ -146,8 +136,7 @@ Both `main.scss` and `_imports.scss` are only re-export:
 @forward "abstract/variables";
 
 /* main.scss */
-@use "venders/";
-
+@use "vendors/";
 @use "base/";
 ```
 
@@ -166,6 +155,8 @@ module.exports = {
   },
 };
 ```
+
+Conversely, the `main.scss` is simply imported in your main file:
 
 ## Conventions
 
@@ -236,7 +227,7 @@ The advantages I seek are:
   }
   ```
 
-In Vue 3, I keep single root elements to maintain this practice. In the rare cases where multiple root elements are used, in a fragment-like manner, I often do not have the need to root element class name so it can be skipped.
+In Vue 3, I keep single root elements to maintain this practice. In the rare cases where multiple root elements are used, in a fragment-like manner, I often do not have the need to have a root element class name so it can be skipped.
 
 ### To scope or not to scope
 
@@ -276,6 +267,8 @@ Some notes about scoped styling:
 - When styling child components, `::v-deep` is required, even if it is a CSS class added when invoking the child component (e.g.: `<child-component class="another-class-name">`)
 - In Vue 2, there is some issues when involving both functional and stateful components (see [vue-loader#1136](https://github.com/vuejs/vue-loader/issues/1136))
 
+That being said, it proved useful for large applications, especially when multiple projects are being implemented in parallel. When developers deployed changes in a shared testing environment, it avoided side-effect.
+
 [CSS modules](https://vue-loader.vuejs.org/guide/css-modules.html#css-modules) can also be used but I find the `:class="$style.myClassName"` quite cumbersome. Also, I personally prefer kebab casing for my CSS class names.
 
 ### Don't be cheap on variables
@@ -302,8 +295,39 @@ $btn-padding: 8px;
 
 Variables within each SFC being not exported, the only conflict you need to care about is conflicting with global SCSS variables.
 
-If a value is used by different component, it can be included in the global import of `@/styles/_main.scss`. Instead, I use CSS variables, a.k.a CSS custom properties, for application wide values, even if the values are not expected to change. This is another way to reduce the overhead:
+If a value is used by different component, it can be included in the global import of `@/styles/_main.scss`. Instead, I use CSS variables, a.k.a CSS custom properties, for application wide values, even if the values are not expected to change. 
+
+```scss
+// src/styles/_main.scss or src/styles/_typography.scss
+:root {
+  --text-color-highlight: orange;
+  --text-color-sub: darkolivegreen;
+}
+
+// Some component styling
+.some-title {
+  &.active {
+    color: var(--text-color-highlight)
+  }
+  &.inactive {
+    color: var(--text-color-sub)
+  }
+}
+
+// Some other component
+.some-quote {
+  &.highlight {
+    border-left: 2px solid var(--text-color-highlight);
+  }
+}
+
+// Another component
+.staff-credit {
+  border: 1px solid var(--text-color-sub);
+}
+```
 
 ---
+And that's it! Properly styling some front-end code can be fun and working with others is sadly an easy path to conflict (technical and less technical ones). Human factor is an important part of the thought process when defining guidelines: there is no silver bullet here, the best conventions are the ones your team agrees on (reasonably, of course!).
 
-I hope these conventions can smoothen the styling of your Vue.js application. Thank you for reading until here and happy styling!
+I hope these conventions can help reducing the complexity of the styling of your Vue.js application. Thank you for reading until here and happy styling!
