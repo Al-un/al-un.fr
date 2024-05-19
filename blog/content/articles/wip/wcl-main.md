@@ -120,29 +120,31 @@ Let's pour some TypeScript flavour in our project:
 npm install --save-dev typescript
 ```
 
+> In a professional environment, I prefer only having exact version defined in the
+> `package.json` to ensure all dependencies are compatible with each other.
+
 A _tsconfig.json_ can be initialised with `npx tsc --init`. Otherwise, Lit
 documentation recommends the following _tsconfig.json_ configuration
 ([documentation source](https://lit.dev/docs/tools/publishing/#compiling-with-typescript)):
 
-```json
+```jsonc
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "target": "es2019",
+    "target": "es2021",
     "module": "es2015",
     "moduleResolution": "node",
-    "lib": ["es2019", "dom"],
+    "lib": ["es2021", "dom"],
     "declaration": true,
     "declarationMap": true,
     "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    // This path is specific to this article
     "paths": {
       "@wcl-main/*": ["./src/*"]
     }
   }
 }
 ```
-
-<sub>[Gist: wcl-main_tsconfig.jsonc](https://gist.github.com/Al-un/5e91380c16967dcbe38c8a3e1ecaf177)</sub>
 
 For reference, _tsconfig.json_ documentation is [here](https://aka.ms/tsconfig.json).
 
@@ -173,6 +175,14 @@ npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
 npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
+At the time of writing/testing this article, ESLint plugin requires ESLint v8. Compatibility
+with the latest ESLint v9 is in-progress:
+
+```sh
+# Install ESLint v8
+npm install --save-dev eslint@^8.0.0
+```
+
 A simple ESLint configuration inspired by [configuration from the Lit Element
 TypeScript starter kit](https://github.com/PolymerLabs/lit-element-starter-ts/blob/master/.eslintrc.json):
 
@@ -199,8 +209,6 @@ TypeScript starter kit](https://github.com/PolymerLabs/lit-element-starter-ts/bl
   "plugins": ["@typescript-eslint", "prettier"]
 }
 ```
-
-<sub>[Gist: wcl-main_eslintrc.jsonc](https://gist.github.com/Al-un/34a658d4d808018fd6d99554034bed53)</sub>
 
 Prettier configuration is pretty much (no pun intended) up to your preferences.
 For reference, the options list can be found in [this documentation page](https://prettier.io/docs/en/options.html).
@@ -326,8 +334,6 @@ export class SuperButton extends LitElement {
 }
 ```
 
-<sub>[Gist: wcl-main_super-button-v1.ts](https://gist.github.com/Al-un/b9ef4df554da21d7b5cfafa5ee54871d)</sub>
-
 Nice! We now have a component but it would be even better if we could see it,
 right? Obviously, we could build a web page, import our component to see how
 it renders but when it comes to render a specific component in an isolated
@@ -341,15 +347,15 @@ stage!
 Storybook provides a convenient helper to add Storybook and configure it:
 
 ```sh
-# "--use-npm" is optional, it is explicitly specified to be consistent with
+# "--package-manager" is optional, it is explicitly specified to be consistent with
 # the npm usage in this article
-npx sb init --use-npm
+npx sb init --package-manager npm
 ```
 
 As described in the [installation guide](https://storybook.js.org/docs/web-components/get-started/install),
 we could use the `sb init` command because we already have Lit and TypeScript
 as dependencies so Storybook knows which configuration to load. When writing
-this article, the Storybook helper installed the 6.3.5 version.
+this article, the Storybook helper installed the 8.1.1 version.
 
 Alternatively, if you prefer full control, the command invoked behind the
 scenes is the setup with the `web_components` template from the
