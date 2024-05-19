@@ -128,6 +128,7 @@ documentation recommends the following _tsconfig.json_ configuration
 ([documentation source](https://lit.dev/docs/tools/publishing/#compiling-with-typescript)):
 
 ```jsonc
+// tsconfig.json
 {
   "compilerOptions": {
     "target": "es2021",
@@ -344,27 +345,32 @@ stage!
 
 ### Setup
 
+Following the [installation guide](https://storybook.js.org/docs/web-components/get-started/install),
 Storybook provides a convenient helper to add Storybook and configure it:
 
 ```sh
-# "--package-manager" is optional, it is explicitly specified to be consistent with
-# the npm usage in this article
-npx sb init --package-manager npm
+# At the time of writing this article, Storybook 8.1.1 is installed.
+npx storybook@latest init
 ```
 
-As described in the [installation guide](https://storybook.js.org/docs/web-components/get-started/install),
-we could use the `sb init` command because we already have Lit and TypeScript
-as dependencies so Storybook knows which configuration to load. When writing
-this article, the Storybook helper installed the 8.1.1 version.
+At this point, the Storybook helper should detect:
 
-Alternatively, if you prefer full control, the command invoked behind the
-scenes is the setup with the `web_components` template from the
-[`@storybook/web-components`](https://www.npmjs.com/package/@storybook/web-components)
-package:
+- The framework (`web-components`), with the `lit` dependencty
+- The package manager
+
+Alternatively, if you prefer having more control, the documentation provides the different
+parameters for the initialisation helper:
 
 ```sh
-npx sb init -t web_components
+npx storybook@latest init \
+  # Define the framework used to build our components
+  --type web_components \
+  # Enforce a package manager
+  --package-manager=npm
 ```
+
+This article hasn't defined a builder yet. Webpack being the default builder for Storybook,
+we will pick Webpack here.
 
 Check that Storybook is properly installed by starting it:
 
@@ -375,6 +381,8 @@ npm run storybook
 While TypeScript is all set up by the Storybook helper, the path alias has yet
 to be added. To let Storybook know how to resolve the path alias, the webpack
 configuration has to be extended in the _.storybook/main.js_ file:
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 ```js
 // .storybook/main.js
