@@ -12,6 +12,7 @@
     "url": "git+https://github.com/Al-un/al-un.fr.git"
   },
   "workspaces": [
+    "apps",
     "blog",
     "home",
     "ui"
