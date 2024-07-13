@@ -13,6 +13,15 @@ import { RouterLink, RouterView } from 'vue-router'
 <style scoped>
 header {
   line-height: 1.5;
-  background: lightgrey;
+  border-bottom: 1px solid var(--divider);
+
+  a {
+    display: inline-block;
+    padding: 16px;
+  }
+
+  a:hover {
+    background-color: var(--bg-content);
+  }
 }
 </style>
