@@ -3,23 +3,15 @@
     <div class="board__header__title">2048</div>
     <div class="page2048__box board__header__score">
       <p>SCORE</p>
-      <p>{{ game.score }}</p>
+      <p>{{ store.game.score }}</p>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { mapState } from 'vuex';
+<script setup lang="ts">
+import { use2048Store } from '../store'
 
-@Component({
-  name: 'BoardHeader',
-
-  computed: {
-    ...mapState('2048', ['game'])
-  }
-})
-export default class BoardHeader extends Vue {}
+const store = use2048Store()
 </script>
 
 <style lang="scss">
