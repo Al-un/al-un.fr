@@ -1,4 +1,6 @@
-import Tile from './tile';
+import Tile from './tile'
+
+export type BoardSize = 3 | 4 | 5 | 6 | 7 | 8
 
 /**
  * Represent a 2048 board
@@ -12,14 +14,14 @@ export default class Board {
    * By convention, any cell whose index is above _size*size_ is considered as
    * deleted.
    */
-  public tiles!: Tile[];
+  public tiles!: Tile[]
 
   /**
    *
    * @param size board size
    */
   constructor(public size: number) {
-    this.tiles = Array(size * size);
+    this.tiles = Array(size * size)
   }
 }
 
@@ -30,8 +32,8 @@ export default class Board {
  * @returns tile index based on its coordinates
  */
 export const getTileIndex = (size: number, tile: Tile): number => {
-  return tile.y * size + tile.x;
-};
+  return tile.y * size + tile.x
+}
 
 /**
  * Print all tiles
@@ -40,21 +42,21 @@ export const getTileIndex = (size: number, tile: Tile): number => {
  */
 export const printTiles = (size: number, tiles: Tile[]): string => {
   // first border
-  const print: any[] = ['|'];
+  const print: any[] = ['|']
 
   for (let i = 0; i < size * size; i++) {
     // new line
     if (i > 0 && i % size === 0) {
-      print.push('|\n|');
+      print.push('|\n|')
     }
 
     // fetch tile
-    const tile = tiles[i];
-    print.push(tile !== undefined ? tile.val : 0);
+    const tile = tiles[i]
+    print.push(tile !== undefined ? tile.val : 0)
   }
 
   // last border
-  print.push('|\n');
+  print.push('|\n')
 
-  return print.join(' ');
-};
+  return print.join(' ')
+}
