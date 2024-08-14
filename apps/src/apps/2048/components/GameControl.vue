@@ -1,33 +1,20 @@
 <template>
   <div class="page2048__row game-control">
-    <button class="page2048__button" :disabled="!isCancelable" @click="cancelMove">
-      <fa-icon icon="undo" class="icon"/>
+    <button class="page2048__button" :disabled="!gameStore.isCancelable" @click="gameStore.cancelMove">
+      <fa-icon icon="undo" class="icon" />
       <span class="mobile--hide">Cancel</span>
     </button>
-    <button class="page2048__button" @click="exitGame">
-      <fa-icon icon="sign-out-alt" class="icon"/>
+    <button class="page2048__button" @click="gameStore.exitGame">
+      <fa-icon icon="sign-out-alt" class="icon" />
       <span class="mobile--hide">Exit</span>
     </button>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { mapActions, mapGetters } from 'vuex';
-import Game from '@/games/2048/game';
+<script setup lang="ts">
+import { use2048Store } from '../store'
 
-@Component({
-  name: 'GameControl',
-
-  computed: {
-    ...mapGetters('2048', ['isCancelable'])
-  },
-
-  methods: {
-    ...mapActions('2048', ['cancelMove', 'exitGame'])
-  }
-})
-export default class GameControl extends Vue {}
+const gameStore = use2048Store()
 </script>
 
 <style lang="scss" scoped>

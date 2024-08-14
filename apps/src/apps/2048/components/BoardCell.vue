@@ -1,23 +1,17 @@
 <template>
-  <div :class="cellClasses"/>
+  <div :class="cellClasses"></div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import { computed, ref } from 'vue'
 
-@Component({
-  props: {
-    coord: {
-      type: Object,
-      default: () => ({ x: 0, y: 0 })
-    }
-  },
+// ----------------------------------------------------------------------------
+type Coord = {x: number, y: number}
+const coord = ref<Coord>({x:0, y:0})
+
+// ----------------------------------------------------------------------------
+
+const cellClasses = computed(() => {
+  return `board2048__cell board2048__cell--${coord.value.x}-${coord.value.y}`
 })
-export default class BoardCell extends Vue {
-  public coord: any;
-
-  get cellClasses() {
-    return `board2048__cell board2048__cell--${this.coord.x}-${this.coord.y}`;
-  }
-}
 </script>

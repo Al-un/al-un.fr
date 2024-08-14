@@ -1,22 +1,14 @@
 <template>
   <div class="game2048__gameover">
     <h4>GameOver</h4>
-    <p>Final score: {{ game.score }} in {{ game.moves.length }} moves</p>
+    <p>Final score: {{ gameStore.game.score }} in {{ gameStore.game.moves.length }} moves</p>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { mapState, mapGetters } from 'vuex';
+<script setup lang="ts">
+import { use2048Store } from '../store'
 
-@Component({
-  name: 'GameOver',
-
-  computed: {
-    ...mapState('2048', ['status', 'game'])
-  }
-})
-export default class GameOver extends Vue {}
+const gameStore = use2048Store()
 </script>
 
 <style lang="scss">
