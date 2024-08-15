@@ -13,8 +13,8 @@ import Seed, { generateSeed } from './utils/play/seed'
 
 export const use2048Store = defineStore('2048', () => {
   // --------------------------------------------------------------------------
-  const status = ref(GAME_STATUS.SELECT)
-  const game = ref(new Game(3, []))
+  const status = ref<GAME_STATUS>(GAME_STATUS.SELECT)
+  const game = ref<Game>(new Game(3, []))
   const size = ref<BoardSize>(4)
   const isDebug = ref(false)
 

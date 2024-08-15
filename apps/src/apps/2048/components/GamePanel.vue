@@ -39,10 +39,13 @@ import BoardHeader from './BoardHeader.vue'
 import GameControl from './GameControl.vue'
 import GameOver from './GameOver.vue'
 
-import { use2048Store } from '../store'
 import Movement from '../utils/play/movement'
 
+// ----------------------------------------------------------------------------
+import { use2048Store } from '../store'
 const gameStore = use2048Store()
+
+// ----------------------------------------------------------------------------
 
 const printTime = function (move: Movement): string {
   const date = new Date(move.timestamp)

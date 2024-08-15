@@ -3,15 +3,14 @@
     <div class="board__header__title">2048</div>
     <div class="page2048__box board__header__score">
       <p>SCORE</p>
-      <p>{{ store.game.score }}</p>
+      <p>{{ gameStore.game.score }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { use2048Store } from '../store'
-
-const store = use2048Store()
+const gameStore = use2048Store()
 </script>
 
 <style lang="scss">

@@ -7,7 +7,6 @@
 
 <script setup lang="ts">
 import { use2048Store } from '../store'
-
 const gameStore = use2048Store()
 </script>
 

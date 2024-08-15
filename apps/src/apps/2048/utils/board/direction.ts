@@ -1,4 +1,4 @@
-import { MOVE_LEFT, MOVE_UP, MOVE_RIGHT, MOVE_DOWN } from '../constants';
+import { MOVE_LEFT, MOVE_UP, MOVE_RIGHT, MOVE_DOWN } from '../../constants'
 
 /**
  * Qualify a game direction. A direction has two parameters:
@@ -14,17 +14,15 @@ export default class Direction {
   ) {}
 }
 
-export const getDirection = (
-  name: 'left' | 'right' | 'up' | 'down'
-): Direction => {
+export const getDirection = (name: 'left' | 'right' | 'up' | 'down'): Direction => {
   switch (name) {
     case 'left':
-      return MOVE_LEFT;
+      return MOVE_LEFT
     case 'up':
-      return MOVE_UP;
+      return MOVE_UP
     case 'right':
-      return MOVE_RIGHT;
+      return MOVE_RIGHT
     case 'down':
-      return MOVE_DOWN;
+      return MOVE_DOWN
   }
-};
+}
