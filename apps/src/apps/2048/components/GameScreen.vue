@@ -2,7 +2,7 @@
   <div class="board">
     <board-header />
     <game-control />
-    <board />
+    <game-board />
     <game-over v-if="gameStore.status === 'gameover'" />
 
     <div style="text-align: left" class="mobile--hide">
@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import Board from './Board.vue'
+import GameBoard from './GameBoard.vue'
 import BoardHeader from './BoardHeader.vue'
 import GameControl from './GameControl.vue'
 import GameOver from './GameOver.vue'
