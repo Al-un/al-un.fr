@@ -8,9 +8,7 @@ import { computed } from 'vue'
 // ----------------------------------------------------------------------------
 type Props = { coord: Coord }
 
-const { coord } = withDefaults(defineProps<Props>(), {
-  coord: () => ({ x: 0, y: 0 })
-})
+const { coord = { x: 0, y: 0 } } = defineProps<Props>()
 
 // ----------------------------------------------------------------------------
 

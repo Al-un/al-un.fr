@@ -3,27 +3,28 @@
     <div class="page2048__row format-pictures">
       <img
         v-for="format in formats"
+        v-show="format.size === gameStore.size"
         :key="format.size"
         :alt="format.text"
         :title="format.text"
         :src="format.img"
-        :class="{ show: format.size === gameStore.game.size }"
       />
     </div>
 
     <div class="page2048__row format-selector">
       <button @click="gameStore.decreaseSize">
-        <fa-icon icon="chevron-left" />
+        <font-awesome-icon :icon="faChevronLeft" />
       </button>
       <span
         v-for="f in formats"
+        v-show="f.size === gameStore.size"
         :key="f.size"
         class="format"
-        :class="{ show: f.size === gameStore.game.size }"
-        >{{ f.text }}</span
       >
+        {{ f.text }}
+      </span>
       <button @click="gameStore.increaseSize">
-        <fa-icon icon="chevron-right" />
+        <font-awesome-icon :icon="faChevronRight" />
       </button>
     </div>
 
@@ -39,6 +40,9 @@
 </template>
 
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+
 import { ref } from 'vue'
 
 import { type BoardSize } from '../utils/board/index'
@@ -60,17 +64,21 @@ const formats = ref<Format[]>([
 </script>
 
 <style lang="scss" scoped>
+@use "sass:color";
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
 .game-select {
   width: $game2048-board-sm-px;
   margin: auto;
   padding: 0px 1rem;
+  margin: auto;
+  text-align: center;
 
   @include gt-sm {
     width: $game2048-board-lg-px;
     padding: 0;
   }
-  margin: auto;
-  text-align: center;
 }
 
 .format-selector {
@@ -81,14 +89,9 @@ const formats = ref<Format[]>([
   margin: 2rem 0px;
 
   .format {
-    display: none;
     margin: 0px 1rem;
-    color: darken(#8f7b66, 10%);
+    color: color.adjust(#8f7b66, $lightness: -10%);
     font-size: 28px;
-
-    &.show {
-      display: block;
-    }
   }
 
   button {
@@ -99,19 +102,15 @@ const formats = ref<Format[]>([
     transition: color 0.2s;
     &:hover {
       cursor: pointer;
-      color: darken(#8f7b66, 10%);
+      color: color.adjust(#8f7b66, $lightness: -10%);
     }
   }
 }
 
 .format-pictures {
   img {
-    display: none;
     width: 100%;
     margin: auto;
-    &.show {
-      display: block;
-    }
   }
 }
 
@@ -129,7 +128,7 @@ const formats = ref<Format[]>([
 
   &:hover {
     cursor: pointer;
-    background-color: darken(#f58460, 10%);
+    color: color.adjust(#f58460, $lightness: -10%)
   }
 }
 </style>

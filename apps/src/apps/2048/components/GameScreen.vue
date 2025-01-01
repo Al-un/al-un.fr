@@ -54,6 +54,9 @@ const printTime = function (move: Movement): string {
 </script>
 
 <style lang="scss">
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
 .board {
   width: $game2048-board-sm-px;
   margin: auto;

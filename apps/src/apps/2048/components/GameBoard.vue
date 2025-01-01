@@ -10,7 +10,7 @@ import { computed } from 'vue'
 import BoardCell from './BoardCell.vue'
 import BoardTile from './BoardTile.vue'
 
-import { Coord } from './BoardCell.vue'
+import type { Coord } from './BoardCell.vue'
 import Tile from '../utils/board/tile'
 
 import { use2048Store } from '../store'

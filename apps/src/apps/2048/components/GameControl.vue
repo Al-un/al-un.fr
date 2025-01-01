@@ -1,17 +1,24 @@
 <template>
   <div class="page2048__row game-control">
-    <button class="page2048__button" :disabled="!gameStore.isCancelable" @click="gameStore.cancelMove">
-      <fa-icon icon="undo" class="icon" />
+    <button
+      class="page2048__button"
+      :disabled="!gameStore.isCancelable"
+      @click="gameStore.cancelMove"
+    >
+      <font-awesome-icon :icon="faUndo" />
       <span class="mobile--hide">Cancel</span>
     </button>
     <button class="page2048__button" @click="gameStore.exitGame">
-      <fa-icon icon="sign-out-alt" class="icon" />
+      <font-awesome-icon :icon="faSignOutAlt" />
       <span class="mobile--hide">Exit</span>
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faUndo, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+
 import { use2048Store } from '../store'
 const gameStore = use2048Store()
 </script>

@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import Hammer from 'hammerjs'
 
 import GameScreen from '../components/GameScreen.vue'
@@ -26,6 +26,7 @@ const gameStore = use2048Store()
 
 function onkeydown(e: any): void {
   const key = e.key
+
   if (key === 'ArrowLeft') {
     gameStore.moveLeft()
   } else if (key === 'ArrowRight') {
@@ -48,28 +49,33 @@ const root = ref(null)
 
 // ----------------------------------------------------------------------------
 
-function onMounted(callback: () => void): void {
+onMounted(() => {
   window.addEventListener('keydown', onkeydown)
 
   // const Hammer =
   //   typeof require === 'function' ? require('hammerjs') : window.Hammer;
   // const Hammer = hammer
   // const page = document.querySelector('#page2048')
-  const hammerManager = new Hammer.Manager(root)
-  const swipe = new Hammer.Swipe()
-  hammerManager.add(swipe)
+  
+  // const hammerManager = new Hammer.Manager(root)
+  // const swipe = new Hammer.Swipe()
+  // hammerManager.add(swipe)
 
-  hammerManager.on('swipeleft', (e: any) => gameStore.moveLeft())
-  hammerManager.on('swiperight', (e: any) => gameStore.moveRight())
-  hammerManager.on('swipeup', (e: any) => gameStore.moveUp())
-  hammerManager.on('swipedown', (e: any) => gameStore.moveDown())
-}
+  // hammerManager.on('swipeleft', (e: any) => gameStore.moveLeft())
+  // hammerManager.on('swiperight', (e: any) => gameStore.moveRight())
+  // hammerManager.on('swipeup', (e: any) => gameStore.moveUp())
+  // hammerManager.on('swipedown', (e: any) => gameStore.moveDown())
+})
 
-function onBeforeUnmount(callback: () => void): void {
+onBeforeUnmount(() => {
   window.removeEventListener('keydown', onkeydown)
-}
+})
 </script>
 
 <style lang="scss">
-@use "../styles/main.scss" as *;
+@use '../styles/main.scss' as *;
+
+#page2048 {
+  --text-color: rgb(86 92 100);
+}
 </style>

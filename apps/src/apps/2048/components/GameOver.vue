@@ -11,6 +11,8 @@ const gameStore = use2048Store()
 </script>
 
 <style lang="scss">
+@use "../styles/variables" as *;
+
 .game2048__gameover {
   background: lightpink;
   border: 1px solid darkred;

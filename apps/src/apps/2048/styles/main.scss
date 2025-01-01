@@ -1,6 +1,11 @@
-@import '../../scss/common/mixins';
-@import 'helpers';
-@import 'variables';
+@use "sass:list";
+@use "sass:math";
+@use "sass:map";
+
+@use 'helpers' as *;
+@use 'mixins' as *;
+@use 'variables' as *;
+
 /* ---------- Board ------------------------------------------------------------ */
 
 .board2048 {
@@ -11,6 +16,7 @@
   background: $game2048-bg-default;
   border-radius: $game2048-board-border-radius;
   touch-action: none; // disable touch actions
+
   @include gt-sm {
     // padding: $game2048-gutter-lg-px; // For the moment, gutter is the same for all size and screens
     width: $game2048-board-lg-px;
@@ -20,22 +26,25 @@
 
 /* Board size specific styles */
 
-@for $i from 1 through length($game2048-sizes) {
+@for $i from 1 through list.length($game2048-sizes) {
   // fetch values with nth
-  $size: nth($game2048-sizes, $i);
-  $gutter-sm: nth($game2048-gutter-sm, $i);
-  $gutter-lg: nth($game2048-gutter-lg, $i);
+  $size: list.nth($game2048-sizes, $i);
+  $gutter-sm: list.nth($game2048-gutter-sm, $i);
+  $gutter-lg: list.nth($game2048-gutter-lg, $i);
   /* board-size dependent style */
   .board2048--#{$size} {
     /* gutter depends on board size */
     padding: $gutter-sm * 1px;
+
     @include gt-sm {
       padding: $gutter-lg * 1px;
     }
+
     /* Cells sizes depends on board sizes AND screen format */
     .board2048__cell {
       width: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
       height: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
+
       @include gt-sm {
         width: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
         height: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
@@ -46,20 +55,22 @@
     .board2048__tile {
       width: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
       height: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
-      font-size: calc-cell-width($size, $game2048-board-sm, $gutter-sm) / 2;
+      font-size: math.div(calc-cell-width($size, $game2048-board-sm, $gutter-sm), 2);
       line-height: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
+
       @include gt-sm {
         width: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
         height: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
-        font-size: calc-cell-width($size, $game2048-board-lg, $gutter-lg) / 2;
+        font-size: math.div(calc-cell-width($size, $game2048-board-lg, $gutter-lg), 2);
         line-height: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
       }
     }
     /* When the tile value exceeds four digits, font-size must be readjusted */
     .board2048__tile--1024 {
-      font-size: calc-cell-width($size, $game2048-board-sm, $gutter-sm) / 3;
+      font-size: math.div(calc-cell-width($size, $game2048-board-sm, $gutter-sm), 3);
+
       @include gt-sm {
-        font-size: calc-cell-width($size, $game2048-board-lg, $gutter-lg) / 3;
+        font-size: math.div(calc-cell-width($size, $game2048-board-lg, $gutter-lg), 3);
       }
     }
     /* cells and tiles positioning with XY format:
@@ -71,6 +82,7 @@
         .board2048__cell--#{$i}-#{$j} {
           margin-left: calc-cell-margin($size, $game2048-board-sm, $i, $gutter-sm);
           margin-top: calc-cell-margin($size, $game2048-board-sm, $j, $gutter-sm);
+
           @include gt-sm {
             margin-left: calc-cell-margin($size, $game2048-board-lg, $i, $gutter-lg);
             margin-top: calc-cell-margin($size, $game2048-board-lg, $j, $gutter-lg);
@@ -80,6 +92,7 @@
           $shift-x: calc-cell-margin($size, $game2048-board-sm, $i, $gutter-sm);
           $shift-y: calc-cell-margin($size, $game2048-board-sm, $j, $gutter-sm);
           transform: translate($shift-x, $shift-y);
+
           @include gt-sm {
             $shift-x-lg: calc-cell-margin($size, $game2048-board-lg, $i, $gutter-lg);
             $shift-y-lg: calc-cell-margin($size, $game2048-board-lg, $j, $gutter-lg);
@@ -156,8 +169,8 @@
 @each $size, $colors in $game2048-tiles-colours {
   .board2048__tile--#{$size} {
     .board2048__tile--inner {
-      background-color: map-get($colors, 'tile-bg');
-      color: map-get($colors, 'tile-fg');
+      background-color: map.get($colors, 'tile-bg');
+      color: map.get($colors, 'tile-fg');
     }
   }
 }

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // 2048 font
 @font-face {
   font-family: 'Clear Sans';
@@ -36,7 +38,7 @@
 // number of cell per row / column. Gutter has a default value and is the same
 // regardless the size
 @function calc-cell-width($size, $width, $gutter) {
-  @return (($width - ($size + 1) * $gutter) / $size) * 1px;
+  @return (math.div(($width - ($size + 1) * $gutter), $size)) * 1px;
 }
 
 // Calculate the positioning of a cell / tile given the cell-width and the
