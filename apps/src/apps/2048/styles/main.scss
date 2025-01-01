@@ -1,0 +1,215 @@
+@use "sass:list";
+@use "sass:math";
+@use "sass:map";
+
+@use 'helpers' as *;
+@use 'mixins' as *;
+@use 'variables' as *;
+
+/* ---------- Board ------------------------------------------------------------ */
+
+.board2048 {
+  width: $game2048-board-sm-px;
+  height: $game2048-board-sm-px;
+  box-sizing: border-box;
+  margin: auto; // padding: $game2048-gutter-sm-px; // For the moment, gutter is the same for all size and screens
+  background: $game2048-bg-default;
+  border-radius: $game2048-board-border-radius;
+  touch-action: none; // disable touch actions
+
+  @include gt-sm {
+    // padding: $game2048-gutter-lg-px; // For the moment, gutter is the same for all size and screens
+    width: $game2048-board-lg-px;
+    height: $game2048-board-lg-px;
+  }
+}
+
+/* Board size specific styles */
+
+@for $i from 1 through list.length($game2048-sizes) {
+  // fetch values with nth
+  $size: list.nth($game2048-sizes, $i);
+  $gutter-sm: list.nth($game2048-gutter-sm, $i);
+  $gutter-lg: list.nth($game2048-gutter-lg, $i);
+  /* board-size dependent style */
+  .board2048--#{$size} {
+    /* gutter depends on board size */
+    padding: $gutter-sm * 1px;
+
+    @include gt-sm {
+      padding: $gutter-lg * 1px;
+    }
+
+    /* Cells sizes depends on board sizes AND screen format */
+    .board2048__cell {
+      width: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
+      height: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
+
+      @include gt-sm {
+        width: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
+        height: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
+      }
+    }
+    /* Like cells, tiles format depends on board sizes and screen format.
+        /* Additionally, font-size and line-height (vertical align) are defined here */
+    .board2048__tile {
+      width: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
+      height: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
+      font-size: math.div(calc-cell-width($size, $game2048-board-sm, $gutter-sm), 2);
+      line-height: calc-cell-width($size, $game2048-board-sm, $gutter-sm);
+
+      @include gt-sm {
+        width: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
+        height: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
+        font-size: math.div(calc-cell-width($size, $game2048-board-lg, $gutter-lg), 2);
+        line-height: calc-cell-width($size, $game2048-board-lg, $gutter-lg);
+      }
+    }
+    /* When the tile value exceeds four digits, font-size must be readjusted */
+    .board2048__tile--1024 {
+      font-size: math.div(calc-cell-width($size, $game2048-board-sm, $gutter-sm), 3);
+
+      @include gt-sm {
+        font-size: math.div(calc-cell-width($size, $game2048-board-lg, $gutter-lg), 3);
+      }
+    }
+    /* cells and tiles positioning with XY format:
+               X = column, impacting margin-left
+               Y = row, impacting margin-top
+             */
+    @for $i from 0 through $size {
+      @for $j from 0 through $size {
+        .board2048__cell--#{$i}-#{$j} {
+          margin-left: calc-cell-margin($size, $game2048-board-sm, $i, $gutter-sm);
+          margin-top: calc-cell-margin($size, $game2048-board-sm, $j, $gutter-sm);
+
+          @include gt-sm {
+            margin-left: calc-cell-margin($size, $game2048-board-lg, $i, $gutter-lg);
+            margin-top: calc-cell-margin($size, $game2048-board-lg, $j, $gutter-lg);
+          }
+        }
+        .board2048__tile--#{$i}-#{$j} {
+          $shift-x: calc-cell-margin($size, $game2048-board-sm, $i, $gutter-sm);
+          $shift-y: calc-cell-margin($size, $game2048-board-sm, $j, $gutter-sm);
+          transform: translate($shift-x, $shift-y);
+
+          @include gt-sm {
+            $shift-x-lg: calc-cell-margin($size, $game2048-board-lg, $i, $gutter-lg);
+            $shift-y-lg: calc-cell-margin($size, $game2048-board-lg, $j, $gutter-lg);
+            transform: translate($shift-x-lg, $shift-y-lg);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ---------- Cells ------------------------------------------------------------ */
+
+// Cells are all the same and do not move along the game
+.board2048__cell {
+  border-radius: $game2048-tile-border-radius;
+  position: absolute;
+  background-color: rgba(238, 228, 218, 0.35);
+}
+
+/* ---------- Tiles ------------------------------------------------------------ */
+
+@keyframes appear {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes poppin {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Tile common styles
+.board2048__tile {
+  position: absolute;
+  text-align: center;
+  transition: transform $game2048-transition-move ease;
+}
+
+.board2048__tile--inner {
+  border-radius: $game2048-tile-border-radius;
+  transition: background-color $game2048-transition-move ease;
+}
+
+.board2048__tile--merged {
+  z-index: 20; // to ensure it is above the to-be-deleted tiles
+  .board2048__tile--inner {
+    animation: poppin $game2048-transition-effect $game2048-transition-move;
+    animation-fill-mode: backwards;
+  }
+}
+
+.board2048__tile--new {
+  .board2048__tile--inner {
+    animation: appear $game2048-transition-effect $game2048-transition-move;
+    animation-fill-mode: backwards;
+  }
+}
+
+/* Tile colour varies per its value. Font-size is not handled here as depending
+/* on board size */
+
+@each $size, $colors in $game2048-tiles-colours {
+  .board2048__tile--#{$size} {
+    .board2048__tile--inner {
+      background-color: map.get($colors, 'tile-bg');
+      color: map.get($colors, 'tile-fg');
+    }
+  }
+}
+
+/* ---------- Misc ------------------------------------------------------------ */
+
+// Game wrapper
+#page2048 {
+  background-color: #faf8ef;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  padding-top: 60px; // invisible game header
+  /* box for button or display content */
+  .page2048__box {
+    background-color: $game2048-block-bg;
+    color: $game2048-block-fg;
+    border-radius: $game2048-board-border-radius;
+    padding: 4px 1rem;
+    text-align: center;
+    border: none;
+    font-size: 24px;
+  }
+  /* a single row in 2048 page */
+  .page2048__row {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 1rem 0px;
+  }
+  /* highlight button */
+  .page2048__button {
+    @extend .page2048__box;
+    transition:
+      background-color $game2048-transition-move,
+      color $game2048-transition-move;
+    &:hover {
+      cursor: pointer;
+    }
+    &:disabled {
+      background-color: rgba(0, 0, 0, 0.2);
+      color: $game2048-bg-default;
+    }
+  }
+}

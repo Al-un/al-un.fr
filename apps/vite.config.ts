@@ -10,6 +10,14 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
+  css: {
+    // https://ramigs.dev/blog/how-to-set-up-sass-in-a-vue-vite-project/
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
