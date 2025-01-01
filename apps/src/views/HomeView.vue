@@ -14,8 +14,12 @@
 
 <script setup lang="ts">
 import { calcApp } from '@/apps/calculators'
+import { game2048App } from '@/apps/2048'
 
-const miniApps = [{ name: calcApp.name, path: calcApp.routeRoot }]
+const miniApps = [
+  { name: calcApp.name, path: calcApp.routeRoot },
+  { name: game2048App.name, path: game2048App.routeRoot }
+]
 </script>
 
 <style scoped>
