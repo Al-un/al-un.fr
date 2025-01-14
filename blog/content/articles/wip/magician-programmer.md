@@ -65,7 +65,7 @@ function someFunction() {
 }
 ```
 
-### The copyist monk strength and weakness
+### The copyist monk strengths and weaknesses
 
 Having a copyist is not bad pick. Their investigation skills can prove to be powerful when browsing in the sea of corporate documentation of finding a specific programming point. 
 
