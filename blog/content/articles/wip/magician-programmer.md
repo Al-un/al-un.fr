@@ -53,7 +53,7 @@ The copyist is taking the saying "Let's not reinvent the wheel" very seriously. 
 
 As an adorer of Googlism, or the reformed DuckDuckGoism, the copyist excels in finding some written traces which will spare him/her some unnecessary effort. Their output often correlates with how fast they can search and copy the information to build some functioning code.
 
-However, an inexperienced copyist might lack knowledge to properly understand the finding. After all, the Lord works in mysterious ways (\*glancing at my past Webpack configurations\*). This obviously becomes an issue when a copy-pasted code include warnings...that were obviously ignored. Below, a code found during a code review, with an explicit "Please do not copy this".
+However, an inexperienced copyist might lack knowledge to properly understand the finding. After all, the Lord works in mysterious ways (\*glancing at my past Webpack configurations\*). This obviously becomes an issue when a copy-pasted code includes things that should not be copied. Below, a code found during a code review, with an explicit "Please do not copy this".
 
 ```js
 /**
@@ -75,18 +75,27 @@ To sum up, copying find their strength in:
 
 - Good investigation skills
 - Good analytical skills
+- High output/effort ratio mindset
 
 On the other hand, they bring some risks:
 
-- Ris of deploying an inappropriate solution if the solution does not fit the problem (initial problem misunderstanding or mismatch between the found solution and the problem)
+- Risk of deploying an inappropriate solution, especially if copied without adjustments
 - Risk of code quality degradation
-- Risk of copyright issue
+- Risk of copyright issue or any legal issue when copying something without further checks
 
-### Composing with a copyist monk
+### Composing with a Copyist monk
 
 When facing a problem, don't hesitate asking a copyist point of view: there might be already a solution! 
 
 Among the different risks, the code quality degradation is the highest one. If the output of a copyist does not solve the business problem, it would be spotted by other stakeholders, may it be QA, product owner or even users. However, a code quality degradation can introduce a technical debt that goes off radar. 
+
+A proper continuous integration, and in general, a solid software development process, are good countermeasures against unexpected behaviors.
+
+### Copyist monks and othet magicians
+
+As Copyists needs to access to the right source for copying, they pair well with Archivists. 
+
+On the opposite, they might enrage Erudites and Void magicians who can perceive their approach as inelegant or bloated. It is not surprising that they are both right in their way. As usual, the challenge lie in finding a compromise between a clean and concise solution without reinventing the wheel.
 
 ## The Ninja
 
