@@ -3,15 +3,15 @@ title: Five Types of Magician Software Developers and How to Compose With Them
 draft: true
 ---
 
-When meeting different engineering teams, haven't you thought "wow, that person is magical"? I was lucky enough to have met few of these. Let me share my little knowledge of the software engineering folklore.
+When meeting different software engineers, haven't you thought "wow, that person is magical"? I was lucky enough to have met few of these. Let me share my little knowledge of the software engineering folklore.
 
 # Five Types of Magician Software Developers and How to Compose With Them
 
-> Spoiler: respectful communication is a key to achieve successful interaction with them.
+> Spoiler alert: respectful communication is a key.
 
-Congratulations programming adventurer! You have been accepted in a new guild and you will soon join your new party. Many software engineer profiles run by this world but some are more mysterious, almost magical, than the others. Maybe... are you one of them?
+Congratulations programming adventurer! You have been accepted in a new guild and you will soon join your new party. Many software engineer profiles exist in this world but some are more mysterious, almost magical, than the others. Maybe... are you one of them?
 
-Dear adventurer, please let me share the different magicians that my humble fate put on my path.
+Dear adventurer, please let me share the different magicians that fate put on my path.
 
 ## The Erudite
 
@@ -19,41 +19,45 @@ Dear adventurer, please let me share the different magicians that my humble fate
 
 Likely the most expected profile in the list. Their ability to understand and explore the unwritten laws of programming is translated by an immense, even overwhelming, level of elegance and sophistication in their code. To be honest, I sometimes worry if some innocent animal or soul were not involved, in some faustian way, to acquire such tremendous know-how.
 
-There are many forms of enlightenment. Some are learning to satisfy their curiosity while others are seeking for optimal code. Regardless of their motives, all Erudites share the common trait of going the extra mile.
+There are many forms of erudition. Some are learning to satisfy their curiosity while others are seeking for optimal code. Regardless of their motives, all Erudites share the common trait of going the extra mile when architecting and writing their code.
 
-Feared for his/her strong opinion or adored for his/her amazing skills, the Erudites does not go unnoticed and all have to agree that the enlighten is a very powerful ally we like to rely on in very dire circumstances.
+Feared for her/his strong opinion or adored for her/his amazing skills, the Erudites does not go unnoticed and all have to agree that the Erudite is a very powerful ally we like to rely on in very dire circumstances.
 
-### The Erudite strength and weaknesses
+### The Erudite strengths and weaknesses
 
+The Erudites strengths are:
 - Very good support for system design and architecture thanks to their sheer knowledge
 - Very good mentoring potential
 
-- Risk of losing the team, impacting the team morale
-- Risk of over engineering
+While some of their weaknesses are:
+- Risk of having a too complex design/code for the team, potentially impacting the team morale
+- Risk of over engineering compared to the requirements
 
 ### Taming the knowledge power
 
 However, this huge power is double edged because the pace set can be too fast for the rest of the party to follow.
 
-When you have an enlightened in your party, it might be fearsome at first but here are some ways to deal with it:
+When you have an Erudite in your party, it might be fearsome at first but here are some ways to deal with it:
 
-- When you don't understand, ask! Most enlightened would be delighted to share their knowledge.
-- When you are unsure why the code is built in a specific way, question the choices. Enlightened rarely made up their mind without reason but they do not always feel the need to justify all their decisions.
+- When you don't understand, ask! Most Erudites would be more than delighted to share their knowledge.
+- When you are unsure why the code is built in a specific way, question the choices. Erudites rarely made up their mind without reason but they do not always feel the need to justify all their decisions.
 
-On the other way, the enlightened can help their teammates:
+On the other way, the Erudite can help their teammates. Thanks to their logical way of thinking, they are able to formalise and formulate trains of thought which is efficient when it comes to mentoring.
 
-Propose technical strategy
+They are also the most appropriate magicians to propose technical roadmap. Don't hesitate to challenge Erudites to architect even outside their own scope. If they are able to understand the big picture, their strategies and designs can only be more robust.
+
+In short, whether you are a junior engineer, another tech lead or a manager, always ask questions to Erudite and understand their way of thinking and don't be afraid of their strengths of character. They are often challenged and standing their ground became a second nature to them.
 
 
 ## The Copyist
 
 ### The knowledge recycling expert
 
-The copyist is taking the saying "Let's not reinvent the wheel" very seriously. For them, all problems already have an existing solution. Why bother spending effort when a ready-to-use option already exists?
+The Copyist is taking the saying "Let's not reinvent the wheel" very seriously. For them, all problems already have an existing solution. Why bother spending effort when a ready-to-use option already exists?
 
-As an adorer of Googlism, or the reformed DuckDuckGoism, the copyist excels in finding some written traces which will spare him/her some unnecessary effort. Their output often correlates with how fast they can search and copy the information to build some functioning code.
+As an adorer of Googlism, or the reformed DuckDuckGoism, the Copyist excels in finding some written traces which will spare him/her some unnecessary effort. Their output often correlates with how fast they can search and copy the information to build some functioning code.
 
-However, an inexperienced copyist might lack knowledge to properly understand the finding. After all, the Lord works in mysterious ways (\*glancing at my past Webpack configurations\*). This obviously becomes an issue when a copy-pasted code includes things that should not be copied. Below, a code found during a code review, with an explicit "Please do not copy this".
+However, an inexperienced Copyist might lack knowledge to properly understand the finding. After all, the Lord works in mysterious ways (\*glancing at my past Webpack configurations\*). This obviously becomes an issue when a copy-pasted code includes things that should not be copied. Below, a code found during a code review, with an explicit "Please do not copy this".
 
 ```js
 /**
@@ -65,13 +69,13 @@ function someFunction() {
 }
 ```
 
-### The copyist monk strengths and weaknesses
+### The Copyist strengths and weaknesses
 
-Having a copyist is not bad pick. Their investigation skills can prove to be powerful when browsing in the sea of corporate documentation of finding a specific programming point. 
+Having a Copyist is not bad pick. Their investigation skills can prove to be powerful when browsing in the sea of corporate documentation of finding a specific programming point. 
 
-Experienced copyist can even take things to a next level, making the call between adding a small library _or_ copying part of it. A specific problem we had could be solved with a library but we actually need few dozen lines from it. Additionally, it appeared that this library was not compatible with tree shaking. One of my teammates, the copyist, focused for some hours to identify all the parts we needed, cherry-picking them and adapted them to our codebase, saving all of us a significant amount of time. It saved the day, without degrading the codebase quality.
+Experienced Copyists can even take things to a next level, making the call between adding a small library _or_ copying part of it. A specific problem we had could be solved with a library but we actually need few dozen lines from it. Additionally, it appeared that this library was not compatible with tree shaking. One of my teammates, the Copyist, focused for some hours to identify all the parts we needed, cherry-picking them and adapted them to our codebase, saving all of us a significant amount of time. It saved the day, without degrading the codebase quality.
 
-To sum up, copying find their strength in:
+To sum up, Copyists find their strength in:
 
 - Good investigation skills
 - Good analytical skills
@@ -83,42 +87,52 @@ On the other hand, they bring some risks:
 - Risk of code quality degradation
 - Risk of copyright issue or any legal issue when copying something without further checks
 
-### Composing with a Copyist monk
+### Composing with a Copyist
 
-When facing a problem, don't hesitate asking a copyist point of view: there might be already a solution! 
+When facing a problem, don't hesitate asking a Copyist's point of view: there might be already a solution! 
 
-Among the different risks, the code quality degradation is the highest one. If the output of a copyist does not solve the business problem, it would be spotted by other stakeholders, may it be QA, product owner or even users. However, a code quality degradation can introduce a technical debt that goes off radar. 
+Among the different risks, the code quality degradation is the highest one. If the output of a Copyist does not solve the business problem, it would be spotted by other stakeholders, may it be QA, product owner or even users. However, a code quality degradation can introduce a technical debt that goes off radar. 
 
 A proper continuous integration, and in general, a solid software development process, are good countermeasures against unexpected behaviors.
 
-### Copyist monks and othet magicians
+Another risk is problem misunderstanding. Our fine readers surely correlated Copyists' problem solving skills with their ability to properly assess the essence of a problem. Consequently, an incorrect problem analysis can easily lead to misalignments such as the [XY problem](https://xyproblem.info/). In such situations, don't hesitate to confirm that everyone is on the same page. If you still have some suspicion, don't hesitate to verify that you rely on the same assumption: what's obvious for one is not necessarily what's obvious for another. Ask, clarify, confront, confirm and, only then, profit. 
 
-As Copyists needs to access to the right source for copying, they pair well with Archivists. 
+### Copyist monks and other magicians
 
-On the opposite, they might enrage Erudites and Void magicians who can perceive their approach as inelegant or bloated. It is not surprising that they are both right in their way. As usual, the challenge lie in finding a compromise between a clean and concise solution without reinventing the wheel.
+As Copyists need to access to the right source for copying, they pair well with Archivists. 
+
+On the opposite, they might enrage Erudites and Void magicians who can perceive their approach as inelegant or bloated. It is not surprising that they are both right in their way. As usual, the challenge lies in finding a compromise between a clean and concise solution without reinventing the wheel.
 
 ## The Ninja
 
-### Striking from the shadow
+### Striking knowledge from the shadow
 
-A master of the art of invisibility, striking swiftly from the shadows and quickly disappearing. Ninja are not part of any normal group and they usually are grouped together as a Ninja team. But let’s not judge a book by its cover. They are actually not hostile, rather, they are the hidden guardian angels of all teams. Usually operating at company level, they ensure that all development keeps some sort of consistency.
+A master of the art of invisibility, striking swiftly from the shadows and quickly disappearing. The Ninjas are not part of any normal group and they usually are grouped together as a Ninja team. But let’s not judge a book by its cover. They are actually not hostile, rather, they are the hidden guardian angels of all teams. Usually operating at company level, or at least cross-teams level, they ensure that all developments keep some sort of consistency.
 
 
 ### Ninja strengths and weaknesses
 
-Pros
+You will always need a Ninja for:
 
 - Excellent in deploying company wide changes
+- Good at making critical low-level decision with large areas of impact
 
-Cons
+But the shadows also present some risks:
 
 - Risk of negative impact development if changes are not carefully prepared
+- Risk of going against a team decision
 
-### How to get prepared for a ninja intervention
+### How to get prepared for a Ninja intervention
 
-By definition, a ninja does not belong to any normal team so they usually have little background regarding your codebase. Whenever they are jumping with some commits ready, don’t hesitate to support them. Being hidden does not mean being idle. Ninja spend a lot of time and energy to prepare large scale changes while minimising the impact of all teams operation. For very large companies, you can assume how complex this can be so any support is always welcome.
+By definition, a Ninja does not belong to any normal team so they usually have little background regarding your codebase. Whenever they are jumping with some commits ready, don’t hesitate to support them. Being hidden does not mean being idle. Ninja spend a lot of time and energy to prepare large scale changes while minimising the impact of all teams operation. For very large companies, you can assume how complex this can be so any support is always welcome.
 
 On the other hand, if your team or codebase slightly deviates from the company standards, it is likely that a ninja change does not serve you. While it is tempting to push back, prefer discussion first to understand why a change is needed and how it can be deployed taking your specificities into account.
+
+### The Ninjas and other magicians
+
+It is not uncommon that Erudites and Ninjas work together for large scale decision, for example, deployment pipeline definition and implementation. If they happen to work together, that's good. But if that's not the case, make sure the communication can happen. Otherwise, many conflicts are to be expected. The Ninjas often follow companies guidelines so they do not intentionally act against a team. Understand their reason, and hopefully a common ground exists for everyone.
+
+If a Ninja cooperate with a Void magician, well... Brace yourself and make sure your applications are rock solid. A large deletion mistake is the very last thing you want to see happening.
 
 
 ## The Archivist
@@ -129,24 +143,23 @@ The wise among the wisest. For the Archivists, keeping knowledge, particularly h
 
 The main sin of Archivists is to write so much that their writings can loose the essence of the documentation purpose. If they become too verbose, their documentation becomes unreadable and actually backfires. Documentation is a living thing and must be kept updated along the product and outdated documentation can be a poison. If a project relies on incorrect information, it is likely that improper decisions will be made.
 
-For some Archivists, building documentation is not their only passion: they also know the history of changes. For those who stay sufficiently long in the same company, Time is their previous ally: they do not know to learn about the changes as they are living through it. Some Archivists rely on their memory to save the knowledge...but do not leave any writing.
+For some Archivists, building documentation is not their only passion: they also know the history of changes. For those who stay sufficiently long in the same company, Time is their previous ally: they do not know to learn about the changes as they are living through it. Some Archivists rely on their memory to save the knowledge...without leaving any writing.
 
-Unlike in fairy tales where we imagine Archivists as old men with long white beards and pointy hats, Software Engineer Archivists cannot be easily recognized unless they are asked questions involving their knowledge.
+Unlike in fairy tales where we imagine Archivists as old men with long beards and pointy hats, Software Engineer Archivists cannot be easily recognized unless they are asked questions involving their knowledge.
 
-### Archivist strengths and weaknesses
+### Archivists strengths and weaknesses
 
 Among the Archivist strengths, we can find:
 
 - Good source of knowledge regarding the history of a product or technology
 - Good contact point to find documentation
 
-The key difference is that Erudites are skilled at using tools and mechanism to achieve fairy-level code whereas Archivists are more a "knowledge hoarder".
+The key difference is that Erudites are skilled at using tools and mechanisms to achieve godlike code whereas Archivists are more a "knowledge hoarder".
 
-On the hand hands, the associated downsides could be:
+On the other hand, the associated downsides could be:
 
 - Risk of bloated and/or outdated information
 - Risk of having a documentation difficult to understand
-
 
 ### The Archivist as companion
 
@@ -154,23 +167,23 @@ As a master of knowledge, Archivists are often happy to share, this is why they 
 
 And more importantly, keep the Archivist away from their deadly sin. Documentation is meant to be helpful and should support the team, not giving a headache to know whether an information is correct or not. Frequently reviewing documentation accuracy can help. 
 
-All in all, an information is good when it is easily accessible when needed. Efficient integration over different tools (GitHub, Jira, etc), relevant amount of knowledge and proper discoverability need to share a good balance
+All in all, an information is good when it is easily accessible when needed. Efficient integration over different tools (GitHub, Jira, Miro, Figma, etc), relevant amount of knowledge and proper discoverability have to share a good balance
 
 ### The Archivist and other magicians
 
 They pair well with Erudite and some Erudites/Archivists can actually multiclass, covering both roles! Erudites are good are _using_ knowledge while Archivists _build_ knowledge. The synergy is straightforward! However, if this happens in a team or in a project, the risk is that both of them will end up being the only decision makers, pushing the other team/project members in the background.
 
-Their archenemies are Void magicians: what if these ruffians are deleting an important writing? Obviously, they will say otherwise. Similarly, they don't really appreciate ninjas who can suddenly appear and disappear. Archivists like stability and might dislike quick changes.
+Their archenemies are Void magicians: what if these ruffians are deleting an important writing? Obviously, they will say otherwise. Similarly, they don't really appreciate ninjas who can suddenly appear and disappear. Archivists like stability and might dislike sudden changes.
 
 ## The Void magician
 
-### The subtle, or not, art of destruction
+### The subtle, or less subtle, art of destruction
 
-The void. The art of making things disappear. Not the usual destruction / explosion decorum. The subtle `dev/null` advocate who subtly removes things. And… that’s just an awesome skill! Pretty aggressive, almost belligerent, at first, Void magicians are actually focusing on keeping things clean and tidy. They like having a top-notch codebase with regards to technical debts such as dead code, outdated dependencies or over-engineered solutions.
+The Void. The art of making things disappear. Not the usual destruction / explosion decorum but the subtle `dev/null` advocate who subtly removes things. And… that’s just an awesome skill! Pretty aggressive, almost belligerent, at first, Void magicians are actually focusing on keeping things clean and tidy. They like having a top-notch codebase with regards to technical debts such as dead code, outdated dependencies or over-engineered solutions.
 
 ### Void magician strenghts and weaknesses
 
-Having a Void magician in your squad can bring positive aspects beyond pure violence:
+Having a Void magician in your squad can bring positive aspects beyond pure technical violence:
 
 - Excellent for keeping a codebase light and clean
 - Good catcher of "[YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)" or "That's not [KISS](https://en.wikipedia.org/wiki/KISS_principle) enough" or, in general, anything superfluous
@@ -187,17 +200,23 @@ While the thirst of removing code is clear, make sure that things are removed sa
 
 When teaming up with a void magician favouring clean and tidy code, an important point is to have a clear code depreciation policy. When the whole team is aligned on code evolution, it proves to be terrifically efficient.
 
-The biggest danger with Void magicians is that lack of communication or misalignment. However, once on the same page, Void magicians are powerful allies to deliver robust code and product: what's more secure, rock-solid and maintainable than the required minimum without needless things?
+The biggest danger with Void magicians is that lack of communication or misalignment. However, once on the same page, Void magicians are powerful allies to deliver robust code and product: what's more secure, rock-solid and maintainable than the required minimum without needless parts?
 
 
 ### The Void magicians and other magicians
 
-Void magicians are good counters against Copyist Monks or Archivists who are too much in their roles. By keeping code and documentation simple, they ensure a safe future of the product. They are antagonist by definition so if such situation is encountered in a project, aligning them is a good priority.
+Void magicians are good counters against Copyist Monks or Archivists who are too serious in their roles. By keeping code and documentation concise and simple, they ensure a safe future of the product. They are antagonistic by definition so if such situation is encountered in a project, aligning with them is a good priority.
 
 They usually cooperate well with Erudite as they often agree that a good design is a clean and simple design.
+
+As stated earlier, Void magicians can cooperate with Ninjas. Removing irrelevant parts at large scale...or even more: deprecating outdated systems, what a dream for the Void followers! Such pairing is essential to keep your architecture up-to-date but get ready for this: "smooth" will likely not the qualifier of such initiatives.
 
 ---
 
 ## Conclusion
 
-Thank you for reading so far. The profiles presented in this article are simplified, like in most RPGs. The reality is way more complex: engineers often combine multiple aspects and it is not rare to have some engineers being an Erudite in a context but a Copyist Monk in another one. Granted, it can be challenging to compose with such profile but that what's make the interaction fun!
+Thank you for reading so far. The profiles presented in this article are overly simplified, like in most RPGs. The reality is way more complex: engineers often combine multiple aspects and it is not rare to have some engineers being an Erudite in a context but a Copyist Monk in another one. Granted, it can be challenging to compose with such profile but that what's make the interaction fun!
+
+In the end, not a profile is better than another. Like most software engineering topics, there is no silver bullet so diversity matters. You will need all sorts of magicians to cover each others. Also, everyone usually has good opinions, according to their personal beliefs. Gather everyone, discuss/debate, find a common ground and you will all be ready to achieve wonderful marvels.
+
+Happy engineering to all.
