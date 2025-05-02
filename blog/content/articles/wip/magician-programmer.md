@@ -97,7 +97,7 @@ A proper continuous integration, and in general, a solid software development pr
 
 Another risk is problem misunderstanding. Our fine readers surely correlated Copyists' problem solving skills with their ability to properly assess the essence of a problem. Consequently, an incorrect problem analysis can easily lead to misalignments such as the [XY problem](https://xyproblem.info/). In such situations, don't hesitate to confirm that everyone is on the same page. If you still have some suspicion, don't hesitate to verify that you rely on the same assumption: what's obvious for one is not necessarily what's obvious for another. Ask, clarify, confront, confirm and, only then, profit. 
 
-### Copyist monks and other magicians
+### Copyist and other magicians
 
 As Copyists need to access to the right source for copying, they pair well with Archivists. 
 
@@ -181,7 +181,7 @@ Their archenemies are Void magicians: what if these ruffians are deleting an imp
 
 The Void. The art of making things disappear. Not the usual destruction / explosion decorum but the subtle `dev/null` advocate who subtly removes things. And… that’s just an awesome skill! Pretty aggressive, almost belligerent, at first, Void magicians are actually focusing on keeping things clean and tidy. They like having a top-notch codebase with regards to technical debts such as dead code, outdated dependencies or over-engineered solutions.
 
-### Void magician strenghts and weaknesses
+### Void magician strengths and weaknesses
 
 Having a Void magician in your squad can bring positive aspects beyond pure technical violence:
 
@@ -205,7 +205,7 @@ The biggest danger with Void magicians is that lack of communication or misalign
 
 ### The Void magicians and other magicians
 
-Void magicians are good counters against Copyist Monks or Archivists who are too serious in their roles. By keeping code and documentation concise and simple, they ensure a safe future of the product. They are antagonistic by definition so if such situation is encountered in a project, aligning with them is a good priority.
+Void magicians are good counters against Copyist or Archivists who are too serious in their roles. By keeping code and documentation concise and simple, they ensure a safe future of the product. They are antagonistic by definition so if such situation is encountered in a project, aligning with them is a good priority.
 
 They usually cooperate well with Erudite as they often agree that a good design is a clean and simple design.
 
@@ -215,7 +215,7 @@ As stated earlier, Void magicians can cooperate with Ninjas. Removing irrelevant
 
 ## Conclusion
 
-Thank you for reading so far. The profiles presented in this article are overly simplified, like in most RPGs. The reality is way more complex: engineers often combine multiple aspects and it is not rare to have some engineers being an Erudite in a context but a Copyist Monk in another one. Granted, it can be challenging to compose with such profile but that what's make the interaction fun!
+Thank you for reading so far. The profiles presented in this article are overly simplified, like in most RPGs. The reality is way more complex: engineers often combine multiple aspects and it is not rare to have some engineers being an Erudite in a context but a Copyist in another one. Granted, it can be challenging to compose with such profile but that what's make the interaction fun!
 
 In the end, not a profile is better than another. Like most software engineering topics, there is no silver bullet so diversity matters. You will need all sorts of magicians to cover each others. Also, everyone usually has good opinions, according to their personal beliefs. Gather everyone, discuss/debate, find a common ground and you will all be ready to achieve wonderful marvels.
 
