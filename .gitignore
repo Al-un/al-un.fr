@@ -7,3 +7,10 @@ node_modules
 # Local development
 .vscode
 .tool-versions
+
+# AI
+.claude
+.codex
+
+# Astro
+.astro
