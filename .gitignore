@@ -7,6 +7,7 @@ node_modules
 # Local development
 .vscode
 .tool-versions
+*.log
 
 # AI
 .claude
