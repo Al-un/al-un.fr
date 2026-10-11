@@ -1,57 +1,56 @@
 ---
-import { getCollection } from "astro:content";
 import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
 
 const games = await getCollection("games");
 ---
 
-<Default title="Games" description="Browser experiments and playable prototypes.">
+<Default title="Games">
   <h1>Games</h1>
-
-  <div class="game-list">
-    {games.map((game) => (
-      <article class="game-card">
-        <div class="card-header">
-          <h2><a href={`/games/${game.id.replace(/\.yaml$/, "")}`}>{game.data.name}</a></h2>
-          <span class="mode-badge">{game.data.mode}</span>
-        </div>
-        {game.data.description && <p>{game.data.description}</p>}
-      </article>
-    ))}
-  </div>
+  <ul class="game-list">
+    {
+      games.map((game) => {
+        const slug = game.id.replace(/\.yaml$/, "");
+        return (
+          <li class="game-card">
+            <a href={`/games/${slug}`}>
+              <h2>{game.data.name}</h2>
+              {game.data.description && <p>{game.data.description}</p>}
+              <span class="mode">{game.data.mode}</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
 </Default>
 
 <style>
   .game-list {
+    list-style: none;
     display: grid;
     gap: 1rem;
-    margin-top: 1.5rem;
   }
 
   .game-card {
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
-    background: var(--color-card-bg);
     padding: 1rem;
+    background: var(--color-card-bg);
   }
 
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.5rem;
+  .game-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
   }
 
-  .mode-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    background: var(--color-tag-bg);
-    color: var(--color-tag-text);
+  .game-card p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .mode {
     font-size: 0.75rem;
-    text-transform: uppercase;
+    color: var(--color-muted);
   }
 </style>

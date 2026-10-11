@@ -1,116 +1,108 @@
 ---
-import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
 import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
 
-export async function getStaticPaths({ paginate }) {
-  const posts = (await getCollection("blog"))
-    .filter((post) => post.data.status === "released")
-    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
-
-  return paginate(posts, { pageSize: 20 });
-}
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = await getCollection("blog", ({ data }) => data.status === "released");
+  const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  return paginate(sorted, { pageSize: 20 });
+}) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
-
-const formatDate = (value: Date) => new Date(value).toISOString().slice(0, 10);
-const postPath = (post) => {
-  const [year, month, ...rest] = post.id.split("/");
-  const slug = rest.join("/").replace(/\.md$/, "");
-  return `/blog/${year}/${month}/${slug}`;
-};
 ---
 
-<Default title="Blog" description="A chronological collection of posts and notes.">
+<Default title={page.currentPage === 1 ? "Blog" : `Blog — Page ${page.currentPage}`}>
   <h1>Blog</h1>
-
   <ul class="post-list">
-    {page.data.map((post) => (
-      <li class="post-item">
-        <a href={postPath(post)} class="post-title">{post.data.title}</a>
-        <div class="meta-row">
-          <time datetime={formatDate(post.data.date)}>{formatDate(post.data.date)}</time>
-          {post.data.tags && post.data.tags.length > 0 && (
-            <ul class="tag-list">
-              {post.data.tags.map((tag) => <li class="tag">{tag}</li>)}
-            </ul>
-          )}
-        </div>
-      </li>
-    ))}
+    {
+      page.data.map((post) => {
+        const year = post.data.date.getFullYear();
+        const month = String(post.data.date.getMonth() + 1).padStart(2, "0");
+        const slug = post.id.split("/").pop()?.replace(/\.md$/, "");
+        return (
+          <li class="post-item">
+            <a href={`/blog/${year}/${month}/${slug}`}>
+              <span class="post-title">{post.data.title}</span>
+              <time class="post-date">{post.data.date.toISOString().slice(0, 10)}</time>
+            </a>
+            {post.data.tags && (
+              <span class="post-tags">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </span>
+            )}
+          </li>
+        );
+      })
+    }
   </ul>
 
-  {page.total > 1 && (
-    <nav class="pagination" aria-label="Blog pagination">
-      {page.url.prev ? <a href={page.url.prev}>Previous</a> : <span>Previous</span>}
-      <span>Page {page.currentPage} of {page.lastPage}</span>
-      {page.url.next ? <a href={page.url.next}>Next</a> : <span>Next</span>}
-    </nav>
-  )}
+  {
+    (page.url.prev || page.url.next) && (
+      <nav class="pagination">
+        {page.url.prev && <a href={page.url.prev}>&larr; Newer</a>}
+        <span class="page-info">
+          Page {page.currentPage} of {page.lastPage}
+        </span>
+        {page.url.next && <a href={page.url.next}>Older &rarr;</a>}
+      </nav>
+    )
+  }
 </Default>
 
 <style>
   .post-list {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
   }
 
   .post-item {
+    padding: 0.75rem 0;
     border-bottom: 1px solid var(--color-border);
-    padding-bottom: 1rem;
+  }
+
+  .post-item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
   }
 
   .post-title {
-    display: inline-block;
     font-weight: 600;
-    margin-bottom: 0.3rem;
   }
 
-  .meta-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  time {
+  .post-date {
     color: var(--color-muted);
+    font-size: 0.85rem;
     white-space: nowrap;
   }
 
-  .tag-list {
-    list-style: none;
+  .post-tags {
     display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
   }
 
   .tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.2rem 0.5rem;
-    border-radius: var(--border-radius);
+    font-size: 0.75rem;
     background: var(--color-tag-bg);
     color: var(--color-tag-text);
-    font-size: 0.75rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--border-radius);
   }
 
   .pagination {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
     align-items: center;
-    margin-top: 2rem;
-    color: var(--color-muted);
+    padding: 1.5rem 0;
+    margin-top: 1rem;
   }
 
-  @media (max-width: 640px) {
-    .meta-row {
-      flex-direction: column;
-      align-items: flex-start;
-    }
+  .page-info {
+    color: var(--color-muted);
+    font-size: 0.9rem;
   }
 </style>

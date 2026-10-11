@@ -1,150 +1,85 @@
 ---
-import { getCollection } from "astro:content";
 import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
 
 const experience = await getCollection("experience");
-const internalLinks = [
-  { href: "/blog", title: "Blog", description: "Chronological notes on software work and ideas." },
-  { href: "/games", title: "Games", description: "Self-contained experiments and playful prototypes." },
-  { href: "/writing", title: "Writing", description: "Longer-form reads and study notes." },
-  { href: "/karaoke", title: "Karaoke", description: "A quick reference list for song practice." },
-];
-
-const externalLinks = [
-  { href: "https://github.com/Al-un", title: "GitHub", description: "Code, experiments, and public repos." },
-  { href: "https://www.linkedin.com", title: "LinkedIn", description: "Professional profile and career history." },
-];
 ---
 
-<Default title="Home" description="Personal website and engineering notes.">
+<Default title="Home">
   <section id="welcome">
-    <h1>Hi, I’m Al-un.</h1>
-    <p>
-      I’m a software engineer who likes building dependable systems, clear interfaces, and small experiments that still get used.
-    </p>
+    <h1>Hello, I'm Al</h1>
+    <p>Software engineer. I build things for the web and occasionally make games.</p>
   </section>
 
   <hr />
 
   <section id="experience">
-    <h2>Work experience</h2>
-    {experience.map((entry) => (
-      <article class="company">
-        <h3>{entry.data.company}</h3>
-        <ul class="roles">
-          {entry.data.roles.map((role) => (
-            <li class="role-item">
-              <span>{role.title}</span>
-              <span class="role-period">{role.period}</span>
-            </li>
-          ))}
-        </ul>
-      </article>
-    ))}
+    <h2>Experience</h2>
+    {
+      experience.map((entry) => (
+        <div class="company">
+          <h3>{entry.data.company}</h3>
+          <ul class="roles">
+            {entry.data.roles.map((role: { title: string; period: string }) => (
+              <li>
+                <span class="role-title">{role.title}</span>
+                <span class="role-period">{role.period}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
   </section>
 
   <hr />
 
   <section id="presence">
-    <h2>Internet presence</h2>
+    <h2>On this site</h2>
+    <ul>
+      <li><a href="/blog">Blog</a> — thoughts on software engineering</li>
+      <li><a href="/games">Games</a> — small projects and experiments</li>
+      <li><a href="/writing">Writing</a> — long-form notes and guides</li>
+      <li><a href="/karaoke">Karaoke</a> — my song list</li>
+    </ul>
 
-    <div class="presence-grid">
-      <div>
-        <h3>On this site</h3>
-        <ul class="presence-list">
-          {internalLinks.map((link) => (
-            <li>
-              <a href={link.href}>{link.title}</a>
-              <span>{link.description}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h3>Elsewhere</h3>
-        <ul class="presence-list">
-          {externalLinks.map((link) => (
-            <li>
-              <a href={link.href} target="_blank" rel="noreferrer">{link.title}</a>
-              <span>{link.description}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <h2>Elsewhere</h2>
+    <ul>
+      <li><a href="https://github.com/al-un">GitHub</a></li>
+    </ul>
   </section>
 
   <Fragment slot="footer">
-    Built with Astro, Vue, Render, and <a href="https://github.com/Al-un/al-un.fr">GitHub</a>.
+    <p>
+      Built with <a href="https://astro.build">Astro</a> + <a href="https://vuejs.org">Vue</a>.
+      Deployed on <a href="https://render.com">Render</a>.
+      <a href="https://github.com/al-un/al-un.fr">Source on GitHub</a>.
+    </p>
   </Fragment>
 </Default>
 
 <style>
-  #welcome {
-    margin-bottom: 1rem;
-  }
-
-  #welcome h1 {
-    margin-bottom: 0.75rem;
-  }
-
   .company {
     margin-bottom: 1.5rem;
   }
 
   .roles {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
     margin-top: 0.5rem;
   }
 
-  .role-item {
+  .roles li {
     display: flex;
     justify-content: space-between;
-    gap: 0.75rem;
-    padding-bottom: 0.25rem;
-    border-bottom: 1px solid var(--color-border);
+    padding: 0.25rem 0;
+  }
+
+  .role-title {
+    font-weight: 500;
   }
 
   .role-period {
     color: var(--color-muted);
-    white-space: nowrap;
-  }
-
-  .presence-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .presence-list {
-    list-style: none;
-    display: grid;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .presence-list li {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-
-  .presence-list span {
-    color: var(--color-muted);
     font-size: 0.9rem;
-  }
-
-  @media (max-width: 640px) {
-    .presence-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .role-item {
-      flex-direction: column;
-    }
   }
 </style>

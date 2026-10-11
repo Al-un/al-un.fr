@@ -1,72 +1,66 @@
 ---
-import { getCollection } from "astro:content";
 import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   const books = await getCollection("writing-books");
   const chapters = await getCollection("writing-chapters");
 
   return books.map((book) => {
-    const slug = book.id.split("/")[0];
+    const bookSlug = book.id.split("/")[0];
+    const bookChapters = book.data.chapters.map((chapterSlug: string) => {
+      const chapter = chapters.find((c) => c.id === `${bookSlug}/${chapterSlug}.md` || c.id === `${bookSlug}/${chapterSlug}`);
+      return {
+        slug: chapterSlug,
+        title: chapter?.data.title ?? chapterSlug,
+      };
+    });
+
     return {
-      params: { book: slug },
-      props: { book, chapters },
+      params: { book: bookSlug },
+      props: { book, chapters: bookChapters },
     };
   });
 }
 
 const { book, chapters } = Astro.props;
-const bookSlug = book.id.split("/")[0];
-const chapterList = book.data.chapters.map((chapterSlug) => {
-  const matched = chapters.find((entry) => {
-    const id = entry.id.replace(/\.md$/, "");
-    return id === `${bookSlug}/${chapterSlug}`;
-  });
-
-  return {
-    slug: chapterSlug,
-    title: matched?.data.title ?? chapterSlug,
-  };
-});
 ---
 
-<Default title={book.data.title} description={book.data.description}>
-  <article>
-    <h1>{book.data.title}</h1>
-    <p class="summary">{book.data.description}</p>
-    <span class="status-badge">{book.data.status}</span>
+<Default title={book.data.title}>
+  <h1>{book.data.title}</h1>
+  <p class="description">{book.data.description}</p>
+  <span class="status">{book.data.status}</span>
 
-    <h2>Table of contents</h2>
-    <ol class="toc">
-      {chapterList.map((chapter) => (
+  <h2>Table of Contents</h2>
+  <ol class="toc">
+    {
+      chapters.map((ch: { slug: string; title: string }) => (
         <li>
-          <a href={`/writing/${bookSlug}/${chapter.slug}`}>{chapter.title}</a>
+          <a href={`/writing/${Astro.params.book}/${ch.slug}`}>{ch.title}</a>
         </li>
-      ))}
-    </ol>
-  </article>
+      ))
+    }
+  </ol>
 </Default>
 
 <style>
-  .summary {
+  .description {
     color: var(--color-muted);
-    margin-top: 0.5rem;
+    margin: 0.5rem 0;
   }
 
-  .status-badge {
-    display: inline-flex;
-    margin: 1rem 0 1.5rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    background: var(--color-tag-bg);
-    color: var(--color-tag-text);
-    font-size: 0.75rem;
-    text-transform: uppercase;
+  .status {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    text-transform: capitalize;
   }
 
   .toc {
-    margin-left: 1.25rem;
-    display: grid;
-    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .toc li {
+    padding: 0.25rem 0;
   }
 </style>

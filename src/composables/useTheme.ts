@@ -1,13 +1,15 @@
-import { onMounted, ref } from "vue";
+import { ref, onMounted } from "vue";
 
 export type ThemeKey = "system" | "light" | "dark" | "terminal";
 
-export const STORAGE_KEY = "theme";
-export const THEMES: ThemeKey[] = ["system", "light", "dark", "terminal"];
+const STORAGE_KEY = "theme";
+const THEMES: ThemeKey[] = ["system", "light", "dark", "terminal"];
 
-export function resolveTheme(key: ThemeKey) {
+function resolveTheme(key: ThemeKey): string {
   if (key === "system") {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
   }
   return key;
 }
@@ -15,26 +17,20 @@ export function resolveTheme(key: ThemeKey) {
 export function useTheme() {
   const current = ref<ThemeKey>("system");
 
-  const apply = (key: ThemeKey) => {
+  function apply(key: ThemeKey) {
     current.value = key;
-    if (typeof window === "undefined") return;
-    window.localStorage.setItem(STORAGE_KEY, key);
-    const resolved = resolveTheme(key);
-    document.documentElement.dataset.theme = resolved;
-  };
+    localStorage.setItem(STORAGE_KEY, key);
+    document.documentElement.dataset.theme = resolveTheme(key);
+  }
 
-  const cycle = () => {
-    const index = THEMES.indexOf(current.value);
-    const next = THEMES[(index + 1) % THEMES.length];
-    apply(next);
-  };
+  function cycle() {
+    const idx = THEMES.indexOf(current.value);
+    apply(THEMES[(idx + 1) % THEMES.length]);
+  }
 
   onMounted(() => {
-    if (typeof window === "undefined") return;
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    const safeTheme = stored && THEMES.includes(stored as ThemeKey) ? (stored as ThemeKey) : "system";
-    current.value = safeTheme;
-    apply(safeTheme);
+    const stored = localStorage.getItem(STORAGE_KEY) as ThemeKey | null;
+    current.value = stored && THEMES.includes(stored) ? stored : "system";
   });
 
   return { current, themes: THEMES, apply, cycle };

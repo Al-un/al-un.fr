@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-type Chapter = {
+interface Chapter {
   slug: string;
   title: string;
-};
+}
 
 const props = defineProps<{
   bookSlug: string;
@@ -16,67 +16,57 @@ const open = ref(false);
 </script>
 
 <template>
-  <aside class="chapter-nav">
-    <button class="chapter-toggle" type="button" @click="open = !open">
+  <nav class="chapter-nav">
+    <button class="toggle" @click="open = !open">
       {{ open ? "▾" : "▸" }} Chapters
     </button>
-    <nav v-show="open" class="chapter-list">
-      <ul>
-        <li v-for="chapter in props.chapters" :key="chapter.slug">
-          <a
-            :href="`/writing/${props.bookSlug}/${chapter.slug}`"
-            :class="['chapter-link', { active: chapter.slug === props.currentSlug }]"
-          >
-            {{ chapter.title }}
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
+    <ul v-show="open" class="chapter-list">
+      <li v-for="ch in chapters" :key="ch.slug" class="chapter-item">
+        <a
+          :href="`/writing/${bookSlug}/${ch.slug}`"
+          :class="{ active: ch.slug === currentSlug }"
+        >
+          {{ ch.title }}
+        </a>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <style scoped>
-  .chapter-nav {
-    margin-bottom: 1.5rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    background: var(--color-card-bg);
-    overflow: hidden;
-  }
+.chapter-nav {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+}
 
-  .chapter-toggle {
-    width: 100%;
-    background: transparent;
-    border: 0;
-    color: var(--color-text);
-    padding: 0.75rem 1rem;
-    text-align: left;
-    cursor: pointer;
-    font: inherit;
-  }
+.toggle {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0;
+}
 
-  .chapter-list {
-    border-top: 1px solid var(--color-border);
-    padding: 0.75rem;
-  }
+.chapter-list {
+  list-style: none;
+  margin-top: 0.5rem;
+}
 
-  .chapter-list ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
+.chapter-item a {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  border-radius: var(--border-radius);
+}
 
-  .chapter-link {
-    display: block;
-    color: var(--color-muted);
-    padding: 0.35rem 0.5rem;
-    border-radius: var(--border-radius);
-  }
-
-  .chapter-link.active {
-    background: var(--color-card-bg);
-    color: var(--color-text);
-    font-weight: 600;
-  }
+.chapter-item a.active {
+  color: var(--color-text);
+  font-weight: 600;
+  background: var(--color-card-bg);
+}
 </style>

@@ -1,8 +1,9 @@
-import { defineCollection, z } from "astro:content";
-import { file, glob } from "astro/loaders";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob, file } from "astro/loaders";
 
 const blog = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
+  loader: glob({ pattern: "**/*.md", base: "src/content/blog" }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -11,10 +12,20 @@ const blog = defineCollection({
   }),
 });
 
+const games = defineCollection({
+  loader: glob({ pattern: "*.yaml", base: "src/content/games" }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string().optional(),
+    thumbnail: z.string().optional(),
+    mode: z.enum(["standalone", "embedded", "web-native"]),
+    path: z.string(),
+  }),
+});
+
 const experience = defineCollection({
   loader: file("src/content/experience/experience.yaml"),
   schema: z.object({
-    id: z.string(),
     company: z.string(),
     roles: z.array(
       z.object({
@@ -25,21 +36,9 @@ const experience = defineCollection({
   }),
 });
 
-const games = defineCollection({
-  loader: glob({ pattern: "**/*.yaml", base: "./src/content/games" }),
-  schema: z.object({
-    name: z.string(),
-    description: z.string().optional(),
-    thumbnail: z.string().optional(),
-    mode: z.enum(["standalone", "embedded", "web-native"]),
-    path: z.string(),
-  }),
-});
-
 const karaoke = defineCollection({
   loader: file("src/content/karaoke/songs.yaml"),
   schema: z.object({
-    id: z.string(),
     title: z.string(),
     author: z.string(),
     reading: z.string().optional(),
@@ -48,7 +47,7 @@ const karaoke = defineCollection({
 });
 
 const writingBooks = defineCollection({
-  loader: glob({ pattern: "**/book.yaml", base: "./src/content/writing" }),
+  loader: glob({ pattern: "*/book.yaml", base: "src/content/writing" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -58,7 +57,7 @@ const writingBooks = defineCollection({
 });
 
 const writingChapters = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/writing" }),
+  loader: glob({ pattern: "*/*.md", base: "src/content/writing" }),
   schema: z.object({
     title: z.string(),
   }),

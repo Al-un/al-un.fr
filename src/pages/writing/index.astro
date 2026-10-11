@@ -1,58 +1,58 @@
 ---
-import { getCollection } from "astro:content";
 import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
 
 const books = await getCollection("writing-books");
 ---
 
-<Default title="Writing" description="Long-form notes and essays.">
+<Default title="Writing">
   <h1>Writing</h1>
-
-  <div class="book-list">
-    {books.map((book) => (
-      <article class="book-card">
-        <div class="card-header">
-          <h2><a href={`/writing/${book.id.split("/")[0]}`}>{book.data.title}</a></h2>
-          <span class="status-badge">{book.data.status}</span>
-        </div>
-        <p>{book.data.description}</p>
-      </article>
-    ))}
-  </div>
+  <ul class="book-list">
+    {
+      books.map((book) => {
+        const slug = book.id.split("/")[0];
+        return (
+          <li class="book-card">
+            <a href={`/writing/${slug}`}>
+              <h2>{book.data.title}</h2>
+              <p>{book.data.description}</p>
+              <span class="status">{book.data.status}</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
 </Default>
 
 <style>
   .book-list {
+    list-style: none;
     display: grid;
     gap: 1rem;
-    margin-top: 1.5rem;
   }
 
   .book-card {
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
-    background: var(--color-card-bg);
     padding: 1rem;
+    background: var(--color-card-bg);
   }
 
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
+  .book-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .book-card p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
     margin-bottom: 0.5rem;
   }
 
-  .status-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    background: var(--color-tag-bg);
-    color: var(--color-tag-text);
+  .status {
     font-size: 0.75rem;
-    text-transform: uppercase;
+    color: var(--color-muted);
+    text-transform: capitalize;
   }
 </style>

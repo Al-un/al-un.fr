@@ -1,16 +1,13 @@
 ---
-import { getCollection, render } from "astro:content";
 import Default from "@/layouts/Default.astro";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-
   return posts.map((post) => {
-    const slug = post.id.split("/").at(-1)?.replace(/\.md$/, "") ?? "";
-    const date = new Date(post.data.date);
-    const year = String(date.getFullYear());
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-
+    const year = String(post.data.date.getFullYear());
+    const month = String(post.data.date.getMonth() + 1).padStart(2, "0");
+    const slug = post.id.split("/").pop()?.replace(/\.md$/, "") ?? post.id;
     return {
       params: { year, month, slug },
       props: { post },
@@ -20,23 +17,23 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const dateValue = new Date(post.data.date);
 ---
 
-<Default title={post.data.title} description={post.data.title}>
+<Default title={post.data.title}>
   <article>
-    <header class="post-header">
+    <header>
       <h1>{post.data.title}</h1>
-      <div class="meta-row">
-        <time datetime={dateValue.toISOString()}>{dateValue.toISOString().slice(0, 10)}</time>
-        {post.data.tags && post.data.tags.length > 0 && (
-          <ul class="tag-list">
-            {post.data.tags.map((tag) => <li class="tag">{tag}</li>)}
-          </ul>
-        )}
-      </div>
+      <time>{post.data.date.toISOString().slice(0, 10)}</time>
+      {
+        post.data.tags && (
+          <div class="tags">
+            {post.data.tags.map((tag: string) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )
+      }
     </header>
-
     <div class="prose">
       <Content />
     </div>
@@ -44,33 +41,27 @@ const dateValue = new Date(post.data.date);
 </Default>
 
 <style>
-  .post-header {
-    margin-bottom: 1.5rem;
+  article header {
+    margin-bottom: 2rem;
   }
 
-  .meta-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+  article time {
     color: var(--color-muted);
+    font-size: 0.9rem;
   }
 
-  .tag-list {
-    list-style: none;
+  .tags {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
   }
 
   .tag {
-    display: inline-block;
+    font-size: 0.75rem;
     background: var(--color-tag-bg);
     color: var(--color-tag-text);
-    padding: 0.2rem 0.5rem;
+    padding: 0.1rem 0.4rem;
     border-radius: var(--border-radius);
-    font-size: 0.75rem;
   }
 
   .prose :global(h2) {

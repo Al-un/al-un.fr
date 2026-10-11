@@ -1,134 +1,103 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref, computed } from "vue";
 
-type Song = {
+interface Song {
   title: string;
   author: string;
   reading?: string;
-  tags?: string[];
-};
+  tags: string[];
+}
 
 const props = defineProps<{ songs: Song[] }>();
+
 const query = ref("");
 
 const filtered = computed(() => {
-  const safeQuery = query.value.trim().toLowerCase();
-
-  if (!safeQuery) {
-    return props.songs;
-  }
-
-  return props.songs.filter((song) => {
-    const haystacks = [
-      song.title,
-      song.author,
-      song.reading ?? "",
-      (song.tags ?? []).join(" "),
-    ].join(" ").toLowerCase();
-
-    return haystacks.includes(safeQuery);
-  });
+  const q = query.value.toLowerCase();
+  if (!q) return props.songs;
+  return props.songs.filter(
+    (s) =>
+      s.title.toLowerCase().includes(q) ||
+      s.author.toLowerCase().includes(q) ||
+      (s.reading && s.reading.includes(q)) ||
+      s.tags.some((t) => t.toLowerCase().includes(q)),
+  );
 });
 </script>
 
 <template>
-  <div class="karaoke-panel">
-    <label class="search-wrap">
-      <span class="sr-only">Search songs</span>
-      <input v-model="query" class="search-input" type="search" placeholder="Search songs" />
-    </label>
-
-    <p class="results-meta">{{ filtered.length }} songs</p>
-
+  <div class="karaoke-filter">
+    <input
+      v-model="query"
+      type="text"
+      class="search-input"
+      placeholder="Search songs..."
+    />
+    <p class="result-count">{{ filtered.length }} song(s)</p>
     <ul class="song-list">
-      <li v-for="song in filtered" :key="`${song.title}-${song.author}`" class="song-item">
-        <div class="song-heading">
-          <span class="song-title">{{ song.title }}</span>
-          <span class="song-author">{{ song.author }}</span>
-        </div>
-        <div v-if="song.tags && song.tags.length" class="song-tags">
+      <li v-for="song in filtered" :key="song.title" class="song-item">
+        <span class="song-title">{{ song.title }}</span>
+        <span class="song-author">{{ song.author }}</span>
+        <span v-if="song.tags.length" class="song-tags">
           <span v-for="tag in song.tags" :key="tag" class="tag">{{ tag }}</span>
-        </div>
+        </span>
       </li>
     </ul>
   </div>
 </template>
 
 <style scoped>
-  .karaoke-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+.search-input {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  z-index: 10;
+}
 
-  .search-wrap {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: var(--color-bg);
-    padding-bottom: 0.25rem;
-  }
+.result-count {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+}
 
-  .search-input {
-    width: 100%;
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    background: var(--color-card-bg);
-    color: var(--color-text);
-    padding: 0.75rem 1rem;
-    font: inherit;
-  }
+.song-list {
+  list-style: none;
+}
 
-  .results-meta {
-    color: var(--color-muted);
-    font-size: 0.9rem;
-  }
+.song-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
 
-  .song-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+.song-title {
+  font-weight: 600;
+}
 
-  .song-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-border);
-  }
+.song-author {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
 
-  .song-heading {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
+.song-tags {
+  display: flex;
+  gap: 0.25rem;
+}
 
-  .song-title {
-    font-weight: 600;
-    color: var(--color-heading);
-  }
-
-  .song-author {
-    color: var(--color-muted);
-    font-size: 0.9rem;
-  }
-
-  .song-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.2rem 0.5rem;
-    border-radius: var(--border-radius);
-    background: var(--color-tag-bg);
-    color: var(--color-tag-text);
-    font-size: 0.75rem;
-  }
+.tag {
+  font-size: 0.75rem;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--border-radius);
+}
 </style>

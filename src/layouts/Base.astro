@@ -1,4 +1,9 @@
 ---
+interface Props {
+  title: string;
+  description?: string;
+}
+
 const { title, description = "Personal website of a software engineer" } = Astro.props;
 ---
 
@@ -12,18 +17,22 @@ const { title, description = "Personal website of a software engineer" } = Astro
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
       (function () {
-        const STORAGE_KEY = "theme";
-        const stored = localStorage.getItem(STORAGE_KEY);
-        const preferDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const resolved = stored === "light" || stored === "dark" || stored === "terminal"
-          ? stored
-          : preferDark ? "dark" : "light";
+        const stored = localStorage.getItem("theme");
+        let resolved = stored;
+        if (!resolved || resolved === "system") {
+          resolved = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
         document.documentElement.dataset.theme = resolved;
       })();
     </script>
-    <style is:global>@import "../styles/global.css";</style>
   </head>
   <body>
     <slot />
   </body>
 </html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>
