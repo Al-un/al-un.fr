@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import Default from "@/layouts/Default.astro";
+import Bare from "@/layouts/Bare.astro";
+
+export async function getStaticPaths() {
+  const games = await getCollection("games");
+
+  return games.map((game) => ({
+    params: { name: game.id.replace(/\.yaml$/, "") },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props;
+const Layout = game.data.mode === "standalone" ? Bare : Default;
+const title = game.data.name;
+const description = game.data.description ?? "Game page";
+---
+
+<Layout title={title} description={description}>
+  <div class="game-shell">
+    {game.data.mode === "standalone" ? (
+      <iframe src={`${game.data.path}/game.html`} title={title} class="game-frame standalone" loading="lazy"></iframe>
+    ) : (
+      <>
+        <h1>{title}</h1>
+        {game.data.description && <p>{description}</p>}
+        <div class="embed-wrap">
+          <iframe src={`${game.data.path}/game.html`} title={title} class="game-frame embedded" loading="lazy"></iframe>
+        </div>
+      </>
+    )}
+  </div>
+</Layout>
+
+<style>
+  .game-shell {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .game-frame {
+    width: 100%;
+    border: 0;
+    background: #000;
+  }
+
+  .game-frame.standalone {
+    height: 100vh;
+  }
+
+  .embed-wrap {
+    margin-top: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+
+  .game-frame.embedded {
+    height: 600px;
+  }
+</style>

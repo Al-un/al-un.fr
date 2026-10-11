@@ -1,0 +1,8 @@
+---
+import Base from "@/layouts/Base.astro";
+const { title, description } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <slot />
+</Base>

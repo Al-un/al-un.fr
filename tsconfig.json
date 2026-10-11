@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    // "baseUrl": ".", // See https://github.com/microsoft/TypeScript/issues/62508#issuecomment-3348649259
+    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }

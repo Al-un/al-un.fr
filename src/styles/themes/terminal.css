@@ -1,0 +1,15 @@
+[data-theme="terminal"] {
+  --color-bg: #0d1117;
+  --color-text: #00ff41;
+  --color-heading: #00ff41;
+  --color-link: #58a6ff;
+  --color-link-hover: #79c0ff;
+  --color-border: #30363d;
+  --color-code-bg: #161b22;
+  --color-card-bg: #161b22;
+  --color-muted: #8b949e;
+  --color-tag-bg: #1f2937;
+  --color-tag-text: #00ff41;
+  --font-family: "JetBrains Mono", ui-monospace, monospace;
+  --border-radius: 0;
+}

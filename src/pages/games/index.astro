@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import Default from "@/layouts/Default.astro";
+
+const games = await getCollection("games");
+---
+
+<Default title="Games" description="Browser experiments and playable prototypes.">
+  <h1>Games</h1>
+
+  <div class="game-list">
+    {games.map((game) => (
+      <article class="game-card">
+        <div class="card-header">
+          <h2><a href={`/games/${game.id.replace(/\.yaml$/, "")}`}>{game.data.name}</a></h2>
+          <span class="mode-badge">{game.data.mode}</span>
+        </div>
+        {game.data.description && <p>{game.data.description}</p>}
+      </article>
+    ))}
+  </div>
+</Default>
+
+<style>
+  .game-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .game-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    background: var(--color-card-bg);
+    padding: 1rem;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .mode-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+</style>

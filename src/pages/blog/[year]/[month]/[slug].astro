@@ -1,0 +1,84 @@
+---
+import { getCollection, render } from "astro:content";
+import Default from "@/layouts/Default.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => {
+    const slug = post.id.split("/").at(-1)?.replace(/\.md$/, "") ?? "";
+    const date = new Date(post.data.date);
+    const year = String(date.getFullYear());
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+
+    return {
+      params: { year, month, slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const dateValue = new Date(post.data.date);
+---
+
+<Default title={post.data.title} description={post.data.title}>
+  <article>
+    <header class="post-header">
+      <h1>{post.data.title}</h1>
+      <div class="meta-row">
+        <time datetime={dateValue.toISOString()}>{dateValue.toISOString().slice(0, 10)}</time>
+        {post.data.tags && post.data.tags.length > 0 && (
+          <ul class="tag-list">
+            {post.data.tags.map((tag) => <li class="tag">{tag}</li>)}
+          </ul>
+        )}
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Default>
+
+<style>
+  .post-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    color: var(--color-muted);
+  }
+
+  .tag-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--border-radius);
+    font-size: 0.75rem;
+  }
+
+  .prose :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1rem;
+  }
+</style>

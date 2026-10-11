@@ -1,0 +1,100 @@
+---
+import { getCollection, render } from "astro:content";
+import Default from "@/layouts/Default.astro";
+import ChapterNav from "@/components/ChapterNav.vue";
+
+export async function getStaticPaths() {
+  const books = await getCollection("writing-books");
+  const chapters = await getCollection("writing-chapters");
+  const routes = [];
+
+  for (const book of books) {
+    const bookSlug = book.id.split("/")[0];
+    for (const chapterSlug of book.data.chapters) {
+      const entry = chapters.find((chapter) => {
+        const id = chapter.id.replace(/\.md$/, "");
+        return id === `${bookSlug}/${chapterSlug}`;
+      });
+
+      const chapterList = book.data.chapters.map((slug) => {
+        const matched = chapters.find((chapter) => {
+          const id = chapter.id.replace(/\.md$/, "");
+          return id === `${bookSlug}/${slug}`;
+        });
+
+        return {
+          slug,
+          title: matched?.data.title ?? slug,
+        };
+      });
+
+      routes.push({
+        params: { book: bookSlug, chapter: chapterSlug },
+        props: { chapterEntry: entry, chapterList, bookSlug },
+      });
+    }
+  }
+
+  return routes;
+}
+
+const { chapterEntry, chapterList, bookSlug } = Astro.props;
+const { chapter } = Astro.params;
+const { Content, headings } = await render(chapterEntry);
+const inChapterLinks = headings.filter((heading) => heading.depth === 2);
+---
+
+<Default title={chapterEntry.data.title} description={chapterEntry.data.title}>
+  <ChapterNav client:visible bookSlug={bookSlug} chapters={chapterList} currentSlug={chapter} />
+
+  <article>
+    <h1>{chapterEntry.data.title}</h1>
+
+    {inChapterLinks.length > 0 && (
+      <nav class="in-chapter-nav" aria-label="In chapter navigation">
+        <h2>In this chapter</h2>
+        <ul>
+          {inChapterLinks.map((heading) => (
+            <li>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Default>
+
+<style>
+  .in-chapter-nav {
+    margin: 1.25rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    background: var(--color-card-bg);
+  }
+
+  .in-chapter-nav h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .in-chapter-nav ul {
+    list-style: none;
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .prose :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1rem;
+  }
+</style>

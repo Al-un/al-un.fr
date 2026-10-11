@@ -1,0 +1,47 @@
+---
+import Base from "@/layouts/Base.astro";
+import Header from "@/components/layout/Header.astro";
+const { title, description } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <div class="page">
+    <Header />
+    <main class="content">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <slot name="footer">© {new Date().getFullYear()} al-un.fr</slot>
+    </footer>
+  </div>
+</Base>
+
+<style>
+  .page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    flex: 1;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .content {
+      padding: 1rem 0.75rem;
+    }
+  }
+</style>
