@@ -12,6 +12,7 @@ node_modules
 # AI
 .claude
 .codex
+.aider*
 
 # Astro
 .astro
