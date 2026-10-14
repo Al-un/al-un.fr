@@ -1,0 +1,66 @@
+---
+import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const books = await getCollection("writing-books");
+  const chapters = await getCollection("writing-chapters");
+
+  return books.map((book) => {
+    const bookSlug = book.id.split("/")[0];
+    const bookChapters = book.data.chapters.map((chapterSlug: string) => {
+      const chapter = chapters.find((c) => c.id === `${bookSlug}/${chapterSlug}.md` || c.id === `${bookSlug}/${chapterSlug}`);
+      return {
+        slug: chapterSlug,
+        title: chapter?.data.title ?? chapterSlug,
+      };
+    });
+
+    return {
+      params: { book: bookSlug },
+      props: { book, chapters: bookChapters },
+    };
+  });
+}
+
+const { book, chapters } = Astro.props;
+---
+
+<Default title={book.data.title}>
+  <h1>{book.data.title}</h1>
+  <p class="description">{book.data.description}</p>
+  <span class="status">{book.data.status}</span>
+
+  <h2>Table of Contents</h2>
+  <ol class="toc">
+    {
+      chapters.map((ch: { slug: string; title: string }) => (
+        <li>
+          <a href={`/writing/${Astro.params.book}/${ch.slug}`}>{ch.title}</a>
+        </li>
+      ))
+    }
+  </ol>
+</Default>
+
+<style>
+  .description {
+    color: var(--color-muted);
+    margin: 0.5rem 0;
+  }
+
+  .status {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    text-transform: capitalize;
+  }
+
+  .toc {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .toc li {
+    padding: 0.25rem 0;
+  }
+</style>

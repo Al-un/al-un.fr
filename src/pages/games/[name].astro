@@ -1,0 +1,47 @@
+---
+import Default from "@/layouts/Default.astro";
+import Bare from "@/layouts/Bare.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const games = await getCollection("games");
+  return games.map((game) => ({
+    params: { name: game.id.replace(/\.yaml$/, "") },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props;
+const isStandalone = game.data.mode === "standalone";
+---
+
+{
+  isStandalone ? (
+    <Bare title={game.data.name}>
+      <iframe src={game.data.path + "/game.html"} style="width:100%;height:100vh;border:none;" />
+    </Bare>
+  ) : (
+    <Default title={game.data.name}>
+      <h1>{game.data.name}</h1>
+      {game.data.description && <p>{game.data.description}</p>}
+      {game.data.mode === "embedded" ? (
+        <div class="game-embed">
+          <iframe src={game.data.path + "/game.html"} style="width:100%;height:600px;border:none;" />
+        </div>
+      ) : (
+        <div class="game-native" id="game-root">
+          <p>Web-native game loads here.</p>
+        </div>
+      )}
+    </Default>
+  )
+}
+
+<style>
+  .game-embed {
+    margin-top: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+</style>

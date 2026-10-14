@@ -1,0 +1,6 @@
+title: "Notes on Rust"
+description: "A lightweight collection of lessons, patterns, and experiments from working with Rust."
+status: released
+chapters:
+  - 01-ownership
+  - 02-borrowing

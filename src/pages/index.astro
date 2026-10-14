@@ -1,0 +1,85 @@
+---
+import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
+
+const experience = await getCollection("experience");
+---
+
+<Default title="Home">
+  <section id="welcome">
+    <h1>Hello, I'm Al</h1>
+    <p>Software engineer. I build things for the web and occasionally make games.</p>
+  </section>
+
+  <hr />
+
+  <section id="experience">
+    <h2>Experience</h2>
+    {
+      experience.map((entry) => (
+        <div class="company">
+          <h3>{entry.data.company}</h3>
+          <ul class="roles">
+            {entry.data.roles.map((role: { title: string; period: string }) => (
+              <li>
+                <span class="role-title">{role.title}</span>
+                <span class="role-period">{role.period}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </section>
+
+  <hr />
+
+  <section id="presence">
+    <h2>On this site</h2>
+    <ul>
+      <li><a href="/blog">Blog</a> — thoughts on software engineering</li>
+      <li><a href="/games">Games</a> — small projects and experiments</li>
+      <li><a href="/writing">Writing</a> — long-form notes and guides</li>
+      <li><a href="/karaoke">Karaoke</a> — my song list</li>
+    </ul>
+
+    <h2>Elsewhere</h2>
+    <ul>
+      <li><a href="https://github.com/al-un">GitHub</a></li>
+    </ul>
+  </section>
+
+  <Fragment slot="footer">
+    <p>
+      Built with <a href="https://astro.build">Astro</a> + <a href="https://vuejs.org">Vue</a>.
+      Deployed on <a href="https://render.com">Render</a>.
+      <a href="https://github.com/al-un/al-un.fr">Source on GitHub</a>.
+    </p>
+  </Fragment>
+</Default>
+
+<style>
+  .company {
+    margin-bottom: 1.5rem;
+  }
+
+  .roles {
+    list-style: none;
+    margin-top: 0.5rem;
+  }
+
+  .roles li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+  }
+
+  .role-title {
+    font-weight: 500;
+  }
+
+  .role-period {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+</style>

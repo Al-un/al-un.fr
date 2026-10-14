@@ -1,0 +1,32 @@
+- id: sakura
+  title: さくら
+  author: Traditional
+  reading: さくら
+  tags:
+    - classic
+    - japanese
+- id: yume-no-mori
+  title: 夢の森
+  author: Mika Ito
+  reading: ゆめのもり
+  tags:
+    - dream
+    - pop
+- id: midnight-train
+  title: Midnight Train
+  author: A. R. Bell
+  tags:
+    - night
+    - rock
+- id: city-lights
+  title: City Lights
+  author: Lena Cross
+  tags:
+    - synth
+    - evening
+- id: city-of-stars
+  title: City of Stars
+  author: Ryan Gosling, Emma Stone
+  tags:
+    - duo
+

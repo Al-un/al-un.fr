@@ -1,0 +1,104 @@
+---
+import Default from "@/layouts/Default.astro";
+import ChapterNav from "@/components/ChapterNav.vue";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const books = await getCollection("writing-books");
+  const allChapters = await getCollection("writing-chapters");
+
+  const paths = [];
+
+  for (const book of books) {
+    const bookSlug = book.id.split("/")[0];
+
+    const chapterList = book.data.chapters.map((chSlug: string) => {
+      const ch = allChapters.find((c) => c.id === `${bookSlug}/${chSlug}.md` || c.id === `${bookSlug}/${chSlug}`);
+      return { slug: chSlug, title: ch?.data.title ?? chSlug };
+    });
+
+    for (const chSlug of book.data.chapters) {
+      const chapter = allChapters.find(
+        (c) => c.id === `${bookSlug}/${chSlug}.md` || c.id === `${bookSlug}/${chSlug}`,
+      );
+      if (chapter) {
+        paths.push({
+          params: { book: bookSlug, chapter: chSlug },
+          props: { chapter, bookSlug, chapterList },
+        });
+      }
+    }
+  }
+
+  return paths;
+}
+
+const { chapter, bookSlug, chapterList } = Astro.props;
+const { Content, headings } = await render(chapter);
+const currentSlug = Astro.params.chapter;
+---
+
+<Default title={chapter.data.title}>
+  <ChapterNav
+    client:visible
+    bookSlug={bookSlug}
+    chapters={chapterList}
+    currentSlug={currentSlug}
+  />
+
+  <article>
+    <h1>{chapter.data.title}</h1>
+
+    {
+      headings.length > 0 && (
+        <nav class="in-chapter-nav">
+          <ul>
+            {headings
+              .filter((h) => h.depth === 2)
+              .map((h) => (
+                <li>
+                  <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Default>
+
+<style>
+  .in-chapter-nav {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .in-chapter-nav ul {
+    list-style: none;
+  }
+
+  .in-chapter-nav li {
+    padding: 0.15rem 0;
+  }
+
+  .in-chapter-nav a {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+
+  .prose :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1rem;
+  }
+</style>

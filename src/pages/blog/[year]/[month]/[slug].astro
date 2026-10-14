@@ -1,0 +1,75 @@
+---
+import Default from "@/layouts/Default.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => {
+    const year = String(post.data.date.getFullYear());
+    const month = String(post.data.date.getMonth() + 1).padStart(2, "0");
+    const slug = post.id.split("/").pop()?.replace(/\.md$/, "") ?? post.id;
+    return {
+      params: { year, month, slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Default title={post.data.title}>
+  <article>
+    <header>
+      <h1>{post.data.title}</h1>
+      <time>{post.data.date.toISOString().slice(0, 10)}</time>
+      {
+        post.data.tags && (
+          <div class="tags">
+            {post.data.tags.map((tag: string) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )
+      }
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Default>
+
+<style>
+  article header {
+    margin-bottom: 2rem;
+  }
+
+  article time {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    background: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--border-radius);
+  }
+
+  .prose :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1rem;
+  }
+</style>

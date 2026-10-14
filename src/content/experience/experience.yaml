@@ -1,0 +1,14 @@
+- id: northstar-labs
+  company: Northstar Labs
+  roles:
+    - title: Senior Platform Engineer
+      period: "2023 — present"
+    - title: Software Engineer
+      period: "2021 — 2023"
+- id: orbit-works
+  company: Orbit Works
+  roles:
+    - title: Product Engineer
+      period: "2019 — 2021"
+    - title: Frontend Developer
+      period: "2017 — 2019"
