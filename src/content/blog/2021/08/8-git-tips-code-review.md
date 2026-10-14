@@ -1,7 +1,10 @@
 ---
 title: 8 Git Tips to Improve Code Reviewing
-publicationDate: 2021-08-31
-medium: https://betterprogramming.pub/8-git-tips-to-improve-code-reviewing-71cae7883d6f
+status: released
+date: 2021-08-31
+tags:
+  - software engineering
+  - git
 ---
 
 # 8 Git Tips to Improve Code Reviewing
@@ -191,7 +194,7 @@ _`git log` is useful to find the starting point of the interactive rebase._
 
 The list of commits from the provided starting point, the starting point being excluded, appears and for each commit, an action has to be defined.
 
-![git rebase](![Alt text](image-2.png))
+![git rebase](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FBopYhCFq1sTxS5feNqLtQ.png)
 
 The rebase will stop at the commit `e935a02` . Changes can be done and once finished, `git commit --amend` updates the commit:
 

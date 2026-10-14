@@ -1,7 +1,10 @@
 ---
 title: "Streamline Your GitHub Actions With Composite Actions"
-publicationDate: 2021-09-16
-medium: https://betterprogramming.pub/streamline-your-github-actions-with-composite-actions-a8ebc6d28f6b
+status: released
+date: 2021-09-16
+tags:
+  - software engineering
+  - devops
 ---
 
 # Streamline Your GitHub Actions With Composite Actions<!-- omit in toc -->

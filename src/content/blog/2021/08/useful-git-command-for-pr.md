@@ -1,6 +1,10 @@
 ---
 title: Useful git commands when handling PR
-publicationDate: 2021-08-31
+status: released
+date: 2021-08-31
+tags:
+  - software engineering
+  - git
 ---
 
 # Useful git commands when handling PR <!-- omit in toc -->

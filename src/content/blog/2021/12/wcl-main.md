@@ -1,8 +1,12 @@
 ---
 title: Build your Web Component Library with Lit and Storybook
-description: Leverage web components to build a library that can be used in any of your web application.
-draft: true
-publicationDate:
+status: released
+date: 2021-12-18
+tags:
+  - software engineering
+  - frontend
+  - web components
+description: Leverage web components to build a library that 
 ---
 
 # Web Component Library Part 1: Create a Library With Lit and Storybook
@@ -12,6 +16,10 @@ read about web components and components library.
 
 The article is the starting point of a series about writing a component library
 using web components with the [Lit](https://lit.dev/) library.
+
+> [!NOTE]
+> 2026 Disclaimer: this was a tentative for a post series regarding web components
+> but is discontinued. I keep it for reference and archiving purpose only.
 
 ## About the library
 
