@@ -1,5 +1,0 @@
-name: Maze Runner
-description: A tiny puzzle-runner built for quick experiments in traversal logic.
-thumbnail: "./maze-runner.png"
-mode: web-native
-path: "/games/maze-runner"
