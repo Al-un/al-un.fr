@@ -34,17 +34,14 @@ const { Content } = await render(post);
         )
       }
     </header>
-    <div class="prose">
+
+    <div class="article-body">
       <Content />
     </div>
   </article>
 </Default>
 
 <style>
-  article header {
-    margin-bottom: 2rem;
-  }
-
   article time {
     color: var(--color-muted);
     font-size: 0.9rem;
@@ -64,12 +61,23 @@ const { Content } = await render(post);
     border-radius: var(--border-radius);
   }
 
-  .prose :global(h2) {
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
+
+  /* Copied from old version */
+
+  .article-body :global(p) {
+    margin-block-end: 16px;
   }
 
-  .prose :global(p) {
-    margin-bottom: 1rem;
+  /* ---------- Header ---------- */
+  .article-body :global(h1) {
+    margin: 28px 0;
   }
+
+  .article-body :global(h2) {
+    margin: 24px 0;
+  }
+
+  .article-body :global(h3) {
+    margin: 16px 0;
+  } 
 </style>
