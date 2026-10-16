@@ -1,6 +1,10 @@
 ---
 title: Five Types of Magician Software Developers and How to Compose With Them
-draft: true
+status: released
+date: 2025-05-06
+tags:
+  - software engineering
+  - interpersonal relationship
 ---
 
 When meeting different software engineers, haven't you thought "wow, that person is magical"? I was lucky enough to have met few of these. Let me share my little knowledge of the software engineering folklore.
