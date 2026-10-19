@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Default from "@/layouts/Default.astro";
+import Game2048 from "@/apps/2048/views/GamePage.vue";
+
+const games = await getCollection("games");
+const game2048Data = games.find(g => g.id.replace(/\.yaml$/, "") === "2048")?.data;
+
+if (game2048Data === undefined) {
+  throw new Error("2048 game data not found in the games collection.");
+}
+---
+
+<Default title={game2048Data.name}>
+  <h1>{game2048Data.name}</h1>
+  {game2048Data.description && <p>{game2048Data.description}</p>}
+
+  <div class="game-native" id="game-root">
+    <Game2048 />
+  </div>
+
+  <style>
+    .game-native {
+      width: 100%;
+      max-width: 480px;
+      margin: 2rem auto;
+    }
+  </style>
+</Default>
