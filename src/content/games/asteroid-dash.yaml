@@ -1,5 +1,0 @@
-name: Asteroid Dash
-description: A reactive ship survival prototype tuned for tight play sessions.
-thumbnail: "./asteroid-dash.png"
-mode: embedded
-path: "/games/asteroid-dash"
