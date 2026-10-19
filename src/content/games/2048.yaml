@@ -1,6 +1,7 @@
 name: "2048"
 description: |
-  Pouet pouet
-  Currently not working on mobile
+  An old Vue.js implementation of the classic
+  2048. Still buggy due to the introduction of
+  Astro and the new website and not working on mobile
 mode: "web-native"
 path: "/games/2048"
