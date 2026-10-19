@@ -5,16 +5,27 @@
   damLink: https://www.clubdam.com/karaokesearch/songleaf.html?requestNo=3954-09
   tags:
     - duo
-- id: xxx
+- id: tsukiakari-no-michishirube
   title: ツキアカリのミチシルベ
-  author: xxx
+  author: ステレオポニー
+  reading: ツキアカリノミチシルベ
+  joysoundLink: https://www.joysound.com/web/search/song/144059
 - id: life-yui
   title: LIFE
   author: YUI
-- title: 世界は恋に落ちている
-- title: アンインストール
-- title: Like Flames
-- title: Os-宇宙人
-- title: 光るなら
-- title: God Knows
-- title: 千本桜
+  reading: ライフ
+  joysoundLink: https://www.joysound.com/web/search/song/144060
+- id: sekai-wa-koi-ni-ochiteiru
+  title: 世界は恋に落ちている
+  author: CHiCO with HoneyWorks
+  reading: セカイワコイニオッチテイル
+  joysoundLink: https://www.joysound.com/web/search/song/408823
+- id: like-flames
+  title: Like Flames
+  author: MindaRyn
+  joysoundLink: https://www.joysound.com/web/search/song/881774
+- id: os-u-chuujin
+  title: Os-宇宙人
+  author: エリオをかまってちゃん
+  reading: オスウチュウジン
+  joysoundLink: https://www.joysound.com/web/search/song/165676
