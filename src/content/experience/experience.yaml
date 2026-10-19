@@ -13,13 +13,15 @@
     - title: Frontend Engineer
       period: "Nov 2020 - Dec 2021"
       description: Having fun with Vue.js
+
 - id: joyz
   company: Joyz
   roles:
     - title: Frontend Lead
       period: "Feb 2019 - Oct 2020"
-      description: From front-end technical decisions to the implementation, I lead the front-end development and synchronize actions with the other teams: back-end, design and QA. Past activities included hiring and iOS / Android development follow-up.
+      description: "From front-end technical decisions to the implementation, I lead the front-end development and synchronize actions with the other teams: back-end, design and QA. Past activities included hiring and iOS / Android development follow-up."
       location: Tokyo
+
 - id: lsware
   company: LS-ware
   roles:
@@ -27,6 +29,7 @@
       period: "Feb. 2015 - Jul. 2018"
       description: My entrepreneur ambition was to develop Connesto, a Food & Beverage electronic menu application with self-ordering and machine translation capabilities. I designed the software architecture and implemented the back-end and the web front-end.
       location: Hong Kong
+
 - id: accenture
   company: Accenture
   roles:
