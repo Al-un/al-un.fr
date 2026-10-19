@@ -180,6 +180,7 @@
 // Game wrapper
 #page2048 {
   background-color: #faf8ef;
+  // Clear Sans font defined in astro.config.ts..but not working
   font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
   padding-top: 60px; // invisible game header
   /* box for button or display content */

@@ -3,14 +3,14 @@
     <div class="board__header__title">2048</div>
     <div class="page2048__box board__header__score">
       <p>SCORE</p>
-      <p>{{ gameStore.game.score }}</p>
+      <p>{{ gameStore.game.value.score }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { use2048Store } from '../store'
-const gameStore = use2048Store()
+import { use2048Data } from '../composables/use2048data'
+const gameStore = use2048Data()
 </script>
 
 <style lang="scss">

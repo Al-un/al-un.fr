@@ -3,7 +3,7 @@
     <div class="page2048__row format-pictures">
       <img
         v-for="format in formats"
-        v-show="format.size === gameStore.size"
+        v-show="format.size === gameStore.size.value"
         :key="format.size"
         :alt="format.text"
         :title="format.text"
@@ -18,7 +18,7 @@
       </button>
       <span
         v-for="f in formats"
-        v-show="f.size === gameStore.size"
+        v-show="f.size === gameStore.size.value"
         :key="f.size"
         class="format"
       >
@@ -50,18 +50,23 @@ import { ref } from 'vue'
 import { type BoardSize } from '../utils/board/index'
 
 // ----------------------------------------------------------------------------
-
-import { use2048Store } from '../store'
-const gameStore = use2048Store()
+import { use2048Data } from '../composables/use2048data'
+const gameStore = use2048Data()
 
 // ----------------------------------------------------------------------------
+import img3x3 from '../img/img3x3.png'
+import img4x4 from '../img/img4x4.png'
+import img5x5 from '../img/img5x5.png'
+import img6x6 from '../img/img6x6.png'
+import img8x8 from '../img/img8x8.png'
+
 type Format = { size: BoardSize; img: string; text: string }
 const formats = ref<Format[]>([
-  { size: 3, img: '/2048/img/img3x3.png', text: 'Tiny (3 x 3)' },
-  { size: 4, img: '/2048/img/img4x4.png', text: 'Classic (4 x 4)' },
-  { size: 5, img: '/2048/img/img5x5.png', text: 'Big (5 x 5)' },
-  { size: 6, img: '/2048/img/img6x6.png', text: 'Bigger (6 x 6)' },
-  { size: 8, img: '/2048/img/img8x8.png', text: 'Huge (8 x 8)' }
+  { size: 3, img: img3x3.src, text: 'Tiny (3 x 3)' },
+  { size: 4, img: img4x4.src, text: 'Classic (4 x 4)' },
+  { size: 5, img: img5x5.src, text: 'Big (5 x 5)' },
+  { size: 6, img: img6x6.src, text: 'Bigger (6 x 6)' },
+  { size: 8, img: img8x8.src, text: 'Huge (8 x 8)' }
 ])
 </script>
 

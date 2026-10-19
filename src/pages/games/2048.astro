@@ -15,15 +15,5 @@ if (game2048Data === undefined) {
   <h1>{game2048Data.name}</h1>
   {game2048Data.description && <p>{game2048Data.description}</p>}
 
-  <div class="game-native" id="game-root">
-    <Game2048 />
-  </div>
-
-  <style>
-    .game-native {
-      width: 100%;
-      max-width: 480px;
-      margin: 2rem auto;
-    }
-  </style>
+  <Game2048 client:load/>
 </Default>

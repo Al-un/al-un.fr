@@ -19,8 +19,11 @@
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // import { faUndo, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
-import { use2048Store } from '../store'
-const gameStore = use2048Store()
+// import { use2048Store } from '../store'
+// const gameStore = use2048Store()
+
+import { use2048Data } from '../composables/use2048data'
+const gameStore = use2048Data()
 </script>
 
 <style lang="scss" scoped>

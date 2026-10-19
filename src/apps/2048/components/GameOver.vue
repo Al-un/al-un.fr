@@ -1,13 +1,13 @@
 <template>
   <div class="game2048__gameover">
     <h4>GameOver</h4>
-    <p>Final score: {{ gameStore.game.score }} in {{ gameStore.game.moves.length }} moves</p>
+    <p>Final score: {{ gameStore.game.value.score }} in {{ gameStore.game.value.moves.length }} moves</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { use2048Store } from '../store'
-const gameStore = use2048Store()
+import { use2048Data } from '../composables/use2048data'
+const gameStore = use2048Data()
 </script>
 
 <style lang="scss">

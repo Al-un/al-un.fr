@@ -1,6 +1,6 @@
 <template>
   <div id="page2048" ref="root" class="game-container">
-    <game-welcome v-if="gameStore.status === 'select'" />
+    <game-welcome v-if="gameStore.status.value === 'select'" />
     <game-screen v-else />
   </div>
 </template>
@@ -14,9 +14,9 @@ import GameWelcome from '../components/GameWelcome.vue'
 
 // var hammer = require('hammerjs')
 // declare var hammer: any
+import { use2048Data } from '../composables/use2048data'
+const gameStore = use2048Data()
 
-import { use2048Store } from '../store'
-const gameStore = use2048Store()
 /**
  * Swipe:
  * https://css-tricks.com/simple-swipe-with-vanilla-javascript/

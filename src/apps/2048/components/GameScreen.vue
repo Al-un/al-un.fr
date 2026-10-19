@@ -3,7 +3,7 @@
     <board-header />
     <game-control />
     <game-board />
-    <game-over v-if="gameStore.status === 'gameover'" />
+    <game-over v-if="gameStore.status.value === 'gameover'" />
 
     <div style="text-align: left" class="mobile--hide">
       <ul>
@@ -15,7 +15,7 @@
 
     <div style="display: none; height: 200px; overflow-y: scroll">
       <div
-        v-for="move in gameStore.game.moves"
+        v-for="move in gameStore.game.value.moves"
         :key="move.id"
         style="
           display: flex;
@@ -42,8 +42,8 @@ import GameOver from './GameOver.vue'
 import Movement from '../utils/play/movement'
 
 // ----------------------------------------------------------------------------
-import { use2048Store } from '../store'
-const gameStore = use2048Store()
+import { use2048Data } from '../composables/use2048data'
+const gameStore = use2048Data()
 
 // ----------------------------------------------------------------------------
 
