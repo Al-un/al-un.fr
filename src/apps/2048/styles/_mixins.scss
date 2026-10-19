@@ -1,0 +1,20 @@
+@use "sass:map";
+
+$breakpoints: (
+  sm: 576px,
+  sm-high: 577px
+);
+
+//https://daviseford.com/blog/2018/01/10/scss-responsive-media-query-mixins.html
+@mixin lt-sm {
+  @media (max-width: map.get($breakpoints, sm)) {
+    @content;
+  }
+}
+
+@mixin gt-sm {
+  //   @media (min-width: map.get($breakpoints, sm) + 1px) {
+  @media (min-width: map.get($breakpoints, sm-high)) {
+    @content;
+  }
+}

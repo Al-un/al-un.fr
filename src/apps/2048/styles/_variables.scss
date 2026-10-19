@@ -1,0 +1,67 @@
+/**
+ * TODO: for some reasons, pixel sizes are not accepted in multiplication inside
+ * @function. Consequently, variables are split into two: pure numeric and pixel
+ * values
+ */
+
+/**
+ * Variables are prefixed with "game2048" as a SASS variable cannot start with
+ * a number
+ */
+
+// default colours
+$game2048-bg-default: #bbada0;
+$game2048-fg-default: #f9f6f2;
+$game2048-tiles-colours: (
+  2: (
+    tile-bg: #eee4da,
+    tile-fg: #776e65
+  ),
+  4: (
+    tile-bg: #ede0c8,
+    tile-fg: #776e65
+  ),
+  8: (
+    tile-bg: #f2b179,
+    tile-fg: #f9f6f2
+  ),
+  16: (
+    tile-bg: #f59563,
+    tile-fg: #f9f7f3
+  ),
+  32: (
+    tile-bg: #f67c5f,
+    tile-fg: #f9f6f2
+  ),
+  64: (
+    tile-bg: #f65e3b,
+    tile-fg: #f9f6f2
+  ),
+  128: (
+    tile-bg: #edcf72,
+    tile-fg: #f9f6f2
+  ),
+  max: (
+    tile-bg: #3d3a33,
+    tile-fg: #f9f6f2
+  )
+);
+// game transition time
+$game2048-transition-move: 0.1s;
+$game2048-transition-effect: 0.2s;
+// available board sizes
+$game2048-sizes: (3, 4, 5, 6, 8);
+// board width/height per screen sizes
+$game2048-board-sm: 320;
+$game2048-board-lg: 500;
+$game2048-board-sm-px: $game2048-board-sm * 1px;
+$game2048-board-lg-px: $game2048-board-lg * 1px;
+// default board gutter
+$game2048-gutter-sm: (10, 8, 7, 6, 4);
+$game2048-gutter-lg: (16, 14, 12, 10, 8);
+// default border radius (board, button, block)
+$game2048-board-border-radius: 6px;
+$game2048-tile-border-radius: 6px;
+// A block can be a button or a display box
+$game2048-block-bg: $game2048-bg-default;
+$game2048-block-fg: $game2048-fg-default;
