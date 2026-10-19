@@ -1,32 +1,20 @@
-- id: sakura
-  title: さくら
-  author: Traditional
-  reading: さくら
-  tags:
-    - classic
-    - japanese
-- id: yume-no-mori
-  title: 夢の森
-  author: Mika Ito
-  reading: ゆめのもり
-  tags:
-    - dream
-    - pop
-- id: midnight-train
-  title: Midnight Train
-  author: A. R. Bell
-  tags:
-    - night
-    - rock
-- id: city-lights
-  title: City Lights
-  author: Lena Cross
-  tags:
-    - synth
-    - evening
 - id: city-of-stars
   title: City of Stars
   author: Ryan Gosling, Emma Stone
+  joysoundLink: https://www.joysound.com/web/search/song/607792
+  damLink: https://www.clubdam.com/karaokesearch/songleaf.html?requestNo=3954-09
   tags:
     - duo
-
+- id: xxx
+  title: ツキアカリのミチシルベ
+  author: xxx
+- id: life-yui
+  title: LIFE
+  author: YUI
+- title: 世界は恋に落ちている
+- title: アンインストール
+- title: Like Flames
+- title: Os-宇宙人
+- title: 光るなら
+- title: God Knows
+- title: 千本桜

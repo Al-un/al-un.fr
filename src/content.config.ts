@@ -44,6 +44,8 @@ const karaoke = defineCollection({
     title: z.string(),
     author: z.string(),
     reading: z.string().optional(),
+    joysoundLink: z.string().optional(),
+    damLink: z.string().optional(),
     tags: z.array(z.string()).default([]),
   }),
 });
