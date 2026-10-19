@@ -140,8 +140,11 @@ src/content/experience/
   roles:
     - title: "Senior Developer"
       period: "2022 – present"
+      description: "Description"
     - title: "Developer"
       period: "2020 – 2022"
+      description: "Description"
+      location: Somewhere
 ```
 
 ### Games (`src/content/games/`)

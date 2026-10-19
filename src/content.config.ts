@@ -31,6 +31,8 @@ const experience = defineCollection({
       z.object({
         title: z.string(),
         period: z.string(),
+        description: z.string(),
+        location: z.string().optional(),
       }),
     ),
   }),

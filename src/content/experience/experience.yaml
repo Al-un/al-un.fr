@@ -1,14 +1,36 @@
-- id: northstar-labs
-  company: Northstar Labs
+- id: paypay
+  company: PayPay
   roles:
-    - title: Senior Platform Engineer
-      period: "2023 — present"
-    - title: Software Engineer
-      period: "2021 — 2023"
-- id: orbit-works
-  company: Orbit Works
+    - title: Engineering Manager at PayPay Card
+      period: "Nov 2023 - present"
+      description: Having fun with large scale architecture, organisation challenges & hiring, in PayPay Card, a sister company focused on credit card business.
+    - title: Engineering Manager
+      period: "Juil 2022 - Oct 2023"
+      description: Having fun with other stuff and leaving the fun with Vue.js and Java to the others
+    - title: Tech Lead
+      period: "Jan 2022 - Jun 2022"
+      description: Having fun with Vue.js and other stuff
+    - title: Frontend Engineer
+      period: "Nov 2020 - Dec 2021"
+      description: Having fun with Vue.js
+- id: joyz
+  company: Joyz
   roles:
-    - title: Product Engineer
-      period: "2019 — 2021"
-    - title: Frontend Developer
-      period: "2017 — 2019"
+    - title: Frontend Lead
+      period: "Feb 2019 - Oct 2020"
+      description: From front-end technical decisions to the implementation, I lead the front-end development and synchronize actions with the other teams: back-end, design and QA. Past activities included hiring and iOS / Android development follow-up.
+      location: Tokyo
+- id: lsware
+  company: LS-ware
+  roles:
+    - title: Co-founder and CTO
+      period: "Feb. 2015 - Jul. 2018"
+      description: My entrepreneur ambition was to develop Connesto, a Food & Beverage electronic menu application with self-ordering and machine translation capabilities. I designed the software architecture and implemented the back-end and the web front-end.
+      location: Hong Kong
+- id: accenture
+  company: Accenture
+  roles:
+    - title: Consultant
+      period: "Mar 2012 - Jan. 2015"
+      description: I integrated the SAP technical architecture team. Although we were handling various architecture topics, I specialized in SAP security and authorizations management. My missions were mainly based in Paris area but also brought me to Munich (Germany) and Marseille. 
+      location: Paris, Marseille, Munich
