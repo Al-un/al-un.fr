@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/vue": "^7.0.3",
     "astro": "^7.3.8",
+    "sass": "^1.105.1",
     "vue": "^3.5.43"
   }
 }
