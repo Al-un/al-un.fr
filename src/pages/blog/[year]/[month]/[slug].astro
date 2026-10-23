@@ -1,0 +1,97 @@
+---
+import Default from "@/layouts/Default.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => {
+    const year = String(post.data.date.getFullYear());
+    const month = String(post.data.date.getMonth() + 1).padStart(2, "0");
+    const slug = post.id.split("/").pop()?.replace(/\.md$/, "") ?? post.id;
+    return {
+      params: { year, month, slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Default title={post.data.title}>
+  <article>
+    <header>
+      <h1>{post.data.title}</h1>
+      <time>{post.data.date.toISOString().slice(0, 10)}</time>
+      {
+        post.data.tags && (
+          <div class="tags">
+            {post.data.tags.map((tag: string) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )
+      }
+    </header>
+
+    <div class="article-body">
+      <Content />
+    </div>
+  </article>
+</Default>
+
+<style>
+  article time {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    background: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--border-radius);
+  }
+
+
+  /* Copied from old version */
+
+  .article-body :global(p) {
+    margin-block-end: 16px;
+  }
+
+  /* ---------- Header ---------- */
+  .article-body :global(h1) {
+    margin: 28px 0;
+  }
+
+  .article-body :global(h2) {
+    margin: 24px 0;
+  }
+
+  .article-body :global(h3) {
+    margin: 16px 0;
+  } 
+
+  /* ---------- Blockquote ---------- */
+  .article-body :global(blockquote) {
+    font-style: italic;
+    border-left: 2px solid var(--color-primary);
+    /* Override browser default */
+    margin-block-start: 0;
+    margin-block-end: 16px;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-block-start: 8px;
+    padding-block-end: 8px;
+    padding-inline-start: 16px;
+  }
+</style>

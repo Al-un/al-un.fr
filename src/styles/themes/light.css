@@ -1,0 +1,16 @@
+[data-theme="light"] {
+  --color-primary: #26A69A;
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-heading: #111111;
+  --color-link: #2563eb;
+  --color-link-hover: #1d4ed8;
+  --color-border: #e5e7eb;
+  --color-code-bg: #f3f4f6;
+  --color-card-bg: #f9fafb;
+  --color-muted: #6b7280;
+  --color-tag-bg: #e5e7eb;
+  --color-tag-text: #374151;
+  --font-family: system-ui, -apple-system, sans-serif;
+  --border-radius: 0.375rem;
+}

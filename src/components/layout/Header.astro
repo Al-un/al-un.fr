@@ -1,0 +1,201 @@
+---
+import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Blog" },
+  { href: "/games", label: "Games" },
+  { href: "/writing", label: "Writing" },
+  { href: "/karaoke", label: "Karaoke" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header" id="site-header">
+  <nav class="nav">
+    <a href="/" class="nav-brand">al-un.fr</a>
+
+    <button
+      class="nav-toggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      id="nav-toggle"
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                "nav-link",
+                { active: currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href)) },
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <ThemeSwitcher client:load />
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById("site-header")!;
+  const toggle = document.getElementById("nav-toggle")!;
+  const links = document.getElementById("nav-links")!;
+
+  // Compact mode: toggle when scrolled past one viewport height
+  let compact = false;
+  function checkScroll() {
+    const shouldBeCompact = window.scrollY > window.innerHeight;
+    if (shouldBeCompact !== compact) {
+      compact = shouldBeCompact;
+      header.dataset.compact = compact ? "true" : "false";
+    }
+  }
+  window.addEventListener("scroll", checkScroll, { passive: true });
+  checkScroll();
+
+  // Mobile hamburger toggle
+  toggle.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!expanded));
+    links.dataset.open = String(!expanded);
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    transition: padding 0.2s ease;
+  }
+
+  .nav {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    transition: padding 0.2s ease, gap 0.2s ease;
+  }
+
+  .nav-brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-heading);
+    transition: font-size 0.2s ease;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    flex: 1;
+    transition: gap 0.2s ease;
+  }
+
+  .nav-link {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    transition: font-size 0.2s ease;
+  }
+
+  .nav-link.active {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  /* Hamburger button — hidden on desktop */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 1px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  /* Compact mode */
+  .site-header[data-compact="true"] .nav {
+    padding: 0.4rem 1rem;
+    gap: 1rem;
+  }
+
+  .site-header[data-compact="true"] .nav-brand {
+    font-size: 0.95rem;
+  }
+
+  .site-header[data-compact="true"] .nav-links {
+    gap: 0.75rem;
+  }
+
+  .site-header[data-compact="true"] .nav-link {
+    font-size: 0.8rem;
+  }
+
+  /* Mobile: below 640px */
+  @media (max-width: 640px) {
+    .nav-toggle {
+      display: flex;
+      margin-left: auto;
+    }
+
+    .nav-links {
+      display: none;
+      flex-basis: 100%;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links[data-open="true"] {
+      display: flex;
+    }
+
+    .nav-link {
+      padding: 0.4rem 0;
+    }
+
+    /* Animated hamburger → X */
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /* Compact on mobile */
+    .site-header[data-compact="true"] .nav {
+      padding: 0.3rem 0.75rem;
+    }
+  }
+</style>

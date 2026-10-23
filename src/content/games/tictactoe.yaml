@@ -1,0 +1,6 @@
+name: "Tic-Tac-Toe"
+description: |
+  The classic Tic-Tac-Toe game built in Vue.js in an attempt
+  to practice vibe coding. Built with Qwen3.5:8B with Cline.
+mode: "web-native"
+path: "/games/tictactoe"

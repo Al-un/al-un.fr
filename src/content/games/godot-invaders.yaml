@@ -1,0 +1,4 @@
+name: "Godot Invaders"
+description: "A simple Godot implementation for learning purpose of the classic Space Invaders game."
+mode: "embedded"
+path: "/games/godot-invaders"

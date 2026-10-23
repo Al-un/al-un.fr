@@ -1,0 +1,58 @@
+---
+import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
+
+const books = await getCollection("writing-books");
+---
+
+<Default title="Writing">
+  <h1>Writing</h1>
+  <ul class="book-list">
+    {
+      books.map((book) => {
+        const slug = book.id.split("/")[0];
+        return (
+          <li class="book-card">
+            <a href={`/writing/${slug}`}>
+              <h2>{book.data.title}</h2>
+              <p>{book.data.description}</p>
+              <span class="status">{book.data.status}</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</Default>
+
+<style>
+  .book-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .book-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    background: var(--color-card-bg);
+  }
+
+  .book-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .book-card p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .status {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    text-transform: capitalize;
+  }
+</style>

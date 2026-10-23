@@ -1,20 +1,17 @@
 {
-  "name": "@al-un/root",
-  "author": "Al-un",
-  "version": "0.0.0",
-  "description": "Mono-repository for al-un.fr websites",
-  "engines": {
-    "node": ">=20"
+  "name": "al-un-fr",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Al-un/al-un.fr.git"
-  },
-  "workspaces": [
-    "apps",
-    "blog",
-    "home",
-    "ui"
-  ]
+  "dependencies": {
+    "@astrojs/vue": "^7.0.3",
+    "astro": "^7.3.8",
+    "sass": "^1.105.1",
+    "vue": "^3.5.43"
+  }
 }

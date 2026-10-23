@@ -1,0 +1,23 @@
+---
+import Default from "@/layouts/Default.astro";
+import KaraokeFilter from "@/components/KaraokeFilter.vue";
+import { getCollection } from "astro:content";
+
+const allSongs = await getCollection("karaoke");
+
+const songs = allSongs
+  .map((entry) => entry.data)
+  .sort((a, b) => {
+    const aHasReading = !!a.reading;
+    const bHasReading = !!b.reading;
+    if (aHasReading && !bHasReading) return -1;
+    if (!aHasReading && bHasReading) return 1;
+    if (aHasReading && bHasReading) return a.reading!.localeCompare(b.reading!, "ja");
+    return a.title.localeCompare(b.title, "en");
+  });
+---
+
+<Default title="Karaoke">
+  <h1>Karaoke</h1>
+  <KaraokeFilter client:load songs={songs} />
+</Default>

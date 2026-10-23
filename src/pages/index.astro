@@ -1,0 +1,127 @@
+---
+import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
+
+const experience = (await getCollection("experience")).sort((a, b) => {
+  const aStart = new Date(a.data.roles[0].period.split(" - ")[0]);
+  const bStart = new Date(b.data.roles[0].period.split(" - ")[0]);
+  return bStart.getTime() - aStart.getTime();
+});
+---
+
+<Default title="Home">
+  <section id="welcome">
+    <h1>Hello, I'm Alain</h1>
+    <p>Engineering Manager, doing my best to make things happen.</p>
+  </section>
+
+  <hr />
+
+  <section id="experience">
+    <h2>Experience</h2>
+    {
+      experience.map((entry) => (
+        <div class="company">
+          <h3>{entry.data.company}</h3>
+          <ul class="roles">
+            {entry.data.roles.map((role: { title: string; period: string }) => (
+              <li>
+                <div>
+                  <span class="role-title">{role.title}</span>
+                  <span class="role-period">{role.period}</span>
+                </div>
+                <div>
+                  <p>{role.description}</p>
+                  {role.location && <p><em>{role.location}</em></p>}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </section>
+
+  <hr />
+
+  <section id="presence">
+    <h2>On this site</h2>
+    <ul>
+      <li><a href="/blog">Blog</a> — Gathering thoughts here and there</li>
+      <li>
+        <a href="/games">Games</a> — Experimenting game development for fun
+      </li>
+      <li><a href="/writing">Writing</a> — Essays</li>
+      <li>
+        <a href="/karaoke">Karaoke</a> — Remembering what songs I can find
+      </li>
+    </ul>
+
+    <h2>Elsewhere</h2>
+    <ul>
+      <li>
+        <a
+          href="https://github.com/al-un"
+          target="_blank"
+          rel="noopener noreferrer">GitHub</a>
+      </li>
+      <li>
+        <a
+          href="https://www.linkedin.com/in/alainseng/"
+          target="_blank"
+          rel="noopener noreferrer">LinkedIn</a>
+      </li>
+      <li>
+        <a
+          href="https://medium.com/@Al-un"
+          target="_blank"
+          rel="noopener noreferrer">Medium</a>
+      </li>
+      <li>
+        <a
+          href="https://stackoverflow.com/users/4906586/al-un"
+          target="_blank"
+          rel="noopener noreferrer">Stack Overflow</a>
+      </li>
+    </ul>
+  </section>
+
+  <Fragment slot="footer">
+    <p>
+      Built with <a href="https://astro.build">Astro</a> + <a
+        href="https://vuejs.org">Vue</a
+      >. Deployed on <a href="https://render.com">Render</a>.
+      <a href="https://github.com/al-un/al-un.fr">Source on GitHub</a>.
+    </p>
+  </Fragment>
+</Default>
+
+<style>
+  .company {
+    margin-bottom: 1.5rem;
+  }
+
+  .roles {
+    list-style: none;
+    margin-top: 0.5rem;
+  }
+
+  .roles li div:first-child {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+  }
+  .roles li div:last-child {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .role-title {
+    font-weight: 500;
+  }
+
+  .role-period {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+</style>

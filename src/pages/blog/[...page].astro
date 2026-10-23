@@ -1,0 +1,108 @@
+---
+import type { GetStaticPaths } from "astro";
+import Default from "@/layouts/Default.astro";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = await getCollection("blog", ({ data }) => data.status === "released");
+  const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  return paginate(sorted, { pageSize: 20 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<Default title={page.currentPage === 1 ? "Blog" : `Blog — Page ${page.currentPage}`}>
+  <h1>Blog</h1>
+  <ul class="post-list">
+    {
+      page.data.map((post) => {
+        const year = post.data.date.getFullYear();
+        const month = String(post.data.date.getMonth() + 1).padStart(2, "0");
+        const slug = post.id.split("/").pop()?.replace(/\.md$/, "");
+        return (
+          <li class="post-item">
+            <a href={`/blog/${year}/${month}/${slug}`}>
+              <span class="post-title">{post.data.title}</span>
+              <time class="post-date">{post.data.date.toISOString().slice(0, 10)}</time>
+            </a>
+            {post.data.tags && (
+              <span class="post-tags">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </span>
+            )}
+          </li>
+        );
+      })
+    }
+  </ul>
+
+  {
+    (page.url.prev || page.url.next) && (
+      <nav class="pagination">
+        {page.url.prev && <a href={page.url.prev}>&larr; Newer</a>}
+        <span class="page-info">
+          Page {page.currentPage} of {page.lastPage}
+        </span>
+        {page.url.next && <a href={page.url.next}>Older &rarr;</a>}
+      </nav>
+    )
+  }
+</Default>
+
+<style>
+  .post-list {
+    list-style: none;
+  }
+
+  .post-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .post-title {
+    font-weight: 600;
+  }
+
+  .post-date {
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    background: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--border-radius);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    margin-top: 1rem;
+  }
+
+  .page-info {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+</style>

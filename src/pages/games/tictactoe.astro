@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import Default from "@/layouts/Default.astro";
+import TicTacToe from "@/apps/tictactoe/game.vue";
+
+const games = await getCollection("games");
+const tictactoeData = games.find(g => g.id.replace(/\.yaml$/, "") === "tictactoe")?.data;
+
+if (tictactoeData === undefined) {
+  throw new Error("Tic Tac Toe game data not found in the games collection.");
+}
+---
+
+<Default title={tictactoeData.name}>
+  <h1>{tictactoeData.name}</h1>
+  {tictactoeData.description && <p>{tictactoeData.description}</p>}
+
+  <TicTacToe client:load/>
+</Default>
