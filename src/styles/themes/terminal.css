@@ -1,4 +1,5 @@
 [data-theme="terminal"] {
+  --color-primary: #26A69A;
   --color-bg: #0d1117;
   --color-text: #00ff41;
   --color-heading: #00ff41;
