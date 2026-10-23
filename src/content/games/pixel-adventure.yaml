@@ -1,5 +1,0 @@
-name: Pixel Adventure
-description: A short browser platformer with a cheerful pixel-art aesthetic.
-thumbnail: "./pixel-adventure.png"
-mode: standalone
-path: "/games/pixel-adventure"
