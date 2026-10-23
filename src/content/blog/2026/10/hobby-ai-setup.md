@@ -1,7 +1,7 @@
 ---
 title: "Hobby AI Setup"
 date: 2025-10-16
-status: draft
+status: released
 tags: [AI, Ollama, OpenRouter, Coding]
 ---
 
