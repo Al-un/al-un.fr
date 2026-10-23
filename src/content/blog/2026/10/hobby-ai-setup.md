@@ -120,7 +120,7 @@ I don't use so many programming languages in my hobby coding. While I use [ASDF]
 - Check the available local models: https://ollama.com/search?c=local
 - Ensure your device supports the model
   - As a reference, assume the entire model size dumped into VRAM (Video RAM). So a 4GB download will roughly consume 4GB from your GPU. The key metrics are the number of parameters involved. To read more: https://plugable.com/blogs/news/gpu-vram-requirements-for-local-llms-plugable-guide.
-  - If your GPU is a Nvidia, check your VRAM usage with `nvidia-smi`. An useful display is:
+  - If your GPU is a Nvidia, check your VRAM usage with `nvidia-smi`. A useful display is:
 
     ```sh
     nvidia-smi --query-gpu=memory.total,memory.used,memory.free --format=csv
