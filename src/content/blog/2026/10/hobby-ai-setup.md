@@ -13,7 +13,7 @@ Alright, I cannot go past it: AI is growing so big in coding that I cannot go pa
 
 ### Requirements
 
-Hobby setup cannot compare with professional-grade setup: not only is the budget a key factor, it is also overkill for most of our needs. So here we go. The setup must:
+A hobby setup cannot compare with a professional-grade setup: not only is the budget a key factor, it is also overkill for most of our needs. So here we go. The setup must:
 
 - Be installable and usable in both Windows and Linux environments
 - Be shared between multiple users in Windows environments
@@ -53,7 +53,7 @@ On a Windows 11 machine, Node and Python need to be installed first.
 
 **Node.js**
 
-I don't use so many programming languages in my hobby coding. While I use [ASDF](https://asdf-vm.com/) at work, I will stick to a simple [NVM for Windows setup](https://www.nvmnode.com/).
+I don't use many programming languages for my hobby coding. While I use [ASDF](https://asdf-vm.com/) at work, I will stick to a simple [NVM for Windows setup](https://www.nvmnode.com/).
 
 - Download NVM installer from https://www.nvmnode.com/guide/download.html and install it (https://www.nvmnode.com/guide/installation.html). I downloaded the 2.0.0 version.
 - Check the basic commands if needed on https://www.nvmnode.com/guide/usage.html
@@ -205,7 +205,7 @@ I don't use so many programming languages in my hobby coding. While I use [ASDF]
 
 ## Workflow
 
-The simple setup uses Cline + Ollama + Qwen family model which is sufficient to revamp my personal website. However, the architecture was set up using Claude Code.
+The simple setup uses Cline + Ollama + Qwen family model, which is sufficient to revamp my personal website. However, the architecture was set up using Claude Code.
 
 Aider is involved when multiple files are edited, such as a refactoring, or a non VS Code action (e.g. raw JSON file manipulation) is required.
 
