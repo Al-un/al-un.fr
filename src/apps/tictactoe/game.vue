@@ -5,7 +5,6 @@ import { ref, computed } from 'vue'
 const player = ref('X') // X goes first
 const board = ref(Array(9).fill(null))
 const winningPlayer = ref(null)
-let isAnimating = false
 
 // Check for win condition
 const checkWin = (currentBoard) => {
@@ -30,46 +29,37 @@ const checkDraw = (currentBoard) => {
 
 // Handle cell click
 const handleCellClick = (index) => {
-  if (isAnimating || winningPlayer.value || !board.value[index]) {
+  // Only allow clicks on empty cells when there's no winner
+  if (winningPlayer.value || board.value[index]) {
     return
   }
 
-  isAnimating = true
-  
   // Update board - switch from X to O or vice versa
   board.value[index] = player.value === 'X' ? 'O' : 'X'
   
-  // Check game status
+  // Check game status immediately
   const winResult = checkWin(board.value)
   
   if (winResult) {
     winningPlayer.value = winResult
   } else if (checkDraw(board.value)) {
     winningPlayer.value = 'draw'
+  } else {
+    // Switch player for next turn
+    player.value = player.value === 'X' ? 'O' : 'X'
   }
-  
-  // Switch player after brief delay for animation feel
-  setTimeout(() => {
-    isAnimating = false
-    
-    // Only switch if no winner and not currently animating
-    if (!winningPlayer.value) {
-      player.value = player.value === 'X' ? 'O' : 'X'
-    }
-  }, 150)
 }
 
 const resetGame = () => {
   board.value = Array(9).fill(null)
   winningPlayer.value = null
   player.value = 'X'
-  isAnimating = false
 }
 
 const clearBoard = () => {
   board.value = Array(9).fill(null)
   winningPlayer.value = null
-  isAnimating = false
+  player.value = 'X'
 }
 </script>
 
@@ -95,7 +85,7 @@ const clearBoard = () => {
         class="cell"
         :class="{ selected: !winningPlayer && cell }"
         :data-player="cell || ''"
-        @click="handleCellClick(index)"
+        @click.stop="handleCellClick(index)"
       >
         <span v-if="cell">{{ cell }}</span>
         <span v-else>-</span>
@@ -126,7 +116,6 @@ const clearBoard = () => {
   background-color: #16213e;
   border-radius: 8px;
   min-height: 300px;
-  overflow: visible;
 }
 
 .cell {
@@ -142,7 +131,6 @@ const clearBoard = () => {
   border: 2px solid #4f46e5;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
-  position: relative;
 }
 
 .cell:hover {
@@ -151,17 +139,14 @@ const clearBoard = () => {
 
 .cell.selected {
   background-color: rgba(79, 70, 229, 0.3);
-  animation: glow 1.5s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+.cell[data-player="X"] {
+  color: #4f46e5;
 }
 
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(79, 70, 229, 0.5); }
-  50% { box-shadow: 0 0 20px #4f46e5; }
+.cell[data-player="O"] {
+  color: #ef4444;
 }
 
 .game-title {
@@ -192,7 +177,6 @@ const clearBoard = () => {
 .winner-indicator {
   color: #4f46e5;
   font-weight: bold;
-  animation: pulse 2s ease infinite;
 }
 
 .status {
