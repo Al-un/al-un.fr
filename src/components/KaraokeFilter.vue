@@ -68,6 +68,7 @@ const filtered = computed(() => {
 
 .song-list {
   list-style: none;
+  padding: 0;
 }
 
 .song-item {

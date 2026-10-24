@@ -8,18 +8,19 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const year = new Date().getFullYear();
 ---
 
 <Base title={title} description={description}>
   <div class="page">
     <Header />
+
     <main class="content">
       <slot />
     </main>
+
     <footer class="site-footer">
       <slot name="footer">
-        <p>&copy; {year} al-un.fr</p>
+        <p>&copy; Al-un</p>
       </slot>
     </footer>
   </div>
@@ -50,7 +51,7 @@ const year = new Date().getFullYear();
 
   @media (max-width: 640px) {
     .content {
-      padding: 1rem 1.5rem;
+      padding: 1rem;
     }
   }
 </style>

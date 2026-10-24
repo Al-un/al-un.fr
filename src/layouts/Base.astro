@@ -4,7 +4,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Personal website of a software engineer" } = Astro.props;
+const { title, description = "Al-un's personal website" } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,7 +13,7 @@ const { title, description = "Personal website of a software engineer" } = Astro
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <title>{title} — al-un.fr</title>
+    <title>{title} - al-un.fr</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
       (function () {
