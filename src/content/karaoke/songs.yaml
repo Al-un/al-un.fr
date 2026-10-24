@@ -8,18 +8,19 @@
 - id: tsukiakari-no-michishirube
   title: ツキアカリのミチシルベ
   author: ステレオポニー
-  reading: ツキアカリノミチシルベ
+  reading: つきあかりのみちしるべ
   joysoundLink: https://www.joysound.com/web/search/song/144059
 - id: life-yui
   title: LIFE
   author: YUI
-  reading: ライフ
+  reading: らいふ
   joysoundLink: https://www.joysound.com/web/search/song/144060
 - id: sekai-wa-koi-ni-ochiteiru
   title: 世界は恋に落ちている
   author: CHiCO with HoneyWorks
-  reading: セカイワコイニオッチテイル
+  reading: せかいわこいにおちている
   joysoundLink: https://www.joysound.com/web/search/song/408823
+  damLink: https://www.clubdam.com/karaokesearch/songleaf.html?requestNo=3707-23
 - id: like-flames
   title: Like Flames
   author: MindaRyn
@@ -27,5 +28,5 @@
 - id: os-u-chuujin
   title: Os-宇宙人
   author: エリオをかまってちゃん
-  reading: オスウチュウジン
+  reading: おすうチュウジン
   joysoundLink: https://www.joysound.com/web/search/song/165676
